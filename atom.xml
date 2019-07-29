@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-07-29T14:28:43.281Z</updated>
+    <updated>2019-07-29T15:35:02.114Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -11,14 +11,15 @@
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
     <entry>
-        <title type="html"><![CDATA[js时间循环学习1 ]]></title>
+        <title type="html"><![CDATA[js Event Loop学习  异步执行顺序 ]]></title>
         <id>https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1</id>
         <link href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
         </link>
         <updated>2019-07-29T12:40:06.000Z</updated>
         <content type="html"><![CDATA[<p>在js的<code>Event Loop</code>中，每一次循环叫做一个<code>tick</code></p>
-<h2 id="task-和-microtask">task 和 microtask</h2>
-<p>task包括</p>
+<h2 id="macrotasktask-和-microtaskjobs">macrotask(task) 和 microtask(jobs)</h2>
+<p><strong>在ECMAScript中，microtask称为jobs，macrotask可称为task</strong><br>
+task包括</p>
 <ul>
 <li>script(整体代码)</li>
 <li>setTimeout, setInterval, setImmediate,</li>
@@ -31,9 +32,51 @@ ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对�
 <li>process.nextTick</li>
 <li>Promise then</li>
 <li>Object.observe(已废弃)</li>
-<li>MutationObserver(html5新特性)</li>
+<li>MutationObserver(html5新特性)<br>
+运行机制：</li>
 </ul>
+<ol>
+<li>执行一个宏任务（执行栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）<br>
+<img src="https://dailc.github.io/staticResource/blog/basicKnowledge/singlethreadeventloop/js_macrotask_microtask.png" alt=""></li>
+</ol>
 <p>在每次tick运行时，会从task queue中依次执行，task执行过程中遇到microtask，便将其放到microtasks queue中；当task执行完毕后，检查microtask queue是否为空，若不为空则依次执行microtask queue的microtask；最后，这次tick执行完毕，开始执行第二次tick</p>
+<h2 id="浏览器包含哪些进程">浏览器包含哪些进程？</h2>
+<ul>
+<li>Browser进程：浏览器的主进程（负责协调、主控），只有一个。作用有
+<ul>
+<li>负责浏览器界面显示，与用户交互。如前进，后退等</li>
+<li>负责各个页面的管理，创建和销毁其他进程</li>
+<li>将Renderer进程得到的内存中的Bitmap，绘制到用户界面上</li>
+</ul>
+</li>
+<li>第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建</li>
+<li>GPU进程：最多一个，用于3D绘制等</li>
+<li>浏览器渲染进程（浏览器内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为网络资源的管理，下载等</li>
+</ul>
+<h2 id="浏览器渲染进程浏览器内核的常驻线程">浏览器渲染进程（浏览器内核）的常驻线程</h2>
+<p><img src="https://dailc.github.io/staticResource/blog/basicKnowledge/singlethreadeventloop/browser_inner_thread.png" alt=""></p>
+<ul>
+<li>GUI渲染线程<br>
+负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行。注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。</li>
+<li>JS引擎线程<br>
+也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）。JS引擎线程负责解析Javascript脚本，运行代码。JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序。同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</li>
+<li>事件触发线程<br>
+归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）。当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中。当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）。</li>
+<li>定时触发器线程<br>
+传说中的setInterval与setTimeout所在线程。浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）。因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）。注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。</li>
+<li>异步http请求线程<br>
+在XMLHttpRequest在连接后是通过浏览器新开一个线程请求。将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</li>
+</ul>
+<p>参考文献：</p>
+<ul>
+<li><a href="http://www.dailichun.com/2018/01/21/js_singlethread_eventloop.html">浏览器中的进程和线程</a></li>
+<li><a href="https://github.com/creeperyang/blog/issues/21">从Promise来看JavaScript中的Event Loop、Tasks和Microtasks</a></li>
+<li></li>
+</ul>
 ]]></content>
     </entry>
     <entry>
