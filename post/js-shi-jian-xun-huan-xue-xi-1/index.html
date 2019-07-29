@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>js Event Loop学习  异步执行顺序  | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1564414495223">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1564415432561">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://angrychocobo.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://angrychocobo.github.io/">
-  <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1564414495223" alt="">
+  <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1564415432561" alt="">
   </a>
   <h1 class="site-title">
     老桔的小站（悄咪咪
@@ -91,15 +91,29 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>在js的<code>Event Loop</code>中，每一次循环叫做一个<code>tick</code></p>
+                <pre><code class="language-js">console.log('start')
+
+setTimeout(function() {
+    console.log('timeout')
+}, 0)
+
+new Promise(function(resolve) {
+    console.log('promise')
+    resolve()
+}).then(function() {
+    console.log('promise resolved')
+})
+
+console.log('end')
+</code></pre>
+<p>在js的<code>Event Loop</code>中，每一次循环叫做一个<code>tick</code></p>
 <h2 id="macrotasktask-和-microtaskjobs">macrotask(task) 和 microtask(jobs)</h2>
 <p><strong>在ECMAScript中，microtask称为jobs，macrotask可称为task</strong><br>
 task包括</p>
 <ul>
 <li>script(整体代码)</li>
 <li>setTimeout, setInterval, setImmediate,</li>
-<li>I/O</li>
-<li>UI rendering<br>
+<li>I/O<br>
 ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对应的http线程处理，一旦请求返回结果，就会将对应的回调放入宏任务队列，等请求完成执行</li>
 </ul>
 <p>jobs包括</p>
@@ -146,11 +160,12 @@ ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对�
 <li>异步http请求线程<br>
 在XMLHttpRequest在连接后是通过浏览器新开一个线程请求。将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</li>
 </ul>
+<p>实际上每个任务都会有一个对应的任务源 target source(任务源)，每个任务都放到对应任务源的任务队列中，每个任务源根据不同浏览器或其他引擎 (例如 nodejs) 的实现，自己安排不同的优先级，从而调控某类任务的执行顺序。例如浏览器认为鼠标事件频率很高，所以可以把鼠标事件的任务源优先级设的更高，而 nodejs 中 i/o 优先级更高，就针对此类任务源可以提升执行优先级。</p>
 <p>参考文献：</p>
 <ul>
 <li><a href="http://www.dailichun.com/2018/01/21/js_singlethread_eventloop.html">浏览器中的进程和线程</a></li>
 <li><a href="https://github.com/creeperyang/blog/issues/21">从Promise来看JavaScript中的Event Loop、Tasks和Microtasks</a></li>
-<li></li>
+<li><a href="https://tasaid.com/blog/20180118132704.html">JavaScript 中的 task queues</a></li>
 </ul>
 
               </div>
