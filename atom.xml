@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-07-27T15:12:01.342Z</updated>
+    <updated>2019-07-29T14:28:43.281Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,32 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[js时间循环学习1 ]]></title>
+        <id>https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1</id>
+        <link href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
+        </link>
+        <updated>2019-07-29T12:40:06.000Z</updated>
+        <content type="html"><![CDATA[<p>在js的<code>Event Loop</code>中，每一次循环叫做一个<code>tick</code></p>
+<h2 id="task-和-microtask">task 和 microtask</h2>
+<p>task包括</p>
+<ul>
+<li>script(整体代码)</li>
+<li>setTimeout, setInterval, setImmediate,</li>
+<li>I/O</li>
+<li>UI rendering<br>
+ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对应的http线程处理，一旦请求返回结果，就会将对应的回调放入宏任务队列，等请求完成执行</li>
+</ul>
+<p>jobs包括</p>
+<ul>
+<li>process.nextTick</li>
+<li>Promise then</li>
+<li>Object.observe(已废弃)</li>
+<li>MutationObserver(html5新特性)</li>
+</ul>
+<p>在每次tick运行时，会从task queue中依次执行，task执行过程中遇到microtask，便将其放到microtasks queue中；当task执行完毕后，检查microtask queue是否为空，若不为空则依次执行microtask queue的microtask；最后，这次tick执行完毕，开始执行第二次tick</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[两数之和1 ]]></title>
         <id>https://angrychocobo.github.io//post/liang-shu-zhi-he-1</id>
