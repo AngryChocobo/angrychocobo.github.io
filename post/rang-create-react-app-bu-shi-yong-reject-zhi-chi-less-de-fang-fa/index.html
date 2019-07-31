@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 老桔的小站（悄咪咪</title>
+<title>不使用reject  让create-react-app支持less的方法 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1564585038294">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -77,11 +77,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              不使用reject  让create-react-app支持less的方法
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2019-07-31
               </span>
               <span>
                 1 min read
@@ -91,7 +91,47 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>这是关于的页面，可以在这里向世界介绍你！</p>
+                <p>create-react-app是默认支持sass的，但是less需要做一些特殊处理：</p>
+<ol>
+<li>对创建好的create-react-app项目安装依赖包：</li>
+</ol>
+<pre><code class="language-node">npm install react-app-rewired --save
+npm install react-app-rewire-less --save
+</code></pre>
+<ol start="2">
+<li>修改项目的package.json：</li>
+</ol>
+<pre><code class="language-json">  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;
+  }
+</code></pre>
+<ol start="3">
+<li>项目根目录创建文件config-overrides.js</li>
+</ol>
+<pre><code class="language-js">const {
+    override,
+    fixBabelImports,
+    addLessLoader
+} = require('customize-cra');
+
+module.exports = override(
+    fixBabelImports('import', {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+    }),
+    addLessLoader({
+        javascriptEnabled: true,
+        modifyVars: {
+            '@primary-color': '#1DA57A'
+        },
+    })
+);
+</code></pre>
+<p>顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～</p>
 
               </div>
               <div class="toc-container">
@@ -101,6 +141,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
+              <h3 class="post-title">
+                js Event Loop学习  异步执行顺序 
+              </h3>
+            </a>
+          </div>
         
 
         

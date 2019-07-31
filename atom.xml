@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-07-29T15:50:36.252Z</updated>
+    <updated>2019-07-31T14:57:22.106Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[不使用reject  让create-react-app支持less的方法]]></title>
+        <id>https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa</id>
+        <link href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
+        </link>
+        <updated>2019-07-31T14:17:00.000Z</updated>
+        <content type="html"><![CDATA[<p>create-react-app是默认支持sass的，但是less需要做一些特殊处理：</p>
+<ol>
+<li>对创建好的create-react-app项目安装依赖包：</li>
+</ol>
+<pre><code class="language-node">npm install react-app-rewired --save
+npm install react-app-rewire-less --save
+</code></pre>
+<ol start="2">
+<li>修改项目的package.json：</li>
+</ol>
+<pre><code class="language-json">  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;
+  }
+</code></pre>
+<ol start="3">
+<li>项目根目录创建文件config-overrides.js</li>
+</ol>
+<pre><code class="language-js">const {
+    override,
+    fixBabelImports,
+    addLessLoader
+} = require('customize-cra');
+
+module.exports = override(
+    fixBabelImports('import', {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+    }),
+    addLessLoader({
+        javascriptEnabled: true,
+        modifyVars: {
+            '@primary-color': '#1DA57A'
+        },
+    })
+);
+</code></pre>
+<p>顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[js Event Loop学习  异步执行顺序 ]]></title>
         <id>https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1</id>
