@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-07-31T14:57:22.106Z</updated>
+    <updated>2019-08-01T16:36:14.209Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,16 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[使用fetch请求接口并设置cookie未生效的原因]]></title>
+        <id>https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin</id>
+        <link href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
+        </link>
+        <updated>2019-08-01T16:11:47.000Z</updated>
+        <content type="html"><![CDATA[<p>使用fetch，必须加上参数credentials: 'include'才可以成功设置cookie</p>
+<p>但是这样一来又有了跨域的问题。晕，先睡了</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[不使用reject  让create-react-app支持less的方法]]></title>
         <id>https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa</id>
