@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-08-01T16:36:14.209Z</updated>
+    <updated>2019-08-02T15:46:23.057Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -16,8 +16,11 @@
         <link href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
         </link>
         <updated>2019-08-01T16:11:47.000Z</updated>
-        <content type="html"><![CDATA[<p>使用fetch，必须加上参数credentials: 'include'才可以成功设置cookie</p>
-<p>但是这样一来又有了跨域的问题。晕，先睡了</p>
+        <content type="html"><![CDATA[<p>//使用fetch，必须加上参数credentials: 'include'才可以成功设置cookie</p>
+<p>//但是这样一来又有了跨域的问题。晕，先睡了</p>
+<p>似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置<code>xhrFields: { withCredentials: true }</code>。emm 很迷。懵逼。</p>
+<p>那么fetch呢..</p>
+<p>还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2</p>
 ]]></content>
     </entry>
     <entry>

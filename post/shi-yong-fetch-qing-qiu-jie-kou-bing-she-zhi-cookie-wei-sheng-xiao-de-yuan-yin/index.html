@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>使用fetch请求接口并设置cookie未生效的原因 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1564677370982">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1564754667184">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://angrychocobo.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://angrychocobo.github.io/">
-  <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1564677370982" alt="">
+  <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1564754667184" alt="">
   </a>
   <h1 class="site-title">
     老桔的小站（悄咪咪
@@ -91,8 +91,11 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>使用fetch，必须加上参数credentials: 'include'才可以成功设置cookie</p>
-<p>但是这样一来又有了跨域的问题。晕，先睡了</p>
+                <p>//使用fetch，必须加上参数credentials: 'include'才可以成功设置cookie</p>
+<p>//但是这样一来又有了跨域的问题。晕，先睡了</p>
+<p>似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置<code>xhrFields: { withCredentials: true }</code>。emm 很迷。懵逼。</p>
+<p>那么fetch呢..</p>
+<p>还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2</p>
 
               </div>
               <div class="toc-container">
