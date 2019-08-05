@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>两数之和2 输入有序数组 | 老桔的小站（悄咪咪</title>
+<title>redux中间件临时记录 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1565004473739">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -77,11 +77,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              两数之和2 输入有序数组
+              redux中间件临时记录
             </h2>
             <div class="post-info">
               <span>
-                2019-07-27
+                2019-08-05
               </span>
               <span>
                 1 min read
@@ -91,61 +91,55 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="题目要求">题目要求</h2>
-<blockquote>
-<p>给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。<br>
-函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。<br>
-说明:<br>
-返回的下标值（index1 和 index2）不是从零开始的。<br>
-你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。<br>
-示例:<br>
-输入: numbers = [2, 7, 11, 15], target = 9<br>
-输出: [1,2]<br>
-解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。</p>
-</blockquote>
-<h2 id="解法一-直接双重循环">解法一： 直接双重循环</h2>
-<pre><code class="language-js">var twoSum = function(nums, target) {
-   for(var i = 0; i&lt;nums.length; i++) {
-       for(var j = i + 1; j&lt;nums.length; j++) {
-           if ((nums[i] + nums[j] == target) &amp;&amp; (i &lt; j)) {
-               return [i+1, j+1];
-           }
-       }
-   }
-};
-</code></pre>
-<p>上来直接想到的方法，很笨，但是奏效。执行用时380 ms，内存消耗35 MB<br>
-时间复杂度为O（n2）</p>
-<h2 id="解法二-双指针">解法二： 双指针</h2>
-<pre><code class="language-js">var twoSum = function(nums, target) {
-    var i = 0, j = nums.length -1;
-		while (i &lt; j) {
-        if (nums[i] + nums[j] == target) {
-            return [i+1, j+1]; 
+                <p>export function fetchWords() {</p>
+<pre><code>// Thunk middleware 知道如何处理函数。
+// 这里把 dispatch 方法通过参数的形式传给函数，
+// 以此来让它自己也能 dispatch action。
+
+return function (dispatch) {
+
+    // 首次 dispatch：更新应用的 state 来通知
+    // API 请求发起了。
+
+    dispatch(requestWords())
+
+    // thunk middleware 调用的函数可以有返回值，
+    // 它会被当作 dispatch 方法的返回值传递。
+
+    // 这个案例中，我们返回一个等待处理的 promise。
+    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+    return fetch(`http://127.0.0.1:3001/words`)
+        .then(function (response) {
+            return response.json();
+        },
+            // 不要使用 catch，因为会捕获
+            // 在 dispatch 和渲染中出现的任何错误，
+            // 导致 'Unexpected batch number' 错误。
+            // https://github.com/facebook/react/issues/6895
+            error =&gt; console.log('An error occurred.', error)
+        )
+        .then(json =&gt;
+        // 可以多次 dispatch！
+        // 这里，使用 API 请求结果来更新应用的 state。
+        {
+            if (json) {
+                setTimeout(() =&gt; {
+                    dispatch(receiveWords(json));
+                }, 2000);
+            } else {
+                dispatch(fetchError());
+            }
+
         }
-        if(nums[i] + nums[j] &gt; target) {
-            j--;
-        } else {
-            i++;
-        }
-	}
-};
+        );
+}
 </code></pre>
-<p>充分理由给定的数组是<code>有序</code>的这一特性。执行用时80 ms，内存消耗35.2 MB<br>
-时间复杂度为O(n)</p>
+<p>}</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82">题目要求</a></li>
-<li><a href="#%E8%A7%A3%E6%B3%95%E4%B8%80-%E7%9B%B4%E6%8E%A5%E5%8F%8C%E9%87%8D%E5%BE%AA%E7%8E%AF">解法一： 直接双重循环</a></li>
-<li><a href="#%E8%A7%A3%E6%B3%95%E4%BA%8C-%E5%8F%8C%E6%8C%87%E9%92%88">解法二： 双指针</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -154,9 +148,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://angrychocobo.github.io//post/hello-gridea">
+            <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
               <h3 class="post-title">
-                Hello Gridea
+                使用fetch请求接口并设置cookie未生效的原因
               </h3>
             </a>
           </div>

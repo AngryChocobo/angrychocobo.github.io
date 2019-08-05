@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-08-02T15:46:23.057Z</updated>
+    <updated>2019-08-05T11:27:56.504Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,59 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[redux中间件临时记录]]></title>
+        <id>https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu</id>
+        <link href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
+        </link>
+        <updated>2019-08-05T11:27:32.000Z</updated>
+        <content type="html"><![CDATA[<p>export function fetchWords() {</p>
+<pre><code>// Thunk middleware 知道如何处理函数。
+// 这里把 dispatch 方法通过参数的形式传给函数，
+// 以此来让它自己也能 dispatch action。
+
+return function (dispatch) {
+
+    // 首次 dispatch：更新应用的 state 来通知
+    // API 请求发起了。
+
+    dispatch(requestWords())
+
+    // thunk middleware 调用的函数可以有返回值，
+    // 它会被当作 dispatch 方法的返回值传递。
+
+    // 这个案例中，我们返回一个等待处理的 promise。
+    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+    return fetch(`http://127.0.0.1:3001/words`)
+        .then(function (response) {
+            return response.json();
+        },
+            // 不要使用 catch，因为会捕获
+            // 在 dispatch 和渲染中出现的任何错误，
+            // 导致 'Unexpected batch number' 错误。
+            // https://github.com/facebook/react/issues/6895
+            error =&gt; console.log('An error occurred.', error)
+        )
+        .then(json =&gt;
+        // 可以多次 dispatch！
+        // 这里，使用 API 请求结果来更新应用的 state。
+        {
+            if (json) {
+                setTimeout(() =&gt; {
+                    dispatch(receiveWords(json));
+                }, 2000);
+            } else {
+                dispatch(fetchError());
+            }
+
+        }
+        );
+}
+</code></pre>
+<p>}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[使用fetch请求接口并设置cookie未生效的原因]]></title>
         <id>https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin</id>
