@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>redux中间件临时记录 | 老桔的小站（悄咪咪</title>
+<title>博客项目reducer拆分和中间件 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1565187716007">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -77,7 +77,7 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              redux中间件临时记录
+              博客项目reducer拆分和中间件
             </h2>
             <div class="post-info">
               <span>
@@ -91,55 +91,83 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>export function fetchWords() {</p>
-<pre><code>// Thunk middleware 知道如何处理函数。
-// 这里把 dispatch 方法通过参数的形式传给函数，
-// 以此来让它自己也能 dispatch action。
+                <p>今天放假，继续撸博客项目。</p>
+<blockquote>
+<p>早晨开始自我怀疑，是不是要继续做下去，当时觉得项目好像没什么意思，即使做出来了自己真的会去用嘛？然后就开始盲目的搜索其他接口，想做点别的项目，还好及时停止了搜索，去打扫了大半个小时的卫生，又洗了几件衣服，吃了外卖，睡一个午觉。 庆幸自己脱离了糟糕的状态，差点放弃~  不过也算是浪费了上午+半个下午了。</p>
+</blockquote>
+<h2 id="主要进行了如下工作">主要进行了如下工作：</h2>
+<ul>
+<li>首页样式变更</li>
+<li>Header、Footer拆分</li>
+<li>reducer拆分，分为了word、post和global</li>
+<li>action也拆出来了</li>
+<li>使用中间件进行了posts列表的获取</li>
+</ul>
+<h2 id="遇到的问题">遇到的问题</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5817838"><label class="task-list-item-label" for="task-item-5817838"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
+</ul>
+<h2 id="反思">反思</h2>
+<p>细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。</p>
+<p>记录临时代码</p>
+<pre><code class="language-js">export function fetchWords() {
 
-return function (dispatch) {
+    // Thunk middleware 知道如何处理函数。
+    // 这里把 dispatch 方法通过参数的形式传给函数，
+    // 以此来让它自己也能 dispatch action。
 
-    // 首次 dispatch：更新应用的 state 来通知
-    // API 请求发起了。
+    return function (dispatch) {
 
-    dispatch(requestWords())
+        // 首次 dispatch：更新应用的 state 来通知
+        // API 请求发起了。
 
-    // thunk middleware 调用的函数可以有返回值，
-    // 它会被当作 dispatch 方法的返回值传递。
+        dispatch(requestWords())
 
-    // 这个案例中，我们返回一个等待处理的 promise。
-    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+        // thunk middleware 调用的函数可以有返回值，
+        // 它会被当作 dispatch 方法的返回值传递。
 
-    return fetch(`http://127.0.0.1:3001/words`)
-        .then(function (response) {
-            return response.json();
-        },
-            // 不要使用 catch，因为会捕获
-            // 在 dispatch 和渲染中出现的任何错误，
-            // 导致 'Unexpected batch number' 错误。
-            // https://github.com/facebook/react/issues/6895
-            error =&gt; console.log('An error occurred.', error)
-        )
-        .then(json =&gt;
-        // 可以多次 dispatch！
-        // 这里，使用 API 请求结果来更新应用的 state。
-        {
-            if (json) {
-                setTimeout(() =&gt; {
-                    dispatch(receiveWords(json));
-                }, 2000);
-            } else {
-                dispatch(fetchError());
+        // 这个案例中，我们返回一个等待处理的 promise。
+        // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+        return fetch(`http://127.0.0.1:3001/words`)
+            .then(function (response) {
+                return response.json();
+            },
+                // 不要使用 catch，因为会捕获
+                // 在 dispatch 和渲染中出现的任何错误，
+                // 导致 'Unexpected batch number' 错误。
+                // https://github.com/facebook/react/issues/6895
+                error =&gt; console.log('An error occurred.', error)
+            )
+            .then(json =&gt;
+            // 可以多次 dispatch！
+            // 这里，使用 API 请求结果来更新应用的 state。
+            {
+                if (json) {
+                    setTimeout(() =&gt; {
+                        dispatch(receiveWords(json));
+                    }, 2000);
+                } else {
+                    dispatch(fetchError());
+                }
             }
-
-        }
-        );
+            );
+    }
 }
 </code></pre>
-<p>}</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%BB%E8%A6%81%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%A6%82%E4%B8%8B%E5%B7%A5%E4%BD%9C">主要进行了如下工作：</a></li>
+<li><a href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">遇到的问题</a></li>
+<li><a href="#%E5%8F%8D%E6%80%9D">反思</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -148,9 +176,9 @@ return function (dispatch) {
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
+            <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
               <h3 class="post-title">
-                使用fetch请求接口并设置cookie未生效的原因
+                redux中间件临时记录
               </h3>
             </a>
           </div>

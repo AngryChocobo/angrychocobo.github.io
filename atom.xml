@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-08-05T11:27:56.504Z</updated>
+    <updated>2019-08-07T14:22:24.427Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,78 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[博客项目reducer拆分和中间件]]></title>
+        <id>https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian</id>
+        <link href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
+        </link>
+        <updated>2019-08-05T11:30:13.000Z</updated>
+        <content type="html"><![CDATA[<p>今天放假，继续撸博客项目。</p>
+<blockquote>
+<p>早晨开始自我怀疑，是不是要继续做下去，当时觉得项目好像没什么意思，即使做出来了自己真的会去用嘛？然后就开始盲目的搜索其他接口，想做点别的项目，还好及时停止了搜索，去打扫了大半个小时的卫生，又洗了几件衣服，吃了外卖，睡一个午觉。 庆幸自己脱离了糟糕的状态，差点放弃~  不过也算是浪费了上午+半个下午了。</p>
+</blockquote>
+<h2 id="主要进行了如下工作">主要进行了如下工作：</h2>
+<ul>
+<li>首页样式变更</li>
+<li>Header、Footer拆分</li>
+<li>reducer拆分，分为了word、post和global</li>
+<li>action也拆出来了</li>
+<li>使用中间件进行了posts列表的获取</li>
+</ul>
+<h2 id="遇到的问题">遇到的问题</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5817838"><label class="task-list-item-label" for="task-item-5817838"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
+</ul>
+<h2 id="反思">反思</h2>
+<p>细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。</p>
+<p>记录临时代码</p>
+<pre><code class="language-js">export function fetchWords() {
+
+    // Thunk middleware 知道如何处理函数。
+    // 这里把 dispatch 方法通过参数的形式传给函数，
+    // 以此来让它自己也能 dispatch action。
+
+    return function (dispatch) {
+
+        // 首次 dispatch：更新应用的 state 来通知
+        // API 请求发起了。
+
+        dispatch(requestWords())
+
+        // thunk middleware 调用的函数可以有返回值，
+        // 它会被当作 dispatch 方法的返回值传递。
+
+        // 这个案例中，我们返回一个等待处理的 promise。
+        // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+        return fetch(`http://127.0.0.1:3001/words`)
+            .then(function (response) {
+                return response.json();
+            },
+                // 不要使用 catch，因为会捕获
+                // 在 dispatch 和渲染中出现的任何错误，
+                // 导致 'Unexpected batch number' 错误。
+                // https://github.com/facebook/react/issues/6895
+                error =&gt; console.log('An error occurred.', error)
+            )
+            .then(json =&gt;
+            // 可以多次 dispatch！
+            // 这里，使用 API 请求结果来更新应用的 state。
+            {
+                if (json) {
+                    setTimeout(() =&gt; {
+                        dispatch(receiveWords(json));
+                    }, 2000);
+                } else {
+                    dispatch(fetchError());
+                }
+            }
+            );
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[redux中间件临时记录]]></title>
         <id>https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu</id>
