@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>不使用reject  让create-react-app支持less的方法 | 老桔的小站（悄咪咪</title>
+<title>js基础-变量和类型01 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘" />
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1565445930215">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -77,11 +77,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              不使用reject  让create-react-app支持less的方法
+              js基础-变量和类型01
             </h2>
             <div class="post-info">
               <span>
-                2019-07-31
+                2019-08-10
               </span>
               <span>
                 1 min read
@@ -91,51 +91,32 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>create-react-app是默认支持sass的，但是less需要做一些特殊处理：</p>
-<ol>
-<li>对创建好的create-react-app项目安装依赖包：</li>
-</ol>
-<pre><code class="language-node">npm install react-app-rewired --save
-npm install react-app-rewire-less --save
-</code></pre>
-<ol start="2">
-<li>修改项目的package.json：</li>
-</ol>
-<pre><code class="language-json">  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;react-scripts start&quot;,
-    &quot;build&quot;: &quot;react-scripts build&quot;,
-    &quot;test&quot;: &quot;react-scripts test&quot;,
-    &quot;eject&quot;: &quot;react-scripts eject&quot;
-  }
-</code></pre>
-<ol start="3">
-<li>项目根目录创建文件config-overrides.js</li>
-</ol>
-<pre><code class="language-js">const {
-    override,
-    fixBabelImports,
-    addLessLoader
-} = require('customize-cra');
-
-module.exports = override(
-    fixBabelImports('import', {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            '@primary-color': '#1DA57A'
-        },
-    })
-);
-</code></pre>
-<p>顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～</p>
+                <!-- more 朝花因故未采撷，夕拾依旧烂漫天。从小处开始，一点一点上下求索，漫漫长路就会全然走在脚下。-->
+<p>现在是8月10日周六晚21:51。<br>
+心情不悲不喜，大概是因为没有被老板@。<br>
+昨天买了一个type-c扩展坞，很不错，然而不支持小米手机，华为可以。嗯，华为手机很强，想换（并不）；华为很强，想进（真的）。<br>
+该学习了，按照知识清单来逐个尝试回答，就当是面试了。</p>
+<h3 id="01-javascript规定了几种语言类型">01. <code>JavaScript</code>规定了几种语言类型</h3>
+<p>QAQ啥是语言类型？。。。我只知道基本数据类型，是string, number, boolean, undefined, null,  NaN, Symbol, 以及引用数据类型object。</p>
+<p>红宝书答案：</p>
+<blockquote>
+<p>ECMAScript有5种简单数据类型，也叫做基本数据类型： Undefined，Null，Boolean，Number，String，以及1种复杂数据结构Object。实际上ES6加入了新的简单数据结构Symbol，所以一共是7种</p>
+</blockquote>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#01-javascript%E8%A7%84%E5%AE%9A%E4%BA%86%E5%87%A0%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%B1%BB%E5%9E%8B">01. <code>JavaScript</code>规定了几种语言类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -144,9 +125,9 @@ module.exports = override(
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
+            <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
               <h3 class="post-title">
-                js Event Loop学习  异步执行顺序 
+                博客项目reducer拆分和中间件
               </h3>
             </a>
           </div>

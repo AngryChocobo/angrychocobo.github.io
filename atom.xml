@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-08-07T14:22:24.427Z</updated>
+    <updated>2019-08-10T14:06:16.424Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,25 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[js基础-变量和类型01]]></title>
+        <id>https://angrychocobo.github.io//post/js-ji-chu-bian-liang-he-lei-xing-01</id>
+        <link href="https://angrychocobo.github.io//post/js-ji-chu-bian-liang-he-lei-xing-01">
+        </link>
+        <updated>2019-08-10T13:50:58.000Z</updated>
+        <content type="html"><![CDATA[<!-- more 朝花因故未采撷，夕拾依旧烂漫天。从小处开始，一点一点上下求索，漫漫长路就会全然走在脚下。-->
+<p>现在是8月10日周六晚21:51。<br>
+心情不悲不喜，大概是因为没有被老板@。<br>
+昨天买了一个type-c扩展坞，很不错，然而不支持小米手机，华为可以。嗯，华为手机很强，想换（并不）；华为很强，想进（真的）。<br>
+该学习了，按照知识清单来逐个尝试回答，就当是面试了。</p>
+<h3 id="01-javascript规定了几种语言类型">01. <code>JavaScript</code>规定了几种语言类型</h3>
+<p>QAQ啥是语言类型？。。。我只知道基本数据类型，是string, number, boolean, undefined, null,  NaN, Symbol, 以及引用数据类型object。</p>
+<p>红宝书答案：</p>
+<blockquote>
+<p>ECMAScript有5种简单数据类型，也叫做基本数据类型： Undefined，Null，Boolean，Number，String，以及1种复杂数据结构Object。实际上ES6加入了新的简单数据结构Symbol，所以一共是7种</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[博客项目reducer拆分和中间件]]></title>
         <id>https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian</id>
@@ -30,7 +49,7 @@
 </ul>
 <h2 id="遇到的问题">遇到的问题</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5817838"><label class="task-list-item-label" for="task-item-5817838"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5679414"><label class="task-list-item-label" for="task-item-5679414"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
 </ul>
 <h2 id="反思">反思</h2>
 <p>细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。</p>
