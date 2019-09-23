@@ -1,731 +1,280 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    老桔的小站（悄咪咪
-</title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1569203054352">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>老桔的小站（悄咪咪</title>
+<meta name="description" content="边学边忘">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1569203262706">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://angrychocobo.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://angrychocobo.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-</head>
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1569203054352" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    老桔的小站（悄咪咪
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://angrychocobo.github.io/">
+        <img src="https://angrychocobo.github.io//images/avatar.png?v=1569203262706" class="site-logo">
+        <h1 class="site-title">老桔的小站（悄咪咪</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      边学边忘
+    </div>
+    <div class="site-footer">
+       | <a class="rss" href="https://angrychocobo.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/nid">
-                        node聊天室
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-09-19</time>
-                    
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/nid">
+                  <h2 class="post-title">node聊天室</h2>
+                </a>
+                <div class="post-date">
+                  2019-09-19
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>跟着《node.js实战》实现一个聊天室</p>
+                <div class="post-abstract">
+                  <p>跟着《node.js实战》实现一个聊天室</p>
 
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/nid">Read More ~</a>
-                            </div>
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/node-wang-zhe-nong-yao-quan-zhan-kai-fa-01">
-                        node王者农药全栈开发01
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-09-19</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-success">
-            #实战
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/node-wang-zhe-nong-yao-quan-zhan-kai-fa-01">
+                  <h2 class="post-title">node王者农药全栈开发01</h2>
+                </a>
+                <div class="post-date">
+                  2019-09-19
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>emm，新发现一个awsome的教程，跟着小哥哥做～</p>
+                <div class="post-abstract">
+                  <p>emm，新发现一个awsome的教程，跟着小哥哥做～</p>
 
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/node-wang-zhe-nong-yao-quan-zhan-kai-fa-01">Read More ~</a>
-                            </div>
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/js-ji-chu-bian-liang-he-lei-xing-01">
-                        js基础-变量和类型01
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-10</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/js-ji-chu-bian-liang-he-lei-xing-01">
+                  <h2 class="post-title">js基础-变量和类型01</h2>
+                </a>
+                <div class="post-date">
+                  2019-08-10
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-现在是8月10日周六晚21:51。
-心情不悲不喜，大概是因为没有被老板@。
-昨天买了一个type-c扩展坞，很不错，然而不支持小米手机，华为可以。嗯，华为手机很强，想换（并不）；华为很强，想进（真的）。
-该学习了，按照知识清单来逐个尝试回答，就当是面试了。
-01. JavaScript规定了几种语言类型
-QAQ啥是语言类型？。。。我只知道基本数据类型，是string, number, boolean, undefined, null,  NaN, Symbol, 以及引用数据类型object。
-红宝书答案：
-
-ECMAScript有5种简单数据类型，也叫做基本数据类型： Undefined，Null，Boolean，Number，String，以及1种复杂数据结构Object。实际上ES6加入了新的简单数据结构Symbol，所以一共是7种
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/js-ji-chu-bian-liang-he-lei-xing-01">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie">
-                        算法有穷型分析 hailstone序列
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-07</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie">
+                  <h2 class="post-title">算法有穷型分析 hailstone序列</h2>
+                </a>
+                <div class="post-date">
+                  2019-08-07
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            学到了一个知识点：
-
-hailstone序列：
-1）输入一个正整数n；
-（2）如果n=1则结束；
-（3）如果n是奇数，则n变为3n+1，否则n变为n/2；
-（4）转入第（2）步。
-
-function hailstone(n) {
-	var length = 1; 
-	while(1 &amp;lt; n) {
-		if(n % 2 === 0) {
-			n = n/2;
-		} else {
-			n = 3 * n + 1;
-		}
-		length++;
-		
-	}
-	return length;
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
-                        博客项目reducer拆分和中间件
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
+                  <h2 class="post-title">博客项目reducer拆分和中间件</h2>
+                </a>
+                <div class="post-date">
+                  2019-08-05
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            今天放假，继续撸博客项目。
-
-早晨开始自我怀疑，是不是要继续做下去，当时觉得项目好像没什么意思，即使做出来了自己真的会去用嘛？然后就开始盲目的搜索其他接口，想做点别的项目，还好及时停止了搜索，去打扫了大半个小时的卫生，又洗了几件衣服，吃了外卖，睡一个午觉。 庆幸自己脱离了糟糕的状态，差点放弃~  不过也算是浪费了上午+半个下午了。
-
-主要进行了如下工作：
-
-首页样式变更
-Header、Footer拆分
-reducer拆分，分为了word、post和global
-action也拆出来了
-使用中间件进行了posts列表的获取
-
-遇到的问题
-
- 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。
-
-反思
-细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。
-记录临时代码
-export function fetchWords() {
-
-    // Thunk middleware 知道如何处理函数。
-    // 这里把 dispatch 方法通过参数的形式传给函数，
-    // 以此来让它自己也能 dispatch action。
-
-    return function (dispatch) {
-
-        // 首次 dispatch：更新应用的 state 来通知
-        // API 请求发起了。
-
-        dispatch(requestWords())
-
-        // thunk middleware 调用的函数可以有返回值，
-        // 它会被当作 dispatch 方法的返回值传递。
-
-        // 这个案例中，我们返回一个等待处理的 promise。
-        // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-        return fetch(`http://127.0.0.1:3001/words`)
-            .then(function (response) {
-                return response.json();
-            },
-                // 不要使用 catch，因为会捕获
-                // 在 dispatch 和渲染中出现的任何错误，
-                // 导致 &#39;Unexpected batch number&#39; 错误。
-                // https://github.com/facebook/react/issues/6895
-                error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-            )
-            .then(json =&amp;gt;
-            // 可以多次 dispatch！
-            // 这里，使用 API 请求结果来更新应用的 state。
-            {
-                if (json) {
-                    setTimeout(() =&amp;gt; {
-                        dispatch(receiveWords(json));
-                    }, 2000);
-                } else {
-                    dispatch(fetchError());
-                }
-            }
-            );
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
-                        redux中间件临时记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
+                  <h2 class="post-title">redux中间件临时记录</h2>
+                </a>
+                <div class="post-date">
+                  2019-08-05
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            export function fetchWords() {
-// Thunk middleware 知道如何处理函数。
-// 这里把 dispatch 方法通过参数的形式传给函数，
-// 以此来让它自己也能 dispatch action。
-
-return function (dispatch) {
-
-    // 首次 dispatch：更新应用的 state 来通知
-    // API 请求发起了。
-
-    dispatch(requestWords())
-
-    // thunk middleware 调用的函数可以有返回值，
-    // 它会被当作 dispatch 方法的返回值传递。
-
-    // 这个案例中，我们返回一个等待处理的 promise。
-    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-    return fetch(`http://127.0.0.1:3001/words`)
-        .then(function (response) {
-            return response.json();
-        },
-            // 不要使用 catch，因为会捕获
-            // 在 dispatch 和渲染中出现的任何错误，
-            // 导致 &#39;Unexpected batch number&#39; 错误。
-            // https://github.com/facebook/react/issues/6895
-            error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-        )
-        .then(json =&amp;gt;
-        // 可以多次 dispatch！
-        // 这里，使用 API 请求结果来更新应用的 state。
-        {
-            if (json) {
-                setTimeout(() =&amp;gt; {
-                    dispatch(receiveWords(json));
-                }, 2000);
-            } else {
-                dispatch(fetchError());
-            }
-
-        }
-        );
-}
-
-}
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
-                        使用fetch请求接口并设置cookie未生效的原因
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-02</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-other_4">
-            #踩坑
-        </a>
-                        
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
+                  <h2 class="post-title">使用fetch请求接口并设置cookie未生效的原因</h2>
+                </a>
+                <div class="post-date">
+                  2019-08-02
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
-//但是这样一来又有了跨域的问题。晕，先睡了
-似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
-那么fetch呢..
-还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
-                        不使用reject  让create-react-app支持less的方法
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-31</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
+                  <h2 class="post-title">不使用reject  让create-react-app支持less的方法</h2>
+                </a>
+                <div class="post-date">
+                  2019-07-31
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            create-react-app是默认支持sass的，但是less需要做一些特殊处理：
-
-对创建好的create-react-app项目安装依赖包：
-
-npm install react-app-rewired --save
-npm install react-app-rewire-less --save
-
-
-修改项目的package.json：
-
-  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;start&amp;quot;: &amp;quot;react-scripts start&amp;quot;,
-    &amp;quot;build&amp;quot;: &amp;quot;react-scripts build&amp;quot;,
-    &amp;quot;test&amp;quot;: &amp;quot;react-scripts test&amp;quot;,
-    &amp;quot;eject&amp;quot;: &amp;quot;react-scripts eject&amp;quot;
-  }
-
-
-项目根目录创建文件config-overrides.js
-
-const {
-    override,
-    fixBabelImports,
-    addLessLoader
-} = require(&#39;customize-cra&#39;);
-
-module.exports = override(
-    fixBabelImports(&#39;import&#39;, {
-        libraryName: &#39;antd&#39;,
-        libraryDirectory: &#39;es&#39;,
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            &#39;@primary-color&#39;: &#39;#1DA57A&#39;
-        },
-    })
-);
-
-顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">Read More ~</a>
-                            </div>
+                <div class="post-abstract">
+                  
                 </div>
+              </div>
+              
             </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
-                        js Event Loop学习  异步执行顺序 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-29</time>
-                    
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
+                  <h2 class="post-title">js Event Loop学习  异步执行顺序 </h2>
+                </a>
+                <div class="post-date">
+                  2019-07-29
                 </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            console.log(&#39;start&#39;)
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-1">
+                  <h2 class="post-title">两数之和1 </h2>
+                </a>
+                <div class="post-date">
+                  2019-07-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
 
-setTimeout(function() {
-    console.log(&#39;timeout&#39;)
-}, 0)
+          <div class="pagination-container">
+  
+  
+    <a href="https://angrychocobo.github.io//page/2/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+  
+</div>
 
-new Promise(function(resolve) {
-    console.log(&#39;promise&#39;)
-    resolve()
-}).then(function() {
-    console.log(&#39;promise resolved&#39;)
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
 })
 
-console.log(&#39;end&#39;)
-
-在js的Event Loop中，每一次循环叫做一个tick
-macrotask(task) 和 microtask(jobs)
-在ECMAScript中，microtask称为jobs，macrotask可称为task
-task包括
-
-script(整体代码)
-setTimeout, setInterval, setImmediate,
-I/O
-ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对应的http线程处理，一旦请求返回结果，就会将对应的回调放入宏任务队列，等请求完成执行
-
-jobs包括
-
-process.nextTick
-Promise then
-Object.observe(已废弃)
-MutationObserver(html5新特性)
-运行机制：
-
-
-执行一个宏任务（执行栈中没有就从事件队列中获取）
-执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
-宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
-当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
-渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
-
-
-在每次tick运行时，会从task queue中依次执行，task执行过程中遇到microtask，便将其放到microtasks queue中；当task执行完毕后，检查microtask queue是否为空，若不为空则依次执行microtask queue的microtask；最后，这次tick执行完毕，开始执行第二次tick
-浏览器包含哪些进程？
-
-Browser进程：浏览器的主进程（负责协调、主控），只有一个。作用有
-
-负责浏览器界面显示，与用户交互。如前进，后退等
-负责各个页面的管理，创建和销毁其他进程
-将Renderer进程得到的内存中的Bitmap，绘制到用户界面上
-
-
-第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建
-GPU进程：最多一个，用于3D绘制等
-浏览器渲染进程（浏览器内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为网络资源的管理，下载等
-
-浏览器渲染进程（浏览器内核）的常驻线程
-
-
-GUI渲染线程
-负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行。注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
-JS引擎线程
-也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）。JS引擎线程负责解析Javascript脚本，运行代码。JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序。同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
-事件触发线程
-归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）。当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中。当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）。
-定时触发器线程
-传说中的setInterval与setTimeout所在线程。浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）。因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）。注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
-异步http请求线程
-在XMLHttpRequest在连接后是通过浏览器新开一个线程请求。将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
-
-实际上每个任务都会有一个对应的任务源 target source(任务源)，每个任务都放到对应任务源的任务队列中，每个任务源根据不同浏览器或其他引擎 (例如 nodejs) 的实现，自己安排不同的优先级，从而调控某类任务的执行顺序。例如浏览器认为鼠标事件频率很高，所以可以把鼠标事件的任务源优先级设的更高，而 nodejs 中 i/o 优先级更高，就针对此类任务源可以提升执行优先级。
-参考文献：
-
-浏览器中的进程和线程
-从Promise来看JavaScript中的Event Loop、Tasks和Microtasks
-JavaScript 中的 task queues
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-1">
-                        两数之和1 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-27</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-info">
-            #算法
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            题目描述
-
-给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
-你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
-示例:
-给定 nums = [2, 7, 11, 15], target = 9
-因为 nums[0] + nums[1] = 2 + 7 = 9
-所以返回 [0, 1]
-
-解法1 直接双循环莽
-var twoSum = function(nums, target) {
-    for(var i=0;i&amp;lt;nums.length;i++){
-        for(var j=i+1;j&amp;lt;nums.length;j++){
-            if(nums[i]+nums[j]==target)
-                return [i,j];
-        }
-    }
-};
-
-时间复杂度：O(n2)
-解法2 两遍哈希表
-首先，js是没有内置的哈希表数据结构的。所以先用java来做这道题，日后记得学习哈希表知识，并尝试自己用js实现一个出来！ @自己
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            map.put(nums[i], i);
-        }
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) &amp;amp;&amp;amp; map.get(complement) != i) {
-                return new int[] { i, map.get(complement) };
-            }
-        }
-        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
-    }
-}
-
-解法3 一遍哈希表
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/liang-shu-zhi-he-1">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-    <div class="pagination-container">
-        
-                
-                    <a href="https://angrychocobo.github.io//page/2/" class="page-btn btn">下一页</a>
-                    
-    </div>
-    
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1569203054352)">
-        </div>
-        <h1 class="id_card-title">
-            老桔的小站（悄咪咪
-        </h1>
-        <h2 class="id_card-description">
-            边学边忘
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
-        </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-   | 
-  <a class="rss" href="https://angrychocobo.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
 </script>
 
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+
+
+  </body>
 </html>
