@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>两数之和1  | 老桔的小站（悄咪咪</title>
+<title>算法有穷型分析 hailstone序列 | 老桔的小站（悄咪咪</title>
 <meta name="description" content="边学边忘">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,68 +81,33 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>两数之和1 </h1>
+            <h1>算法有穷型分析 hailstone序列</h1>
             <p class="article-meta">
-              2019-07-27
-              
-                <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="badge secondary">
-                  算法
-                </a>
+              2019-08-07
               
             </p>
             
             <div class="post-content">
-              <h2 id="题目描述">题目描述</h2>
+              <p>学到了一个知识点：</p>
 <blockquote>
-<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>
-你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。<br>
-示例:<br>
-给定 nums = [2, 7, 11, 15], target = 9<br>
-因为 nums[0] + nums[1] = 2 + 7 = 9<br>
-所以返回 [0, 1]</p>
+<p>hailstone序列：<br>
+1）输入一个正整数n；<br>
+（2）如果n=1则结束；<br>
+（3）如果n是奇数，则n变为3n+1，否则n变为n/2；<br>
+（4）转入第（2）步。</p>
 </blockquote>
-<h2 id="解法1-直接双循环莽">解法1 直接双循环莽</h2>
-<pre><code class="language-js">var twoSum = function(nums, target) {
-    for(var i=0;i&lt;nums.length;i++){
-        for(var j=i+1;j&lt;nums.length;j++){
-            if(nums[i]+nums[j]==target)
-                return [i,j];
-        }
-    }
-};
-</code></pre>
-<p>时间复杂度：O(n2)</p>
-<h2 id="解法2-两遍哈希表">解法2 两遍哈希表</h2>
-<p>首先，js是没有内置的哈希表数据结构的。所以先用java来做这道题，日后记得学习哈希表知识，并尝试自己用js实现一个出来！ @自己</p>
-<pre><code class="language-java">class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
-        for (int i = 0; i &lt; nums.length; i++) {
-            map.put(nums[i], i);
-        }
-        for (int i = 0; i &lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) &amp;&amp; map.get(complement) != i) {
-                return new int[] { i, map.get(complement) };
-            }
-        }
-        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
-    }
-}
-</code></pre>
-<h2 id="解法3-一遍哈希表">解法3 一遍哈希表</h2>
-<pre><code class="language-java">class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
-        for (int i = 0; i &lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
-    }
+<pre><code class="language-js">function hailstone(n) {
+	var length = 1; 
+	while(1 &lt; n) {
+		if(n % 2 === 0) {
+			n = n/2;
+		} else {
+			n = 3 * n + 1;
+		}
+		length++;
+		
+	}
+	return length;
 }
 </code></pre>
 
@@ -155,9 +120,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">
+              <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
                 <h3 class="post-title">
-                  两数之和2 输入有序数组
+                  博客项目reducer拆分和中间件
                 </h3>
               </a>
             </div>
@@ -264,11 +229,11 @@
     </div>
     <div class="row">
       
-        <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="badge warning">
+        <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="badge ">
           实战
         </a>
       
-        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="badge success">
+        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="badge warning">
           踩坑
         </a>
       
@@ -276,7 +241,7 @@
           算法
         </a>
       
-        <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="badge secondary">
+        <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="badge warning">
           Gridea
         </a>
       
