@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-09-23T01:47:46.214Z</updated>
+    <updated>2019-09-23T01:52:22.890Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -126,178 +126,178 @@ server.listen(5555, () =&gt; {
 <!-- more -->
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9138196"><label class="task-list-item-label" for="task-item-9138196"> 创建分类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-674181"><label class="task-list-item-label" for="task-item-674181"> 创建分类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1782377"><label class="task-list-item-label" for="task-item-1782377"> 修改分类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7350892"><label class="task-list-item-label" for="task-item-7350892"> 修改分类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3674213"><label class="task-list-item-label" for="task-item-3674213"> 删除分类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5308904"><label class="task-list-item-label" for="task-item-5308904"> 删除分类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5113665"><label class="task-list-item-label" for="task-item-5113665"> 获取分类列表</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3501053"><label class="task-list-item-label" for="task-item-3501053"> 获取分类列表</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6790004"><label class="task-list-item-label" for="task-item-6790004"> 为子分类添加父级分类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7979698"><label class="task-list-item-label" for="task-item-7979698"> 为子分类添加父级分类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1037420"><label class="task-list-item-label" for="task-item-1037420"> 创建物品</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6887074"><label class="task-list-item-label" for="task-item-6887074"> 创建物品</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3876583"><label class="task-list-item-label" for="task-item-3876583"> 修改物品</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6089249"><label class="task-list-item-label" for="task-item-6089249"> 修改物品</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3244112"><label class="task-list-item-label" for="task-item-3244112"> 删除物品</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7199698"><label class="task-list-item-label" for="task-item-7199698"> 删除物品</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8719657"><label class="task-list-item-label" for="task-item-8719657"> 获取物品列表</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1363204"><label class="task-list-item-label" for="task-item-1363204"> 获取物品列表</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6541315"><label class="task-list-item-label" for="task-item-6541315"> 物品图标上传</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7488591"><label class="task-list-item-label" for="task-item-7488591"> 物品图标上传</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3565682"><label class="task-list-item-label" for="task-item-3565682"> 创建英雄</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4743745"><label class="task-list-item-label" for="task-item-4743745"> 创建英雄</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8237953"><label class="task-list-item-label" for="task-item-8237953"> 修改英雄</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-752413"><label class="task-list-item-label" for="task-item-752413"> 修改英雄</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3267822"><label class="task-list-item-label" for="task-item-3267822"> 删除英雄</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1126303"><label class="task-list-item-label" for="task-item-1126303"> 删除英雄</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1876928"><label class="task-list-item-label" for="task-item-1876928"> 获取英雄列表</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1224668"><label class="task-list-item-label" for="task-item-1224668"> 获取英雄列表</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8956152"><label class="task-list-item-label" for="task-item-8956152"> 英雄头像上传</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3623823"><label class="task-list-item-label" for="task-item-3623823"> 英雄头像上传</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8341143"><label class="task-list-item-label" for="task-item-8341143"> 英雄数据类型</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9383196"><label class="task-list-item-label" for="task-item-9383196"> 英雄数据类型</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9074747"><label class="task-list-item-label" for="task-item-9074747"> 英雄技能</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1404184"><label class="task-list-item-label" for="task-item-1404184"> 英雄技能</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-302849"><label class="task-list-item-label" for="task-item-302849"> 英雄评分的输入处理（number判断）</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5561273"><label class="task-list-item-label" for="task-item-5561273"> 英雄评分的输入处理（number判断）</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5936121"><label class="task-list-item-label" for="task-item-5936121"> 文章管理</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8955254"><label class="task-list-item-label" for="task-item-8955254"> 文章管理</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6146482"><label class="task-list-item-label" for="task-item-6146482"> 文章插图上传到服务器</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4081666"><label class="task-list-item-label" for="task-item-4081666"> 文章插图上传到服务器</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7313122"><label class="task-list-item-label" for="task-item-7313122"> 广告位管理</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5187301"><label class="task-list-item-label" for="task-item-5187301"> 广告位管理</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2140736"><label class="task-list-item-label" for="task-item-2140736"> 广告管理</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4625811"><label class="task-list-item-label" for="task-item-4625811"> 广告管理</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1661473"><label class="task-list-item-label" for="task-item-1661473"> 管理员账号管理 (bcrypt、 select: false来保证不会重复散列)</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1385893"><label class="task-list-item-label" for="task-item-1385893"> 管理员账号管理 (bcrypt、 select: false来保证不会重复散列)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1503838"><label class="task-list-item-label" for="task-item-1503838"> 登陆注册</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7687897"><label class="task-list-item-label" for="task-item-7687897"> 登陆注册</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1168128"><label class="task-list-item-label" for="task-item-1168128"> 服务端登陆校验</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4526392"><label class="task-list-item-label" for="task-item-4526392"> 服务端登陆校验</label></p>
 </li>
 </ul>
 <p>客户端项目：</p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6318865"><label class="task-list-item-label" for="task-item-6318865"> 使用antd来支持less</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4487836"><label class="task-list-item-label" for="task-item-4487836"> 使用antd来支持less</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5123154"><label class="task-list-item-label" for="task-item-5123154"> 样式重置（使用antd 已经有了样式重置）</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4717659"><label class="task-list-item-label" for="task-item-4717659"> 样式重置（使用antd 已经有了样式重置）</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7394577"><label class="task-list-item-label" for="task-item-7394577"> 颜色和字体的css预处理器</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8582709"><label class="task-list-item-label" for="task-item-8582709"> 颜色和字体的css预处理器</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4839837"><label class="task-list-item-label" for="task-item-4839837"> flex工具类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7139027"><label class="task-list-item-label" for="task-item-7139027"> flex工具类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4299876"><label class="task-list-item-label" for="task-item-4299876"> 边距工具类</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6289980"><label class="task-list-item-label" for="task-item-6289980"> 边距工具类</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-738356"><label class="task-list-item-label" for="task-item-738356"> 首页轮播实现</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8343642"><label class="task-list-item-label" for="task-item-8343642"> 首页轮播实现</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6681684"><label class="task-list-item-label" for="task-item-6681684"> 精灵图实践</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9755250"><label class="task-list-item-label" for="task-item-9755250"> 精灵图实践</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2935188"><label class="task-list-item-label" for="task-item-2935188"> iconfont实践</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-434374"><label class="task-list-item-label" for="task-item-434374"> iconfont实践</label></p>
 </li>
 </ul>
 <p>后期</p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8229595"><label class="task-list-item-label" for="task-item-8229595"> 生产环境编译</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8196435"><label class="task-list-item-label" for="task-item-8196435"> 生产环境编译</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4562880"><label class="task-list-item-label" for="task-item-4562880"> 登陆服务器 ssh root@服务器ip地址</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-341857"><label class="task-list-item-label" for="task-item-341857"> 登陆服务器 ssh root@服务器ip地址</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6155516"><label class="task-list-item-label" for="task-item-6155516"> 若出现错误# REMOTE HOST IDENTIFICATION HAS CHANGED， 输入ssh-keygen -R 服务器端的ip地址</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9522015"><label class="task-list-item-label" for="task-item-9522015"> 若出现错误# REMOTE HOST IDENTIFICATION HAS CHANGED， 输入ssh-keygen -R 服务器端的ip地址</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5829768"><label class="task-list-item-label" for="task-item-5829768"> 安装nginx</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2211923"><label class="task-list-item-label" for="task-item-2211923"> 安装nginx</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-892719"><label class="task-list-item-label" for="task-item-892719"> sudo apt install nginx</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4068338"><label class="task-list-item-label" for="task-item-4068338"> sudo apt install nginx</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8458056"><label class="task-list-item-label" for="task-item-8458056"> 安装mongodb</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2801222"><label class="task-list-item-label" for="task-item-2801222"> 安装mongodb</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6747570"><label class="task-list-item-label" for="task-item-6747570"> sudo apt install mongodb-server</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8599719"><label class="task-list-item-label" for="task-item-8599719"> sudo apt install mongodb-server</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-794736"><label class="task-list-item-label" for="task-item-794736"> 进入mongobd</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1026979"><label class="task-list-item-label" for="task-item-1026979"> 进入mongobd</label></p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3555053"><label class="task-list-item-label" for="task-item-3555053"> mongo</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8427109"><label class="task-list-item-label" for="task-item-8427109"> mongo</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8111123"><label class="task-list-item-label" for="task-item-8111123"> show dbs 查看数据库列表</label></p>
-</li>
-</ul>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9798418"><label class="task-list-item-label" for="task-item-9798418"> 在服务器上安装git</label></p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-468243"><label class="task-list-item-label" for="task-item-468243"> sudo apt install git</label></li>
-</ul>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3448476"><label class="task-list-item-label" for="task-item-3448476"> 生成ssh-key</label></p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3477643"><label class="task-list-item-label" for="task-item-3477643"> ssh-keygen</label></li>
-</ul>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-794873"><label class="task-list-item-label" for="task-item-794873"> 复制到github上</label></p>
-<ul class="contains-task-list">
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7444304"><label class="task-list-item-label" for="task-item-7444304"> cat /home/ubuntu/.ssh/id_rsa.pub</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-198479"><label class="task-list-item-label" for="task-item-198479"> 复制粘贴</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5431492"><label class="task-list-item-label" for="task-item-5431492"> show dbs 查看数据库列表</label></p>
 </li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5167945"><label class="task-list-item-label" for="task-item-5167945"> 配置node</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8979142"><label class="task-list-item-label" for="task-item-8979142"> 在服务器上安装git</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7302867"><label class="task-list-item-label" for="task-item-7302867"> sudo apt install nodejs -y</label></p>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9059525"><label class="task-list-item-label" for="task-item-9059525"> sudo apt install git</label></li>
+</ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3684298"><label class="task-list-item-label" for="task-item-3684298"> sudo apt install npm -y</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1320006"><label class="task-list-item-label" for="task-item-1320006"> 生成ssh-key</label></p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6417649"><label class="task-list-item-label" for="task-item-6417649"> ssh-keygen</label></li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2198409"><label class="task-list-item-label" for="task-item-2198409"> 复制到github上</label></p>
+<ul class="contains-task-list">
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8956718"><label class="task-list-item-label" for="task-item-8956718"> cat /home/ubuntu/.ssh/id_rsa.pub</label></p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3556944"><label class="task-list-item-label" for="task-item-3556944"> 复制粘贴</label></p>
 </li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2022734"><label class="task-list-item-label" for="task-item-2022734"> 配置淘宝镜像</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3496417"><label class="task-list-item-label" for="task-item-3496417"> 配置node</label></p>
+<ul class="contains-task-list">
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5419742"><label class="task-list-item-label" for="task-item-5419742"> sudo apt install nodejs -y</label></p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1333562"><label class="task-list-item-label" for="task-item-1333562"> sudo apt install npm -y</label></p>
+</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5216487"><label class="task-list-item-label" for="task-item-5216487"> 配置淘宝镜像</label></p>
 <pre><code class="language-shell">npm config set registry https://registry.npm.taobao.org
 </code></pre>
 </li>
@@ -308,22 +308,22 @@ server.listen(5555, () =&gt; {
 <p>n lateset // 升级到最新版</p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9806761"><label class="task-list-item-label" for="task-item-9806761"> 拉取代码</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-596279"><label class="task-list-item-label" for="task-item-596279"> 拉取代码</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4495911"><label class="task-list-item-label" for="task-item-4495911"> 服务器安装pm2</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7575922"><label class="task-list-item-label" for="task-item-7575922"> 服务器安装pm2</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4368363"><label class="task-list-item-label" for="task-item-4368363"> pm2 start index.js</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4782807"><label class="task-list-item-label" for="task-item-4782807"> pm2 start index.js</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5690787"><label class="task-list-item-label" for="task-item-5690787"> pm2 list</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5941133"><label class="task-list-item-label" for="task-item-5941133"> pm2 list</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9324579"><label class="task-list-item-label" for="task-item-9324579"> pm2 logs index</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4298352"><label class="task-list-item-label" for="task-item-4298352"> pm2 logs index</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3963033"><label class="task-list-item-label" for="task-item-3963033"> curl //请求一个地址</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6870224"><label class="task-list-item-label" for="task-item-6870224"> curl //请求一个地址</label></p>
 </li>
 </ul>
 <p>首先创建目录，分为服务端server、客户端web、后台admin。</p>
@@ -418,7 +418,7 @@ server.listen(5555, () =&gt; {
 </ul>
 <h2 id="遇到的问题">遇到的问题</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8455952"><label class="task-list-item-label" for="task-item-8455952"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9681389"><label class="task-list-item-label" for="task-item-9681389"> 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。</label></li>
 </ul>
 <h2 id="反思">反思</h2>
 <p>细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。</p>
