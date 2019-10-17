@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Hello Gridea | 老桔的小站（悄咪咪
+    7-24 猜数字游戏 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1571276877992">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,47 +99,127 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Hello Gridea
+                            7-24 猜数字游戏
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2018-12-12</time>
+                            <time class="post-time">2019-10-17</time>
                             
-                                <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="post-tag i-tag
-                            i-tag-other_3">
-                            #Gridea
-                        </a>
-                                
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://angrychocobo.github.io//post-images/hello-gridea.png')"></div>
-                            
                                 <div class="post-content">
-                                    <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                                    <!-- 这道题自己写的有问题，记录 -->
+<h3 id="题目要求">题目要求：</h3>
+<blockquote>
+<p>猜数字游戏是令游戏机随机产生一个100以内的正整数，用户输入一个数对其进行猜测，需要你编写程序自动对其与随机产生的被猜数进行比较，并提示大了（“Too big”），还是小了（“Too small”），相等表示猜到了。如果猜到，则结束程序。程序还要求统计猜的次数，如果1次猜出该数，提示“Bingo!”；如果3次以内猜到该数，则提示“Lucky You!”；如果超过3次但是在N（&gt;3）次以内（包括第N次）猜到该数，则提示“Good Guess!”；如果超过N次都没有猜到，则提示“Game Over”，并结束程序。如果在到达N次之前，用户输入了一个负数，也输出“Game Over”，并结束程序。</p>
+</blockquote>
+<p>输入格式:<br>
+输入第一行中给出两个不超过100的正整数，分别是游戏机产生的随机数、以及猜测的最大次数N。最后每行给出一个用户的输入，直到出现负数为止。</p>
+<p>输出格式:<br>
+在一行中输出每次猜测相应的结果，直到输出猜对的结果或“Game Over”则结束。</p>
+<p>输入样例:<br>
+58 4<br>
+70<br>
+50<br>
+56<br>
+58<br>
+60<br>
+-2</p>
+<p>输出样例:<br>
+Too big<br>
+Too small<br>
+Too small<br>
+Good Guess!</p>
+<h3 id="我的错误代码">我的错误代码</h3>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+int main() {
+    int num, n;
+    scanf(&quot;%d%d&quot;, &amp;num, &amp;n);
+
+    int input = 0, times = 1;
+    
+    do {
+    scanf(&quot;%d&quot;, &amp;input);
+    if (input == num) {
+        if (times == 1) {
+            printf(&quot;Bingo!\n&quot;);
+            return 0;
+
+        } else if (times &lt;= 3) {
+            printf(&quot;Lucky You!\n&quot;);
+            return 0;
+        } else if (times  &lt;= n) {
+            printf(&quot;Good Guess!\n&quot;);
+            return 0;
+        } else {
+            printf(&quot;Game Over\n&quot;);
+            return 0;
+        }
+    } else if (num &gt; input) {
+        printf(&quot;Too small\n&quot;);
+        times++;
+    } else {
+        printf(&quot;Too big\n&quot;);
+        times++;
+    }
+    } while ( input &gt;= 0);
+    printf(&quot;Game Over\n&quot;);
+}
+</code></pre>
+<h3 id="正确代码">正确代码</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int count=-1, N=-1;
+    int number=-1, guess=-1;
+    count = 0;
+    scanf(&quot;%d%d&quot;, &amp;number, &amp;N);
+    while(count&lt;N){
+        scanf(&quot;%d&quot;, &amp;guess);
+        count++;
+        if(guess&lt;0){
+            break;
+        }
+        if(guess==number){
+            if(count==1){
+                printf(&quot;Bingo!\n&quot;);
+                break;
+            }
+            else if(count&lt;=3){
+                printf(&quot;Lucky You!\n&quot;);
+                break;
+            }
+            else{
+                printf(&quot;Good Guess!\n&quot;);
+                break;
+            }
+        }
+        else if(guess&lt;number){
+            printf(&quot;Too small\n&quot;);
+        }
+        else{
+            printf(&quot;Too big\n&quot;);
+        }
+    }
+    if(guess&lt;0 || count==N&amp;&amp;guess!=number){
+        printf(&quot;Game Over\n&quot;);
+    }
+
+    return 0;
+}
+</code></pre>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io//post/nid">
+                                <h3 class="post-title">
+                                    node聊天室
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -156,7 +236,13 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82">题目要求：</a></li>
+<li><a href="#%E6%88%91%E7%9A%84%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81">我的错误代码</a></li>
+<li><a href="#%E6%AD%A3%E7%A1%AE%E4%BB%A3%E7%A0%81">正确代码</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
