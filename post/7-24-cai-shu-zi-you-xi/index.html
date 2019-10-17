@@ -7,7 +7,7 @@
 <title>
     7-24 猜数字游戏 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1571276877992">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1571277179196">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1571276877992" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1571277179196" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -134,16 +134,13 @@ Good Guess!</p>
 int main() {
     int num, n;
     scanf(&quot;%d%d&quot;, &amp;num, &amp;n);
-
     int input = 0, times = 1;
-    
     do {
     scanf(&quot;%d&quot;, &amp;input);
     if (input == num) {
         if (times == 1) {
             printf(&quot;Bingo!\n&quot;);
             return 0;
-
         } else if (times &lt;= 3) {
             printf(&quot;Lucky You!\n&quot;);
             return 0;
@@ -165,6 +162,7 @@ int main() {
     printf(&quot;Game Over\n&quot;);
 }
 </code></pre>
+<p>我的答案在最后一个测试点总是提示错误，错误原因在于do至少会执行一次，如果第一次输入的值就是负数，会先输出Too small，之后才是Game Over。</p>
 <h3 id="正确代码">正确代码</h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 int main(){

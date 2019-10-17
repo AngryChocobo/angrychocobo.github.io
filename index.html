@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1571276877992">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1571277179196">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1571276877992" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1571277179196" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -139,16 +139,13 @@ Good Guess!
 int main() {
     int num, n;
     scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;num, &amp;amp;n);
-
     int input = 0, times = 1;
-    
     do {
     scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
     if (input == num) {
         if (times == 1) {
             printf(&amp;quot;Bingo!\n&amp;quot;);
             return 0;
-
         } else if (times &amp;lt;= 3) {
             printf(&amp;quot;Lucky You!\n&amp;quot;);
             return 0;
@@ -170,6 +167,7 @@ int main() {
     printf(&amp;quot;Game Over\n&amp;quot;);
 }
 
+我的答案在最后一个测试点总是提示错误，错误原因在于do至少会执行一次，如果第一次输入的值就是负数，会先输出Too small，之后才是Game Over。
 正确代码
 #include &amp;lt;stdio.h&amp;gt;
 int main(){
@@ -253,7 +251,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #实战
         </a>
                         
@@ -506,7 +504,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #踩坑
         </a>
                         
@@ -710,7 +708,7 @@ JavaScript 中的 task queues
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1571276877992)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1571277179196)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
