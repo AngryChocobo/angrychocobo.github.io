@@ -7,7 +7,7 @@
 <title>
     React ToDo项目 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572099827378">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572102603882">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572099827378" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572102603882" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -109,20 +109,20 @@
                                 <div class="post-content">
                                     <p>经典的ToDo列表项目，自己按照网上的效果实现一次，认真完成。</p>
 <h3 id="需求分析">需求分析</h3>
-<ul>
-<li>回车新建</li>
-<li>item content 双击编辑</li>
-<li>item 前的checkbox选中则设置为<code>完成</code></li>
-<li>item 后的x点击删除该项</li>
-<li>至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为<code>完成</code></li>
-<li>至少有一条todo时，下方出现阴影的提示栏，</li>
-<li>至少有一条todo时，下方出现状态筛选<code>[All, Active, Completed]</code></li>
-<li>切换状态改变hash</li>
-<li>数据持久存储到localstorage</li>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6548363"><label class="task-list-item-label" for="task-item-6548363"> 回车新建</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3244328"><label class="task-list-item-label" for="task-item-3244328"> item content 双击编辑</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9137871"><label class="task-list-item-label" for="task-item-9137871"> item 前的checkbox点击可切换完成状态</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6719027"><label class="task-list-item-label" for="task-item-6719027"> item 后的x点击删除该项</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6722572"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为<label class="task-list-item-label" for="task-item-6722572"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9227965"><label class="task-list-item-label" for="task-item-9227965"> 至少有一条todo时，下方出现阴影的提示栏，</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-93263"> 至少有一条todo时，下方出现状态筛选<label class="task-list-item-label" for="task-item-93263"> 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5760883"><label class="task-list-item-label" for="task-item-5760883"> 切换状态改变hash</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-611649"><label class="task-list-item-label" for="task-item-611649"> 数据持久存储到localstorage</label></li>
 </ul>
 <h3 id="数据">数据</h3>
 <p>state(状态): [All, Active, Completed]</p>
-<p>基本原型：<br>
+<p>基本原型（真鸡儿丑)：<br>
 <img src="https://chocoboimg-1258068192.cos.ap-chengdu.myqcloud.com/Pasted%20Graphic_%E5%89%AF%E6%9C%AC.png" alt=""></p>
 
                                 </div>
