@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572102603882">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572268857464">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572102603882" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572268857464" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -122,12 +122,23 @@
  至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`
  至少有一条todo时，下方出现阴影的提示栏，
  至少有一条todo时，下方出现状态筛选 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`
+ 至少有一条完成的todo时，状态筛选栏右侧出现清除全部完成 至少有一条完成的todo时，状态筛选栏右侧出现`清除全部完成`按钮
  切换状态改变hash
  数据持久存储到localstorage
 
 数据
 state(状态): [All, Active, Completed]
 基本原型（真鸡儿丑)：
+
+样式难点：
+
+ 自定义的checkBox （demo是切换图片实现的）
+ 下方功能区的三层阴影
+
+功能难点：
+
+ 切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载
+ NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)
 
 
                                         </div>
@@ -291,7 +302,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_1">
             #实战
         </a>
                         
@@ -544,7 +555,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
             #踩坑
         </a>
                         
@@ -649,7 +660,7 @@ module.exports = override(
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572102603882)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572268857464)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
