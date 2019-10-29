@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572344250762">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572364716530">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572344250762" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572364716530" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -128,8 +128,8 @@ Updating阶段的生命周期函数
 (static)getDerivedStateFromProps(props, state)
 shouldComponentUpdate(nextProps, nextState)
 render()
-getSnapshotBeforeUpdate()
-componentDidUpdate()
+getSnapshotBeforeUpdate(prevProps, prevState)
+componentDidUpdate(prevProps, prevState, snapshot)
 UNSAFE_componentWillUpdate()
 UNSAFE_componentWillReceiveProps(nextProps, nextState)
 
@@ -174,11 +174,22 @@ componentDidMount()
 在这里绑定事件处理程序是比较好的
 在这里访问接口也很合适
 
+getSnapshotBeforeUpdate(prevProps, prevState)
+
+任何返回值都会被传递给componentDidUpdate
+
+static getDerivedStateFromError(error)
+
+在&amp;quot;render&amp;quot;阶段捕获错误
+只能捕获子组件的错误
+
 componentDidUpdate(prevProps, prevState, snapshot)
 
 首次render之后不会执行
 操作dom的合适时机
 在这里可以设计条件来重新请求接口
+在这里可以setState，但是要注意不要造成无限循环
+getSnapshotBeforeUpdate()会为componentDidUpdate传递snapshot参数，否则为undefined
 
 UNSAFE_componentWillReceiveProps(nextProps, nextState)
 
@@ -194,8 +205,6 @@ getDerivedStateFromProps()
 触发时机很多： constructor()之后、接收到 &amp;quot;new&amp;quot; props、 setState()之后、 forceState()之后
 它存在只为了一个目的，提供了从父组件props的改变来更新子组件内部state的功能（getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.）
 派生状态应该谨慎使用。我们看到的所有派生state的问题最终都可以归结为(1)无条件地从props更新state  (2)每当props和state不匹配时更新state
-6
-
 
 
 For a long time, the lifecycle componentWillReceiveProps was the only way to update state in response to a change in props without an additional render. In version 16.3, we introduced a replacement lifecycle, getDerivedStateFromProps to solve the same use cases in a safer way.
@@ -266,6 +275,278 @@ state(状态): [All, Active, Completed]
  切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载
  NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)
 
+重构
+
+本阶段JSX 展开查看
+import React from &#39;react&#39;;
+import { NavLink, HashRouter } from &#39;react-router-dom&#39;;
+import &#39;./App.css&#39;;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [{
+        id: 1,
+        text: &#39;你好&#39;,
+        isCompleted: false
+      }],
+      filter: window.location.hash.split(&amp;quot;/&amp;quot;).pop() || &#39;All&#39;,
+      inputText: &#39;&#39;
+    };
+    this.states = [&#39;All&#39;, &#39;Active&#39;, &#39;Completed&#39;];
+  }
+
+  handleDelete = (id) =&amp;gt; {
+    this.setState({
+      todos: this.state.todos.filter(todo =&amp;gt; todo.id !== id)
+    });
+  }
+
+  handleInputKeyDown = (event) =&amp;gt; {
+    if (event.keyCode === 13) {
+      const { todos, inputText } = this.state;
+      this.setState({
+        todos: [...todos, {
+          id: todos.length + 1,
+          text: inputText,
+          isCompleted: false
+        }],
+        inputText: &#39;&#39;
+      })
+    }
+  }
+
+  handleToggleState = todo =&amp;gt; {
+    const { todos } = this.state;
+    // debugger;
+    // let/ newTodo = Object.assign({}, todo); //这里疑似修改了原数据
+    let newTodo = todos.find(v =&amp;gt; v === todo);
+    newTodo.isCompleted = !newTodo.isCompleted;
+    this.setState({
+      // todos: Object.assign([], todos,
+      // Object.assign(newTodo, { isCompleted: !newTodo.isCompleted }))
+      todos
+    });
+  }
+
+  handleChangeTodoText = todo =&amp;gt; {
+    const { todos } = this.state;
+    let newTodo = todos.find(v =&amp;gt; v === todo);
+    newTodo.isEditing = true;
+    this.setState({
+      todos
+    });
+  }
+
+  refreshTodos = () =&amp;gt; {
+    const { todos } = this.state;
+    // 可以考虑仅修改一项
+    this.setState({
+      todos: todos.map(todo =&amp;gt; Object.assign({}, todo, { isEditing: false }))
+    });
+  }
+
+  handleCompleteAll = () =&amp;gt; {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.map(todo =&amp;gt; Object.assign({}, todo, { isCompleted: true }))
+    });
+  }
+
+  render() {
+    const { inputText, todos, filter } = this.state;
+    return (
+      &amp;lt;div className=&amp;quot;App&amp;quot; &amp;gt;
+        &amp;lt;HashRouter&amp;gt;
+          &amp;lt;header className=&amp;quot;App-header&amp;quot;&amp;gt;
+            &amp;lt;h1&amp;gt;todos&amp;lt;/h1&amp;gt;
+            &amp;lt;div className=&amp;quot;header&amp;quot;&amp;gt;
+              {todos.filter(todo =&amp;gt; todo.isCompleted === filter || filter === &amp;quot;All&amp;quot;).length &amp;gt; 0 &amp;amp;&amp;amp; &amp;lt;button onClick={this.handleCompleteAll}&amp;gt;全部完成&amp;lt;/button&amp;gt;}
+              &amp;lt;input
+                className=&amp;quot;inputText&amp;quot;
+                value={inputText}
+                placeholder=&amp;quot;What need to be done ？&amp;quot;
+                onChange={e =&amp;gt; this.setState({ inputText: e.target.value })}
+                onKeyDown={this.handleInputKeyDown}
+              /&amp;gt;
+            &amp;lt;/div&amp;gt;
+            {todos.length &amp;gt; 0 &amp;amp;&amp;amp; (
+              &amp;lt;React.Fragment&amp;gt;
+                &amp;lt;ul className=&amp;quot;todos&amp;quot;&amp;gt;
+                  {todos.filter(todo =&amp;gt; (filter === &amp;quot;Active&amp;quot; &amp;amp;&amp;amp; !todo.isCompleted) || (filter === &amp;quot;Completed&amp;quot; &amp;amp;&amp;amp; todo.isCompleted) || filter === &amp;quot;All&amp;quot;).map((todo) =&amp;gt; {
+                    return (
+                      &amp;lt;li key={todo.id} className=&amp;quot;todo&amp;quot;&amp;gt;
+                        &amp;lt;input
+                          type=&amp;quot;checkbox&amp;quot;
+                          checked={todo.isCompleted}
+                          onChange={() =&amp;gt; this.handleToggleState(todo)}
+                        /&amp;gt;
+                        &amp;lt;p
+                          className={todo.isCompleted ? &amp;quot;completed&amp;quot; : &amp;quot;&amp;quot;}
+                          onDoubleClick={() =&amp;gt; this.handleChangeTodoText(todo)}
+                          onBlur={this.refreshTodos}
+                        &amp;gt;
+                          {todo.isEditing ? (
+                            &amp;lt;input value={todo.text} onChange={e =&amp;gt; {
+                              const newTodos = [...todos];
+                              const newTodo = newTodos.find(v =&amp;gt; v === todo);
+                              newTodo.text = e.target.value;
+                              this.setState({
+                                todos: newTodos
+                              })
+                            }} /&amp;gt;
+                          ) : todo.text}
+                        &amp;lt;/p&amp;gt;
+                        &amp;lt;button className=&amp;quot;delete&amp;quot; onClick={() =&amp;gt; this.handleDelete(todo.id)}&amp;gt;&amp;lt;/button&amp;gt;
+                      &amp;lt;/li&amp;gt;
+                    )
+                  })}
+                &amp;lt;/ul&amp;gt;
+              &amp;lt;/React.Fragment&amp;gt;
+            )}
+            {todos.length &amp;gt; 0 &amp;amp;&amp;amp; (
+              &amp;lt;div className=&amp;quot;bar&amp;quot;&amp;gt;
+                &amp;lt;span&amp;gt;{todos.length} items left&amp;lt;/span&amp;gt;
+                &amp;lt;div&amp;gt;
+                  {this.states.map(state =&amp;gt; (
+                    &amp;lt;NavLink
+                      to={state}
+                      key={state}
+                      className=&amp;quot;state&amp;quot;
+                      onClick={() =&amp;gt; this.setState({ filter: state })}
+                    // activeClassName=&amp;quot;active&amp;quot;
+                    &amp;gt;
+                      {state}
+                    &amp;lt;/NavLink&amp;gt;
+                  ))}
+                &amp;lt;/div&amp;gt;
+                &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+              &amp;lt;/div&amp;gt;
+            )}
+          &amp;lt;/header&amp;gt;
+        &amp;lt;/HashRouter&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+export default App;
+
+
+
+本阶段CSS 展开查看
+.App {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.App-header {
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+}
+
+.header,
+.bar {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.header input {
+  flex: 1;
+  border: none;
+  outline: none;
+  margin-left: 8px;
+}
+
+.todos {
+  margin: 0;
+  border: 1px solid #ccc;
+  padding: 0;
+}
+
+.todo {
+  position: relative;
+  padding: 8px;
+}
+
+.todo input[type=&amp;quot;checkbox&amp;quot;] {
+  zoom: 2;
+  -webkit-appearance: none;
+}
+
+.todo p {
+  background-position: center left;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 10px 0 10px 50px;
+  flex: 1;
+  text-align: left;
+}
+
+.todo p {
+  background-image: url(&#39;data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E&#39;)
+}
+
+.todo p.completed {
+  background-image: url(&#39;data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E&#39;)
+}
+
+
+.todo .delete {
+  position: absolute;
+  right: 10px;
+  top: 10;
+  border: none;
+  font-size: 36px;
+}
+
+.todo .delete::after {
+  content: &amp;quot;x&amp;quot;;
+}
+
+.bar {
+  justify-content: space-between;
+  position: relative;
+}
+
+.bar::after {
+  content: &amp;quot;&amp;quot;;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.bar .state {
+  color: inherit;
+  text-decoration-line: none;
+  margin: 0 8px;
+  padding: 3px 7px;
+}
+
+.state.active {
+  border: 1px solid #a00;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+}
+
+
+可以分为Form、Todos、Filters三部分:
+Form
+该组件拥有自己的局部状态inputText，不需要关心todo列表
+Todos
+该组件需要父组件传todos、修改todo信息的回调函数，以及onBlur将所有todo的isEditing设置为false、删除todo项的回调函数
+Todo
+其实也可以不拆
 
                                         </div>
                                         
@@ -428,7 +709,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #实战
         </a>
                         
@@ -681,7 +962,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #踩坑
         </a>
                         
@@ -722,7 +1003,7 @@ return function (dispatch) {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572344250762)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572364716530)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

@@ -7,7 +7,7 @@
 <title>
     深入学习React生命周期函数 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572344250762">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572364716530">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572344250762" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572364716530" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -123,8 +123,8 @@
 <li>(static)getDerivedStateFromProps(props, state)</li>
 <li>shouldComponentUpdate(nextProps, nextState)</li>
 <li>render()</li>
-<li>getSnapshotBeforeUpdate()</li>
-<li>componentDidUpdate()</li>
+<li>getSnapshotBeforeUpdate(prevProps, prevState)</li>
+<li>componentDidUpdate(prevProps, prevState, snapshot)</li>
 <li><s>UNSAFE_componentWillUpdate()</s></li>
 <li><s>UNSAFE_componentWillReceiveProps(nextProps, nextState)</s></li>
 </ul>
@@ -169,11 +169,22 @@
 <li>在这里绑定事件处理程序是比较好的</li>
 <li>在这里访问接口也很合适</li>
 </ul>
+<h3 id="getsnapshotbeforeupdateprevprops-prevstate">getSnapshotBeforeUpdate(prevProps, prevState)</h3>
+<ul>
+<li>任何返回值都会被传递给componentDidUpdate</li>
+</ul>
+<h3 id="static-getderivedstatefromerrorerror">static getDerivedStateFromError(error)</h3>
+<ul>
+<li>在&quot;render&quot;阶段捕获错误</li>
+<li>只能捕获子组件的错误</li>
+</ul>
 <h3 id="componentdidupdateprevprops-prevstate-snapshot">componentDidUpdate(prevProps, prevState, snapshot)</h3>
 <ul>
 <li>首次render之后不会执行</li>
 <li>操作dom的合适时机</li>
 <li>在这里可以设计条件来重新请求接口</li>
+<li>在这里可以setState，但是要注意不要造成无限循环</li>
+<li>getSnapshotBeforeUpdate()会为componentDidUpdate传递snapshot参数，否则为undefined</li>
 </ul>
 <h3 id="unsafe_componentwillreceivepropsnextprops-nextstate">UNSAFE_componentWillReceiveProps(nextProps, nextState)</h3>
 <ul>
@@ -189,8 +200,6 @@
 <li>触发时机很多： constructor()之后、接收到 &quot;new&quot; props、 setState()之后、 forceState()之后</li>
 <li>它存在只为了一个目的，提供了从父组件props的改变来更新子组件内部state的功能（getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.）</li>
 <li>派生状态应该谨慎使用。我们看到的所有派生state的问题最终都可以归结为(1)无条件地从props更新state  (2)每当props和state不匹配时更新state</li>
-<li>6</li>
-<li></li>
 </ul>
 <blockquote>
 <p>For a long time, the lifecycle componentWillReceiveProps was the only way to update state in response to a change in props without an additional render. In version 16.3, we introduced a replacement lifecycle, getDerivedStateFromProps to solve the same use cases in a safer way.<br>
@@ -202,7 +211,7 @@ The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable
 </blockquote>
 <h2 id="疑问列表">疑问列表</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9973994"><label class="task-list-item-label" for="task-item-9973994"> static函数是什么?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2667257"><label class="task-list-item-label" for="task-item-2667257"> static函数是什么?</label></li>
 </ul>
 <blockquote>
 <p>getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.</p>
@@ -254,6 +263,8 @@ The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable
 <li><a href="#render">render()</a></li>
 <li><a href="#%E5%9C%A8shouldcomponentupdatenextprops-nextstate">在shouldComponentUpdate(nextProps, nextState)</a></li>
 <li><a href="#componentdidmount">componentDidMount()</a></li>
+<li><a href="#getsnapshotbeforeupdateprevprops-prevstate">getSnapshotBeforeUpdate(prevProps, prevState)</a></li>
+<li><a href="#static-getderivedstatefromerrorerror">static getDerivedStateFromError(error)</a></li>
 <li><a href="#componentdidupdateprevprops-prevstate-snapshot">componentDidUpdate(prevProps, prevState, snapshot)</a></li>
 <li><a href="#unsafe_componentwillreceivepropsnextprops-nextstate">UNSAFE_componentWillReceiveProps(nextProps, nextState)</a></li>
 <li><a href="#getderivedstatefromprops">getDerivedStateFromProps()</a></li>
