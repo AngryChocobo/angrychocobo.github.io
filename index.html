@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572268857464">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572344250762">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572268857464" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572344250762" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,132 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">
+                        深入学习React生命周期函数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-28</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            工作中简单使用了生命周期函数已经无法满足我了。想要深入地了解生命周期函数，并了解在版本升级的变化原因...
+概览
+组件的生命周期函数可以分为三个阶段： Mounting、Updating、Unmounting
+Mounting阶段的生命周期函数
+
+constructor(props)
+(static)get­Derived­State­From­Props(props, state)
+render()
+componentDidMount()
+UNSAFE_componentWillMount()
+
+Updating阶段的生命周期函数
+
+(static)getDerivedStateFromProps(props, state)
+shouldComponentUpdate(nextProps, nextState)
+render()
+getSnapshotBeforeUpdate()
+componentDidUpdate()
+UNSAFE_componentWillUpdate()
+UNSAFE_componentWillReceiveProps(nextProps, nextState)
+
+Unmounting阶段的生命周期函数
+
+componentWillUnmount()
+
+Error Handling
+
+(static)getDerivedStateFromError()
+componentDidCatch()
+
+细节
+constructor(props)
+
+如果你不需要局部state或者绑定函数，不需要实现（implement）它
+应该首先super(props)，否则this.props将为undefined，导致bug（调用了super后，如果没有props，this.props为{} ）
+不应该在这里setState（ReactV16.11测试，这样做会报错，并且并不会生效）
+Avoid copying props into state! Only use this pattern if you intentionally want to ignore prop updates. 不要用props初始化state，除非你特意想要忽略props的更新
+
+render()
+
+在shouldComponentUpdate()返回false时不会执行
+
+在shouldComponentUpdate(nextProps, nextState)
+
+🤔️在初始化和调用forceState()时不会被调用
+不要依赖它来“阻止”渲染，因为这会导致Bug。考虑使用内置的PureComponent，而不是手工编写shouldComponentUpdate()。PureComponent对props和state进行了浅层比较，减少了您跳过必要更新的可能性
+返回false不会阻止子组件由于他们的state改变重新render(Note that returning false does not prevent child components from re-rendering when their state changes.)
+在这里进行深层次的检查如JSON.stringify()是很浪费性能的
+当前，如果shouldComponentUpdate()返回false，则不会调用unsafe_ComponentWillUpdate()、render()和ComponentDidUpdate()。
+在将来，React可能会将shouldComponentUpdate()视为提示而不是严格的指令，并且返回false仍然可能导致重新呈现组件。 (why ???)
+
+
+不返回值，以及返回null等值会如何？
+答：不返回值会报错提示: shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false. 返回null被认为是false
+为什么从输出看，nextState已经被改变了？
+答：是的。setState一定会改变state，但是不一定引起重新render，这里要注意shouldComponentUpdate并不是真的阻止了setState（我之前理解错误）
+
+componentDidMount()
+
+在这里绑定事件处理程序是比较好的
+在这里访问接口也很合适
+
+componentDidUpdate(prevProps, prevState, snapshot)
+
+首次render之后不会执行
+操作dom的合适时机
+在这里可以设计条件来重新请求接口
+
+UNSAFE_componentWillReceiveProps(nextProps, nextState)
+
+不安全的方法，推荐使用新Api：getDerivedStateFromProps
+直接使用componentWillReceiveProps会提示Warning
+在Reavt V17 componentWillReceiveProps将不能使用
+和getDerivedStateFromProps方法不能同时存在
+和getDerivedStateFromProps区别1: 组件直接渲染和子组件直接渲染不会被调用
+和getDerivedStateFromProps区别1: 无返回值，后者返回state
+
+getDerivedStateFromProps()
+
+触发时机很多： constructor()之后、接收到 &amp;quot;new&amp;quot; props、 setState()之后、 forceState()之后
+它存在只为了一个目的，提供了从父组件props的改变来更新子组件内部state的功能（getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.）
+派生状态应该谨慎使用。我们看到的所有派生state的问题最终都可以归结为(1)无条件地从props更新state  (2)每当props和state不匹配时更新state
+6
+
+
+
+For a long time, the lifecycle componentWillReceiveProps was the only way to update state in response to a change in props without an additional render. In version 16.3, we introduced a replacement lifecycle, getDerivedStateFromProps to solve the same use cases in a safer way.
+React 16.4 included a bugfix for getDerivedStateFromProps which caused some existing bugs in React components to reproduce more consistently.
+The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable.
+
+
+一个常见的错误观念就是getDerivedStateFromProps和getDerivedStateFromProps仅在props改变时被调用，实际上在父组件重新render时它们就会被调用，而不管之前的和现在的props有没有差异。（A common misconception is that getDerivedStateFromProps and componentWillReceiveProps are only called when props “change”. These lifecycles are called any time a parent component rerenders, regardless of whether the props are “different” from before.）
+
+疑问列表
+
+ static函数是什么?
+
+
+getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.
+
+
+[ ]
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/react-todo-xiang-mu">
@@ -302,7 +428,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #实战
         </a>
                         
@@ -555,7 +681,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-info">
             #踩坑
         </a>
                         
@@ -578,70 +704,6 @@ return function (dispatch) {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
-                        不使用reject  让create-react-app支持less的方法
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-31</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            create-react-app是默认支持sass的，但是less需要做一些特殊处理：
-
-对创建好的create-react-app项目安装依赖包：
-
-npm install react-app-rewired --save
-npm install react-app-rewire-less --save
-
-
-修改项目的package.json：
-
-  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;start&amp;quot;: &amp;quot;react-scripts start&amp;quot;,
-    &amp;quot;build&amp;quot;: &amp;quot;react-scripts build&amp;quot;,
-    &amp;quot;test&amp;quot;: &amp;quot;react-scripts test&amp;quot;,
-    &amp;quot;eject&amp;quot;: &amp;quot;react-scripts eject&amp;quot;
-  }
-
-
-项目根目录创建文件config-overrides.js
-
-const {
-    override,
-    fixBabelImports,
-    addLessLoader
-} = require(&#39;customize-cra&#39;);
-
-module.exports = override(
-    fixBabelImports(&#39;import&#39;, {
-        libraryName: &#39;antd&#39;,
-        libraryDirectory: &#39;es&#39;,
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            &#39;@primary-color&#39;: &#39;#1DA57A&#39;
-        },
-    })
-);
-
-顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -660,7 +722,7 @@ module.exports = override(
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572268857464)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572344250762)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

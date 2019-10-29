@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572268857464">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572344250762">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572268857464" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572344250762" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,70 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
+                        不使用reject  让create-react-app支持less的方法
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-31</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            create-react-app是默认支持sass的，但是less需要做一些特殊处理：
+
+对创建好的create-react-app项目安装依赖包：
+
+npm install react-app-rewired --save
+npm install react-app-rewire-less --save
+
+
+修改项目的package.json：
+
+  &amp;quot;scripts&amp;quot;: {
+    &amp;quot;start&amp;quot;: &amp;quot;react-scripts start&amp;quot;,
+    &amp;quot;build&amp;quot;: &amp;quot;react-scripts build&amp;quot;,
+    &amp;quot;test&amp;quot;: &amp;quot;react-scripts test&amp;quot;,
+    &amp;quot;eject&amp;quot;: &amp;quot;react-scripts eject&amp;quot;
+  }
+
+
+项目根目录创建文件config-overrides.js
+
+const {
+    override,
+    fixBabelImports,
+    addLessLoader
+} = require(&#39;customize-cra&#39;);
+
+module.exports = override(
+    fixBabelImports(&#39;import&#39;, {
+        libraryName: &#39;antd&#39;,
+        libraryDirectory: &#39;es&#39;,
+        style: true,
+    }),
+    addLessLoader({
+        javascriptEnabled: true,
+        modifyVars: {
+            &#39;@primary-color&#39;: &#39;#1DA57A&#39;
+        },
+    })
+);
+
+顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/js-shi-jian-xun-huan-xue-xi-1">
@@ -206,7 +270,7 @@ JavaScript 中的 task queues
                     <time class="post-time">2019-07-27</time>
                     
                         <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -352,7 +416,7 @@ var twoSum = function(nums, target) {
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #Gridea
         </a>
                         
@@ -393,7 +457,7 @@ var twoSum = function(nums, target) {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572268857464)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572344250762)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
