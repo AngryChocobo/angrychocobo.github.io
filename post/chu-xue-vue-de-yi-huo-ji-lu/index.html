@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    js基础-变量和类型01 | 老桔的小站（悄咪咪
+    初学Vue的疑惑记录 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572535614020">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,23 +99,53 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            js基础-变量和类型01
+                            初学Vue的疑惑记录
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-10</time>
+                            <time class="post-time">2019-10-24</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <p>朝花因故未采撷，夕拾依旧烂漫天。从小处开始，一点一点上下求索，漫漫长路就会全然走在脚下。</p>
-<!-- more -->
-<p>该学习了，按照知识清单来逐个尝试回答，就当是面试了。</p>
-<h3 id="01-javascript规定了几种语言类型">01. <code>JavaScript</code>规定了几种语言类型</h3>
-<p>QAQ啥是语言类型？。。。我只知道基本数据类型，是string, number, boolean, undefined, null,  NaN, Symbol, 以及引用数据类型object。</p>
-<p>红宝书答案：</p>
-<blockquote>
-<p>ECMAScript有5种简单数据类型，也叫做基本数据类型： Undefined，Null，Boolean，Number，String，以及1种复杂数据结构Object。实际上ES6加入了新的简单数据结构Symbol，所以一共是7种</p>
-</blockquote>
+                                    <ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1365072"><label class="task-list-item-label" for="task-item-1365072"> 下面两种写法有何区别？</label><pre><code class="language-js">  &lt;input v-bind:value=&quot;msg&quot; /&gt;  // 为什么这样修改不会导致vue的data变化？  
+  &lt;input v-model=&quot;msg&quot; /&gt;
+</code></pre>
+</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1060049"><label class="task-list-item-label" for="task-item-1060049"> vue的自定义组件似乎不支持自闭合</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5656102"> 不设置vue的<code>el</code><label class="task-list-item-label" for="task-item-5656102"> 不设置vue的`el`会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9536364"><label class="task-list-item-label" for="task-item-9536364"> 生命周期函数的：创建vm.$el并用其替换"el"是什么意思?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1503610"><label class="task-list-item-label" for="task-item-1503610"> 什么是动态参数？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1797666"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？<br>
+答： 官网提到了：<code>我们提供的函数将用作属性 vm.reserveMessage 的getter函数</code><label class="task-list-item-label" for="task-item-1797666"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
+答： 官网提到了：`我们提供的函数将用作属性 vm.reserveMessage 的getter函数`，大概是这样</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7562073"><label class="task-list-item-label" for="task-item-7562073"> 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5362235"><label class="task-list-item-label" for="task-item-5362235"> is="todo-item" 是干什么的？ 必须的吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4760673"><label class="task-list-item-label" for="task-item-4760673"> 只能以数组形式为组件传递props吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5158772"><label class="task-list-item-label" for="task-item-5158772"> $emit 方法？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4586657"><label class="task-list-item-label" for="task-item-4586657"> Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3959055"><label class="task-list-item-label" for="task-item-3959055"> Vue单页面组件，不需要导出（光有模版的情况）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-695854"> <template slot-scope="scope"><label class="task-list-item-label" for="task-item-695854"> <template slot-scope="scope"> scope是什么？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3302633"><label class="task-list-item-label" for="task-item-3302633"> 路由传参数，必须加props：true</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6999194"><label class="task-list-item-label" for="task-item-6999194"> props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?</label></li>
+<li>[ ]</li>
+</ul>
+<h1 id="发现的其他问题">发现的其他问题</h1>
+<ul class="contains-task-list">
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9189081"><label class="task-list-item-label" for="task-item-9189081"> npm i axios 不需要--save 直接保存到了dependencies中。</label></p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1935505"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的<label class="task-list-item-label" for="task-item-1935505"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`</label></p>
+<pre><code class="language-json">&quot;rules&quot;: {
+    &quot;no-unused-expressions&quot;: 1
+  }
+</code></pre>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1743400"> 双击需要绑定<label class="task-list-item-label" for="task-item-1743400"> 双击需要绑定`dblclick`</label></p>
+</li>
+</ul>
 
                                 </div>
                     </article>
@@ -123,9 +153,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io//post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie">
+                            <a href="https://angrychocobo.github.io//post/7-24-cai-shu-zi-you-xi">
                                 <h3 class="post-title">
-                                    算法有穷型分析 hailstone序列
+                                    7-24 猜数字游戏
                                 </h3>
                             </a>
                         </div>
@@ -144,15 +174,7 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#01-javascript%E8%A7%84%E5%AE%9A%E4%BA%86%E5%87%A0%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%B1%BB%E5%9E%8B">01. <code>JavaScript</code>规定了几种语言类型</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#%E5%8F%91%E7%8E%B0%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98">发现的其他问题</a></li>
 </ul>
 
         </div>

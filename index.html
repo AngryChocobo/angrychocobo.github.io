@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572442107374">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572535614020">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572442107374" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572535614020" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,70 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">
+                        Vue Todo项目
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-31</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...
+这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。
+记录遇到的问题
+
+
+ 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick
+
+
+ 双击todo，使其可编辑，input显示出来自动获取焦点
+
+
+ 子组件input如何修改父组件传递的input值？ 目前已知可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同
+
+
+使用自定义指令实现
+&amp;lt;input type=&amp;quot;text&amp;quot; ...  v-todo-focus=&amp;quot;todo === editedTodo&amp;quot;&amp;gt;
+directives: {
+			&#39;todo-focus&#39;: function (el, binding) {
+				if (binding.value) {
+					el.focus();
+				}
+			}
+		}
+
+
+ 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？
+ @click=&#34;someFun(value)&#34; 绑定的不是函数的返回值？
+ 如何通过watch实现修改todos时自动记录到localStorage ?
+
+watch: {
+        todos: {
+            deep: true,
+            handler: todoStorage.save
+        }
+    }
+
+可以优化的点
+
+按键是否回车可以改为 @keyup.enter=&amp;quot;xx&amp;quot; 来处理
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">
@@ -557,6 +621,68 @@ Todo
             
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/chu-xue-vue-de-yi-huo-ji-lu">
+                        初学Vue的疑惑记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-24</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+ 下面两种写法有何区别？  &amp;lt;input v-bind:value=&amp;quot;msg&amp;quot; /&amp;gt;  // 为什么这样修改不会导致vue的data变化？  
+  &amp;lt;input v-model=&amp;quot;msg&amp;quot; /&amp;gt;
+
+
+ vue的自定义组件似乎不支持自闭合
+ 不设置vue的el 不设置vue的`el`会如何？
+ 生命周期函数的：创建vm.$el并用其替换&#34;el&#34;是什么意思?
+ 什么是动态参数？
+ 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
+答： 官网提到了：我们提供的函数将用作属性 vm.reserveMessage 的getter函数 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
+答： 官网提到了：`我们提供的函数将用作属性 vm.reserveMessage 的getter函数`，大概是这样
+ 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。
+ is=&#34;todo-item&#34; 是干什么的？ 必须的吗？
+ 只能以数组形式为组件传递props吗？
+ $emit 方法？
+ Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？
+ Vue单页面组件，不需要导出（光有模版的情况）
+   scope是什么？
+ 路由传参数，必须加props：true
+ props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?
+[ ]
+
+发现的其他问题
+
+
+ npm i axios 不需要--save 直接保存到了dependencies中。
+
+
+ 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`
+&amp;quot;rules&amp;quot;: {
+    &amp;quot;no-unused-expressions&amp;quot;: 1
+  }
+
+
+
+ 双击需要绑定 双击需要绑定`dblclick`
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/chu-xue-vue-de-yi-huo-ji-lu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/7-24-cai-shu-zi-you-xi">
                         7-24 猜数字游戏
                     </a>
@@ -709,7 +835,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #实战
         </a>
                         
@@ -884,107 +1010,6 @@ export function fetchWords() {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
-                        redux中间件临时记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            export function fetchWords() {
-// Thunk middleware 知道如何处理函数。
-// 这里把 dispatch 方法通过参数的形式传给函数，
-// 以此来让它自己也能 dispatch action。
-
-return function (dispatch) {
-
-    // 首次 dispatch：更新应用的 state 来通知
-    // API 请求发起了。
-
-    dispatch(requestWords())
-
-    // thunk middleware 调用的函数可以有返回值，
-    // 它会被当作 dispatch 方法的返回值传递。
-
-    // 这个案例中，我们返回一个等待处理的 promise。
-    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-    return fetch(`http://127.0.0.1:3001/words`)
-        .then(function (response) {
-            return response.json();
-        },
-            // 不要使用 catch，因为会捕获
-            // 在 dispatch 和渲染中出现的任何错误，
-            // 导致 &#39;Unexpected batch number&#39; 错误。
-            // https://github.com/facebook/react/issues/6895
-            error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-        )
-        .then(json =&amp;gt;
-        // 可以多次 dispatch！
-        // 这里，使用 API 请求结果来更新应用的 state。
-        {
-            if (json) {
-                setTimeout(() =&amp;gt; {
-                    dispatch(receiveWords(json));
-                }, 2000);
-            } else {
-                dispatch(fetchError());
-            }
-
-        }
-        );
-}
-
-}
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
-                        使用fetch请求接口并设置cookie未生效的原因
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-02</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-other_1">
-            #踩坑
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
-//但是这样一来又有了跨域的问题。晕，先睡了
-似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
-那么fetch呢..
-还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1003,7 +1028,7 @@ return function (dispatch) {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572442107374)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572535614020)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

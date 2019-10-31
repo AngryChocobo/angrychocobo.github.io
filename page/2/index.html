@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572442107374">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1572535614020">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572442107374" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1572535614020" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,107 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
+                        redux中间件临时记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-05</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            export function fetchWords() {
+// Thunk middleware 知道如何处理函数。
+// 这里把 dispatch 方法通过参数的形式传给函数，
+// 以此来让它自己也能 dispatch action。
+
+return function (dispatch) {
+
+    // 首次 dispatch：更新应用的 state 来通知
+    // API 请求发起了。
+
+    dispatch(requestWords())
+
+    // thunk middleware 调用的函数可以有返回值，
+    // 它会被当作 dispatch 方法的返回值传递。
+
+    // 这个案例中，我们返回一个等待处理的 promise。
+    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+    return fetch(`http://127.0.0.1:3001/words`)
+        .then(function (response) {
+            return response.json();
+        },
+            // 不要使用 catch，因为会捕获
+            // 在 dispatch 和渲染中出现的任何错误，
+            // 导致 &#39;Unexpected batch number&#39; 错误。
+            // https://github.com/facebook/react/issues/6895
+            error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
+        )
+        .then(json =&amp;gt;
+        // 可以多次 dispatch！
+        // 这里，使用 API 请求结果来更新应用的 state。
+        {
+            if (json) {
+                setTimeout(() =&amp;gt; {
+                    dispatch(receiveWords(json));
+                }, 2000);
+            } else {
+                dispatch(fetchError());
+            }
+
+        }
+        );
+}
+
+}
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
+                        使用fetch请求接口并设置cookie未生效的原因
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-02</time>
+                    
+                        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
+                            i-tag-primary">
+            #踩坑
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
+//但是这样一来又有了跨域的问题。晕，先睡了
+似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
+那么fetch呢..
+还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
@@ -270,7 +371,7 @@ JavaScript 中的 task queues
                     <time class="post-time">2019-07-27</time>
                     
                         <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-success">
             #算法
         </a>
                         
@@ -416,7 +517,7 @@ var twoSum = function(nums, target) {
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_1">
             #Gridea
         </a>
                         
@@ -457,7 +558,7 @@ var twoSum = function(nums, target) {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572442107374)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1572535614020)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
