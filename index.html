@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1573655724180">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577115068502">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1573655724180" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577115068502" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,35 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/xin-de-ye-wang">
+                        新的野望
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-12-23</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最近突然想开始搞webgl，已记不起诱因，静下心来想短时间对前端的职业发展并无太大的好处，而且也算是另一个方向，说是转行也没什么毛病，但是真的想去做。
+大学时期有过类似的情绪，那是大二左右，想搞安卓，并幻想了之后以安卓为生的情景，买了几本书，敲了几天代码，不了了之...
+安卓那时候我记得是觉得可以在手机上看到效果，很有成就感，如今的webgl我想也有类似的原因吧！不能给自己带来成就感的东西，学习起来当然会觉得枯燥吧～
+当然webgl难度会比web开发难许多，更是考验我残废的数学功底，但是我还是想去试试，试试自己究竟能做到什么程度，在兴趣的支持下，面对困难究竟能坚持多久...
+整
+2019.12.23 晚23:30
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/xin-de-ye-wang">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">
@@ -854,7 +883,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-warning">
             #实战
         </a>
                         
@@ -942,93 +971,6 @@ function hailstone(n) {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
-                        博客项目reducer拆分和中间件
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            今天放假，继续撸博客项目。
-
-早晨开始自我怀疑，是不是要继续做下去，当时觉得项目好像没什么意思，即使做出来了自己真的会去用嘛？然后就开始盲目的搜索其他接口，想做点别的项目，还好及时停止了搜索，去打扫了大半个小时的卫生，又洗了几件衣服，吃了外卖，睡一个午觉。 庆幸自己脱离了糟糕的状态，差点放弃~  不过也算是浪费了上午+半个下午了。
-
-主要进行了如下工作：
-
-首页样式变更
-Header、Footer拆分
-reducer拆分，分为了word、post和global
-action也拆出来了
-使用中间件进行了posts列表的获取
-
-遇到的问题
-
- 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。
-
-反思
-细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。
-记录临时代码
-export function fetchWords() {
-
-    // Thunk middleware 知道如何处理函数。
-    // 这里把 dispatch 方法通过参数的形式传给函数，
-    // 以此来让它自己也能 dispatch action。
-
-    return function (dispatch) {
-
-        // 首次 dispatch：更新应用的 state 来通知
-        // API 请求发起了。
-
-        dispatch(requestWords())
-
-        // thunk middleware 调用的函数可以有返回值，
-        // 它会被当作 dispatch 方法的返回值传递。
-
-        // 这个案例中，我们返回一个等待处理的 promise。
-        // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-        return fetch(`http://127.0.0.1:3001/words`)
-            .then(function (response) {
-                return response.json();
-            },
-                // 不要使用 catch，因为会捕获
-                // 在 dispatch 和渲染中出现的任何错误，
-                // 导致 &#39;Unexpected batch number&#39; 错误。
-                // https://github.com/facebook/react/issues/6895
-                error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-            )
-            .then(json =&amp;gt;
-            // 可以多次 dispatch！
-            // 这里，使用 API 请求结果来更新应用的 state。
-            {
-                if (json) {
-                    setTimeout(() =&amp;gt; {
-                        dispatch(receiveWords(json));
-                    }, 2000);
-                } else {
-                    dispatch(fetchError());
-                }
-            }
-            );
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1047,7 +989,7 @@ export function fetchWords() {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1573655724180)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577115068502)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
