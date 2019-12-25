@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577254386247">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577311524823">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577254386247" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577311524823" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -136,8 +136,12 @@ animate()启动
 
 MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）
 SphereGeometry： 球几何体
-MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光。
+MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材
+MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）
 Skybox： 天空盒
+创建相同的物体，可以使用Geometry.clone()方法
+scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）
+作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position
 
 疑惑
 
@@ -1014,7 +1018,7 @@ int main(){
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577254386247)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577311524823)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
