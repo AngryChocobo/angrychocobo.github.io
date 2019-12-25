@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577311524823">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577315237488">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577311524823" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577315237488" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,6 +99,30 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/nid">
+                        node聊天室
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-09-19</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>跟着《node.js实战》实现一个聊天室</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/nid">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/node-wang-zhe-nong-yao-quan-zhan-kai-fa-01">
                         node王者农药全栈开发01
                     </a>
@@ -107,7 +131,7 @@
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #实战
         </a>
                         
@@ -360,7 +384,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-error">
             #踩坑
         </a>
                         
@@ -556,7 +580,7 @@ JavaScript 中的 task queues
                     <time class="post-time">2019-07-27</time>
                     
                         <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_1">
             #算法
         </a>
                         
@@ -627,71 +651,6 @@ class Solution {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">
-                        两数之和2 输入有序数组
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-27</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            题目要求
-
-给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
-函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
-说明:
-返回的下标值（index1 和 index2）不是从零开始的。
-你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
-示例:
-输入: numbers = [2, 7, 11, 15], target = 9
-输出: [1,2]
-解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
-
-解法一： 直接双重循环
-var twoSum = function(nums, target) {
-   for(var i = 0; i&amp;lt;nums.length; i++) {
-       for(var j = i + 1; j&amp;lt;nums.length; j++) {
-           if ((nums[i] + nums[j] == target) &amp;amp;&amp;amp; (i &amp;lt; j)) {
-               return [i+1, j+1];
-           }
-       }
-   }
-};
-
-上来直接想到的方法，很笨，但是奏效。执行用时380 ms，内存消耗35 MB
-时间复杂度为O（n2）
-解法二： 双指针
-var twoSum = function(nums, target) {
-    var i = 0, j = nums.length -1;
-		while (i &amp;lt; j) {
-        if (nums[i] + nums[j] == target) {
-            return [i+1, j+1]; 
-        }
-        if(nums[i] + nums[j] &amp;gt; target) {
-            j--;
-        } else {
-            i++;
-        }
-	}
-};
-
-充分理由给定的数组是有序的这一特性。执行用时80 ms，内存消耗35.2 MB
-时间复杂度为O(n)
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -712,7 +671,7 @@ var twoSum = function(nums, target) {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577311524823)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577315237488)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

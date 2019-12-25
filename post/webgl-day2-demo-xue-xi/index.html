@@ -5,9 +5,9 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Webgl day2 demo学习 | 老桔的小站（悄咪咪
+    Webgl day2 颜色的影响 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577311524823">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577315237488">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577311524823" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577315237488" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,7 +99,7 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Webgl day2 demo学习
+                            Webgl day2 颜色的影响
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2019-12-24</time>
@@ -107,48 +107,29 @@
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～<br>
-每日争取做完一个demo</p>
-</blockquote>
-<h3 id="首先记录一下这个模版demo需要的资源">首先记录一下这个模版demo需要的资源</h3>
+                                    <h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
 <ul>
-<li>KeyboardState.js 猜测是一个按键处理程序</li>
-<li>THREE.clock 时钟？ 程序中没有用到</li>
-<li>Detector.js 创建了全屏幕大小的canvas</li>
-<li>Stats.js 插件实现了性能、Fps监控</li>
-<li>OrbitControls.js 轨道控制器，实现了拖拽改变相机位置</li>
-<li>全屏幕、改变尺寸js和jquery不再赘述</li>
+<li>DAT.GUI.min.js</li>
+<li>AxisHelper 作者自己写的</li>
 </ul>
 <h3 id="程序流程分析">程序流程分析</h3>
 <ol>
-<li>首先初始化一些全局变量</li>
-<li>之后就是两个方法调用<br>
-init()初始化<br>
-animate()启动</li>
+<li>需要创建一个会受到光照影响的Phong球体</li>
+<li>使用点光源PointLight</li>
+<li></li>
 </ol>
 <h3 id="知识点">知识点</h3>
 <ul>
-<li>MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）</li>
-<li>SphereGeometry： 球几何体</li>
-<li>MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材</li>
-<li>MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）</li>
-<li>Skybox： 天空盒</li>
-<li>创建相同的物体，可以使用Geometry.clone()方法</li>
-<li>scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）</li>
-<li>作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position</li>
+<li>为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)</li>
+<li>环境光(Ambient light)</li>
+<li>漫反射颜色(Diffuse Color)</li>
+<li>自发光颜色(Emissive Color)</li>
+<li>镜面反射颜色(Specular Color)</li>
+<li>光泽度(Shininess amount)</li>
+<li>不透明度(Opacity amount)</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6913222"><label class="task-list-item-label" for="task-item-6913222"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5908206"><label class="task-list-item-label" for="task-item-5908206"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4052158"><label class="task-list-item-label" for="task-item-4052158"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4847763"><label class="task-list-item-label" for="task-item-4847763"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
-</ul>
 <h3 id="改进">改进</h3>
-<ul>
-<li>ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader</li>
-</ul>
 
                                 </div>
                     </article>
@@ -158,7 +139,7 @@ animate()启动</li>
                             <div class="next">下一篇</div>
                             <a href="https://angrychocobo.github.io//post/webgl-day1">
                                 <h3 class="post-title">
-                                    Webgl day1
+                                    Webgl day1 基础的几何球体
                                 </h3>
                             </a>
                         </div>
@@ -181,7 +162,7 @@ animate()启动</li>
 <ul>
 <li>
 <ul>
-<li><a href="#%E9%A6%96%E5%85%88%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%BF%99%E4%B8%AA%E6%A8%A1%E7%89%88demo%E9%9C%80%E8%A6%81%E7%9A%84%E8%B5%84%E6%BA%90">首先记录一下这个模版demo需要的资源</a></li>
+<li><a href="#%E8%BF%99%E4%B8%AA%E6%A8%A1%E7%89%88demo%E9%9C%80%E8%A6%81%E7%9A%84%E8%B5%84%E6%BA%90">这个模版demo需要的资源</a></li>
 <li><a href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">程序流程分析</a></li>
 <li><a href="#%E7%9F%A5%E8%AF%86%E7%82%B9">知识点</a></li>
 <li><a href="#%E7%96%91%E6%83%91">疑惑</a></li>

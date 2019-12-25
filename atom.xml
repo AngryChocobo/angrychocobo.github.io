@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2019-12-25T22:05:27.330Z</updated>
+    <updated>2019-12-25T23:07:19.218Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -11,16 +11,60 @@
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 老桔的小站（悄咪咪</rights>
     <entry>
-        <title type="html"><![CDATA[Webgl day2 demo学习]]></title>
+        <title type="html"><![CDATA[Webgl 笔记模版]]></title>
+        <id>https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban</id>
+        <link href="https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban">
+        </link>
+        <updated>2019-12-25T22:13:26.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
+<h3 id="程序流程分析">程序流程分析</h3>
+<h3 id="知识点">知识点</h3>
+<h3 id="疑惑">疑惑</h3>
+<h3 id="改进">改进</h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Webgl day2 颜色的影响]]></title>
         <id>https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi</id>
         <link href="https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi">
         </link>
         <updated>2019-12-24T14:35:41.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
+<ul>
+<li>DAT.GUI.min.js</li>
+<li>AxisHelper 作者自己写的</li>
+</ul>
+<h3 id="程序流程分析">程序流程分析</h3>
+<ol>
+<li>需要创建一个会受到光照影响的Phong球体</li>
+<li>使用点光源PointLight</li>
+<li></li>
+</ol>
+<h3 id="知识点">知识点</h3>
+<ul>
+<li>为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)</li>
+<li>环境光(Ambient light)</li>
+<li>漫反射颜色(Diffuse Color)</li>
+<li>自发光颜色(Emissive Color)</li>
+<li>镜面反射颜色(Specular Color)</li>
+<li>光泽度(Shininess amount)</li>
+<li>不透明度(Opacity amount)</li>
+</ul>
+<h3 id="疑惑">疑惑</h3>
+<h3 id="改进">改进</h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Webgl day1 基础的几何球体]]></title>
+        <id>https://angrychocobo.github.io//post/webgl-day1</id>
+        <link href="https://angrychocobo.github.io//post/webgl-day1">
+        </link>
+        <updated>2019-12-23T21:49:48.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
 <p>找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～<br>
 每日争取做完一个demo</p>
 </blockquote>
-<h3 id="首先记录一下这个模版demo需要的资源">首先记录一下这个模版demo需要的资源</h3>
+<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
 <ul>
 <li>KeyboardState.js 猜测是一个按键处理程序</li>
 <li>THREE.clock 时钟？ 程序中没有用到</li>
@@ -49,29 +93,14 @@ animate()启动</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6913222"><label class="task-list-item-label" for="task-item-6913222"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5908206"><label class="task-list-item-label" for="task-item-5908206"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4052158"><label class="task-list-item-label" for="task-item-4052158"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4847763"><label class="task-list-item-label" for="task-item-4847763"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7505770"><label class="task-list-item-label" for="task-item-7505770"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3878736"><label class="task-list-item-label" for="task-item-3878736"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9024445"><label class="task-list-item-label" for="task-item-9024445"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-167078"><label class="task-list-item-label" for="task-item-167078"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
 </ul>
 <h3 id="改进">改进</h3>
 <ul>
 <li>ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Webgl day1]]></title>
-        <id>https://angrychocobo.github.io//post/webgl-day1</id>
-        <link href="https://angrychocobo.github.io//post/webgl-day1">
-        </link>
-        <updated>2019-12-23T21:49:48.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="学习内容">学习内容</h2>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-506687"><label class="task-list-item-label" for="task-item-506687"> 三角形旋转坐标并绘制</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1321398"><label class="task-list-item-label" for="task-item-1321398"> 三角函数复习</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2564043"><label class="task-list-item-label" for="task-item-2564043"> 矩阵、矢量复习</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5654889"><label class="task-list-item-label" for="task-item-5654889"> 矩阵变换</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -117,32 +146,32 @@ this.scene.add(light);
 <h3 id="记录遇到的问题">记录遇到的问题</h3>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9091068"><label class="task-list-item-label" for="task-item-9091068"> 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3333792"><label class="task-list-item-label" for="task-item-3333792"> 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2765064"><label class="task-list-item-label" for="task-item-2765064"> 双击todo，使其可编辑，input显示出来自动获取焦点</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6230158"><label class="task-list-item-label" for="task-item-6230158"> 双击todo，使其可编辑，input显示出来自动获取焦点</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9319329"><label class="task-list-item-label" for="task-item-9319329"> 子组件input如何修改父组件传递的input值？</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2687260"><label class="task-list-item-label" for="task-item-2687260"> 子组件input如何修改父组件传递的input值？</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2117905"><label class="task-list-item-label" for="task-item-2117905"> 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2920016"><label class="task-list-item-label" for="task-item-2920016"> 父组件为子组件传递回调函数，由子组件调用</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5070845"><label class="task-list-item-label" for="task-item-5070845"> 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8926626"><label class="task-list-item-label" for="task-item-8926626"> 父组件为子组件传递回调函数，由子组件调用</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7343495"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos"><label class="task-list-item-label" for="task-item-7343495"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos">区别</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1015381"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos"><label class="task-list-item-label" for="task-item-1015381"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos">区别</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9962961"> 如何实现 <a v-bind:href="#/item"> 答： <label class="task-list-item-label" for="task-item-9962961"> 如何实现 <a v-bind:href="#/item"> 答： <a v-bind:href="'#' + item "></label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1583416"> 如何实现 <a v-bind:href="#/item"> 答： <label class="task-list-item-label" for="task-item-1583416"> 如何实现 <a v-bind:href="#/item"> 答： <a v-bind:href="'#' + item "></label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5783611"><label class="task-list-item-label" for="task-item-5783611"> 如何调用父组件的自定义指令</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-172000"><label class="task-list-item-label" for="task-item-172000"> 如何调用父组件的自定义指令</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3047374"><label class="task-list-item-label" for="task-item-3047374"> 为什么key只能是数字或字符串？</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6126728"><label class="task-list-item-label" for="task-item-6126728"> 为什么key只能是数字或字符串？</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3987244"><label class="task-list-item-label" for="task-item-3987244"> v-if切换组件时，是否会导致子组件的create和destory ?</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7722845"><label class="task-list-item-label" for="task-item-7722845"> v-if切换组件时，是否会导致子组件的create和destory ?</label></p>
 </li>
 </ul>
 <pre><code class="language-vue">使用自定义指令实现
@@ -156,9 +185,9 @@ directives: {
 		}
 </code></pre>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7418614"><label class="task-list-item-label" for="task-item-7418614"> 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1205866"><label class="task-list-item-label" for="task-item-1205866"> @click="someFun(value)" 绑定的不是函数的返回值？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2809892"><label class="task-list-item-label" for="task-item-2809892"> 如何通过watch实现修改todos时自动记录到localStorage ?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5832558"><label class="task-list-item-label" for="task-item-5832558"> 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5630136"><label class="task-list-item-label" for="task-item-5630136"> @click="someFun(value)" 绑定的不是函数的返回值？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3420861"><label class="task-list-item-label" for="task-item-3420861"> 如何通过watch实现修改todos时自动记录到localStorage ?</label></li>
 </ul>
 <pre><code class="language-vue">watch: {
         todos: {
@@ -284,7 +313,7 @@ The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable
 </blockquote>
 <h2 id="疑问列表">疑问列表</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3703624"><label class="task-list-item-label" for="task-item-3703624"> static函数是什么?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9833945"><label class="task-list-item-label" for="task-item-9833945"> static函数是什么?</label></li>
 </ul>
 <blockquote>
 <p>getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.</p>
@@ -303,16 +332,16 @@ The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable
         <content type="html"><![CDATA[<p>经典的ToDo列表项目，自己按照网上的效果实现一次，认真完成。</p>
 <h3 id="需求分析">需求分析</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2533320"><label class="task-list-item-label" for="task-item-2533320"> 回车新建</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1102868"><label class="task-list-item-label" for="task-item-1102868"> item content 双击编辑</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7937082"><label class="task-list-item-label" for="task-item-7937082"> item 前的checkbox点击可切换完成状态</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9727901"><label class="task-list-item-label" for="task-item-9727901"> item 后的x点击删除该项</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5647048"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为<label class="task-list-item-label" for="task-item-5647048"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9060933"><label class="task-list-item-label" for="task-item-9060933"> 至少有一条todo时，下方出现阴影的提示栏，</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6668944"> 至少有一条todo时，下方出现状态筛选<label class="task-list-item-label" for="task-item-6668944"> 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3711729"> 至少有一条完成的todo时，状态筛选栏右侧出现<code>清除全部完成</code><label class="task-list-item-label" for="task-item-3711729"> 至少有一条完成的todo时，状态筛选栏右侧出现`清除全部完成`按钮</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-501074"><label class="task-list-item-label" for="task-item-501074"> 切换状态改变hash</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5867005"><label class="task-list-item-label" for="task-item-5867005"> 数据持久存储到localstorage</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7084152"><label class="task-list-item-label" for="task-item-7084152"> 回车新建</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4208600"><label class="task-list-item-label" for="task-item-4208600"> item content 双击编辑</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-983509"><label class="task-list-item-label" for="task-item-983509"> item 前的checkbox点击可切换完成状态</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5013935"><label class="task-list-item-label" for="task-item-5013935"> item 后的x点击删除该项</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9878386"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为<label class="task-list-item-label" for="task-item-9878386"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4161021"><label class="task-list-item-label" for="task-item-4161021"> 至少有一条todo时，下方出现阴影的提示栏，</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7485432"> 至少有一条todo时，下方出现状态筛选<label class="task-list-item-label" for="task-item-7485432"> 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2223224"> 至少有一条完成的todo时，状态筛选栏右侧出现<code>清除全部完成</code><label class="task-list-item-label" for="task-item-2223224"> 至少有一条完成的todo时，状态筛选栏右侧出现`清除全部完成`按钮</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8260473"><label class="task-list-item-label" for="task-item-8260473"> 切换状态改变hash</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2517218"><label class="task-list-item-label" for="task-item-2517218"> 数据持久存储到localstorage</label></li>
 </ul>
 <h3 id="数据">数据</h3>
 <p>state(状态): [All, Active, Completed]</p>
@@ -320,13 +349,13 @@ The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable
 <img src="https://chocoboimg-1258068192.cos.ap-chengdu.myqcloud.com/Pasted%20Graphic_%E5%89%AF%E6%9C%AC.png" alt=""></p>
 <p>样式难点：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8973231"><label class="task-list-item-label" for="task-item-8973231"> 自定义的checkBox （demo是切换图片实现的）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6041672"><label class="task-list-item-label" for="task-item-6041672"> 下方功能区的三层阴影</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3506996"><label class="task-list-item-label" for="task-item-3506996"> 自定义的checkBox （demo是切换图片实现的）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8473850"><label class="task-list-item-label" for="task-item-8473850"> 下方功能区的三层阴影</label></li>
 </ul>
 <p>功能难点：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-176752"><label class="task-list-item-label" for="task-item-176752"> 切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8088586"><label class="task-list-item-label" for="task-item-8088586"> NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-615713"><label class="task-list-item-label" for="task-item-615713"> 切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9522500"><label class="task-list-item-label" for="task-item-9522500"> NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)</label></li>
 </ul>
 <h2 id="重构">重构</h2>
 <details>
@@ -609,42 +638,42 @@ export default App;
         </link>
         <updated>2019-10-24T14:18:53.000Z</updated>
         <content type="html"><![CDATA[<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5066243"><label class="task-list-item-label" for="task-item-5066243"> 下面两种写法有何区别？</label><pre><code class="language-js">  &lt;input v-bind:value=&quot;msg&quot; /&gt;  // 为什么这样修改不会导致vue的data变化？  
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1563976"><label class="task-list-item-label" for="task-item-1563976"> 下面两种写法有何区别？</label><pre><code class="language-js">  &lt;input v-bind:value=&quot;msg&quot; /&gt;  // 为什么这样修改不会导致vue的data变化？  
   &lt;input v-model=&quot;msg&quot; /&gt;
 </code></pre>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9272930"><label class="task-list-item-label" for="task-item-9272930"> vue的自定义组件似乎不支持自闭合</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7744954"> 不设置vue的<code>el</code><label class="task-list-item-label" for="task-item-7744954"> 不设置vue的`el`会如何？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8014082"><label class="task-list-item-label" for="task-item-8014082"> 生命周期函数的：创建vm.$el并用其替换"el"是什么意思?</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9015207"><label class="task-list-item-label" for="task-item-9015207"> 什么是动态参数？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-405589"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？<br>
-答： 官网提到了：<code>我们提供的函数将用作属性 vm.reserveMessage 的getter函数</code><label class="task-list-item-label" for="task-item-405589"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1599619"><label class="task-list-item-label" for="task-item-1599619"> vue的自定义组件似乎不支持自闭合</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3851645"> 不设置vue的<code>el</code><label class="task-list-item-label" for="task-item-3851645"> 不设置vue的`el`会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1136753"><label class="task-list-item-label" for="task-item-1136753"> 生命周期函数的：创建vm.$el并用其替换"el"是什么意思?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1802506"><label class="task-list-item-label" for="task-item-1802506"> 什么是动态参数？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-890630"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？<br>
+答： 官网提到了：<code>我们提供的函数将用作属性 vm.reserveMessage 的getter函数</code><label class="task-list-item-label" for="task-item-890630"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
 答： 官网提到了：`我们提供的函数将用作属性 vm.reserveMessage 的getter函数`，大概是这样</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6247092"><label class="task-list-item-label" for="task-item-6247092"> 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9654214"><label class="task-list-item-label" for="task-item-9654214"> is="todo-item" 是干什么的？ 必须的吗？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2397947"><label class="task-list-item-label" for="task-item-2397947"> 只能以数组形式为组件传递props吗？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9731253"><label class="task-list-item-label" for="task-item-9731253"> $emit 方法？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2608662"><label class="task-list-item-label" for="task-item-2608662"> Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5310021"><label class="task-list-item-label" for="task-item-5310021"> Vue单页面组件，不需要导出（光有模版的情况）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2566515"> <template slot-scope="scope"><label class="task-list-item-label" for="task-item-2566515"> <template slot-scope="scope"> scope是什么？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3802449"><label class="task-list-item-label" for="task-item-3802449"> 路由传参数，必须加props：true</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-392072"><label class="task-list-item-label" for="task-item-392072"> props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1139131"><label class="task-list-item-label" for="task-item-1139131"> 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2234796"><label class="task-list-item-label" for="task-item-2234796"> is="todo-item" 是干什么的？ 必须的吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5621113"><label class="task-list-item-label" for="task-item-5621113"> 只能以数组形式为组件传递props吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8829615"><label class="task-list-item-label" for="task-item-8829615"> $emit 方法？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1406528"><label class="task-list-item-label" for="task-item-1406528"> Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9005363"><label class="task-list-item-label" for="task-item-9005363"> Vue单页面组件，不需要导出（光有模版的情况）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-875706"> <template slot-scope="scope"><label class="task-list-item-label" for="task-item-875706"> <template slot-scope="scope"> scope是什么？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-312020"><label class="task-list-item-label" for="task-item-312020"> 路由传参数，必须加props：true</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5497152"><label class="task-list-item-label" for="task-item-5497152"> props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?</label></li>
 <li>[ ]</li>
 </ul>
 <h1 id="发现的其他问题">发现的其他问题</h1>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7788213"><label class="task-list-item-label" for="task-item-7788213"> npm i axios 不需要--save 直接保存到了dependencies中。</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8830479"><label class="task-list-item-label" for="task-item-8830479"> npm i axios 不需要--save 直接保存到了dependencies中。</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1594947"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的<label class="task-list-item-label" for="task-item-1594947"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8046957"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的<label class="task-list-item-label" for="task-item-8046957"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`</label></p>
 <pre><code class="language-json">&quot;rules&quot;: {
     &quot;no-unused-expressions&quot;: 1
   }
 </code></pre>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3757424"> 双击需要绑定<label class="task-list-item-label" for="task-item-3757424"> 双击需要绑定`dblclick`</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5531295"> 双击需要绑定<label class="task-list-item-label" for="task-item-5531295"> 双击需要绑定`dblclick`</label></p>
 </li>
 </ul>
 ]]></content>
@@ -752,110 +781,6 @@ int main(){
     return 0;
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[node聊天室]]></title>
-        <id>https://angrychocobo.github.io//post/nid</id>
-        <link href="https://angrychocobo.github.io//post/nid">
-        </link>
-        <updated>2019-09-19T08:27:08.000Z</updated>
-        <summary type="html"><![CDATA[<p>跟着《node.js实战》实现一个聊天室</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>跟着《node.js实战》实现一个聊天室</p>
-<!-- more -->
-<h2 id="需求">需求：</h2>
-<ul>
-<li>消息发送后会展示给房间内的所有用户</li>
-<li>进入房间，系统随机分配一个昵称，可以使用命令的形式修改昵称</li>
-<li>用户可以使用命令的形式创建聊天室（或加入）</li>
-<li>聊天室名显示为网页的title</li>
-<li>消息区域右侧有可用房间列表</li>
-</ul>
-<h2 id="任务分解">任务分解</h2>
-<ol>
-<li>样式编写</li>
-<li>服务端处理聊天信息</li>
-<li>浏览器处理聊天信息</li>
-</ol>
-<h2 id="需要用到的库或模块">需要用到的库或模块</h2>
-<ul>
-<li>socket.io实现WebSocket</li>
-<li>node-mime</li>
-</ul>
-<hr>
-<h2 id="建立项目及准备工作">建立项目及准备工作</h2>
-<p>项目建立就不多说了，项目中建立文件夹<code>public</code>，用来保存静态文件，并在根目录创建server.js</p>
-<h2 id="使用node实现一个httpserver">使用node实现一个httpServer</h2>
-<pre><code class="language-js">const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const mime = require('mime');
-
-let cache = {};
-
-function send404(res) {
-    res.writeHead(404, {
-        'Content-Type': 'text/plain;charset=utf-8'
-    });
-    res.write('Error 404: 资源未找到～');
-    res.end();
-}
-
-function sendFile(res, filePath, fileContent) {
-    res.writeHead(200, {
-        'Content-Type': mime.lookup(path.basename(filePath))
-    });
-    res.end(fileContent);
-}
-
-function serveStatic(res, cache, absPath) {
-    if (cache[absPath]) {
-        sendFile(res, absPath, cache[absPath]);
-    } else {
-        fs.exists(absPath, exists =&gt; {
-            if (exists) {
-                fs.readFile(absPath, (err, data) =&gt; {
-                    if (err) {
-                        send404(res);
-                    } else {
-                        cache[absPath] = data;
-                        sendFile(res, absPath, data);
-                    }
-                });
-            } else {
-                send404(res);
-            }
-        });
-    }
-}
-
-const server = http.createServer((req, res) =&gt; {
-    console.log(req.url);
-    let filePath = false;
-    if (req.url === '/') {
-        filePath = 'public/index.html'
-    } else {
-        filePath = 'public' + req.url;
-    }
-    const absPath = './' + filePath;
-    serveStatic(res, cache, absPath);
-});
-
-server.listen(5555, () =&gt; {
-    console.log('server listening on port 5555');
-})
-</code></pre>
-<p>这里要注意：<code>Content-Type</code>需要加上<code>charset=utf-8</code>来保证中文不会乱码</p>
-<h1 id="中间犯的错误">中间犯的错误</h1>
-<ul>
-<li>absPath错误的写成了:</li>
-</ul>
-<pre><code class="language-js">const absPath = '/ + filePath;
-</code></pre>
-<ul>
-<li>server 运行中，修改静态文件不能看到效果，必须重启server</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
