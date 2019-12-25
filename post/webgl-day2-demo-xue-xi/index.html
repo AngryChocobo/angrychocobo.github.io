@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Vue网易云实现记录 | 老桔的小站（悄咪咪
+    Webgl day2 demo学习 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577254386247">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,39 +99,66 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Vue网易云实现记录
+                            Webgl day2 demo学习
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-11-09</time>
+                            <time class="post-time">2019-12-24</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <h3 id="vue-cli如何实现webpack-alias别名">vue-cli如何实现webpack alias别名？</h3>
-<p>在根目录新建vue.config.js</p>
-<pre><code class="language-js">const path = require('path');
-function resolve (dir) {
-    return path.join(__dirname, dir)
-}
-module.exports = {
-    lintOnSave: true,
-    chainWebpack: (config)=&gt;{
-        config.resolve.alias
-            .set('@$', resolve('src'))
-            .set('assets',resolve('src/assets'))
-            .set('components',resolve('src/components'))
-            .set('layout',resolve('src/layout'))
-            .set('base',resolve('src/base'))
-            .set('static',resolve('src/static'))
-    }
-}
-</code></pre>
-<p>⚠️注意：import 组件时直接写路径，@import css文件时需要加上～</p>
+                                    <blockquote>
+<p>找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～<br>
+每日争取做完一个demo</p>
+</blockquote>
+<h3 id="首先记录一下这个模版demo需要的资源">首先记录一下这个模版demo需要的资源</h3>
+<ul>
+<li>KeyboardState.js 猜测是一个按键处理程序</li>
+<li>THREE.clock 时钟？ 程序中没有用到</li>
+<li>Detector.js 创建了全屏幕大小的canvas</li>
+<li>Stats.js 插件实现了性能、Fps监控</li>
+<li>OrbitControls.js 轨道控制器，实现了拖拽改变相机位置</li>
+<li>全屏幕、改变尺寸js和jquery不再赘述</li>
+</ul>
+<h3 id="程序流程分析">程序流程分析</h3>
+<ol>
+<li>首先初始化一些全局变量</li>
+<li>之后就是两个方法调用<br>
+init()初始化<br>
+animate()启动</li>
+</ol>
+<h3 id="知识点">知识点</h3>
+<ul>
+<li>MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）</li>
+<li>SphereGeometry： 球几何体</li>
+<li>MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光。</li>
+<li>Skybox： 天空盒</li>
+</ul>
+<h3 id="疑惑">疑惑</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8445376"><label class="task-list-item-label" for="task-item-8445376"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6684985"><label class="task-list-item-label" for="task-item-6684985"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7692991"><label class="task-list-item-label" for="task-item-7692991"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-904317"><label class="task-list-item-label" for="task-item-904317"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+</ul>
+<h3 id="改进">改进</h3>
+<ul>
+<li>ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader</li>
+</ul>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io//post/webgl-day1">
+                                <h3 class="post-title">
+                                    Webgl day1
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -150,7 +177,11 @@ module.exports = {
 <ul>
 <li>
 <ul>
-<li><a href="#vue-cli%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0webpack-alias%E5%88%AB%E5%90%8D">vue-cli如何实现webpack alias别名？</a></li>
+<li><a href="#%E9%A6%96%E5%85%88%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E8%BF%99%E4%B8%AA%E6%A8%A1%E7%89%88demo%E9%9C%80%E8%A6%81%E7%9A%84%E8%B5%84%E6%BA%90">首先记录一下这个模版demo需要的资源</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">程序流程分析</a></li>
+<li><a href="#%E7%9F%A5%E8%AF%86%E7%82%B9">知识点</a></li>
+<li><a href="#%E7%96%91%E6%83%91">疑惑</a></li>
+<li><a href="#%E6%94%B9%E8%BF%9B">改进</a></li>
 </ul>
 </li>
 </ul>
