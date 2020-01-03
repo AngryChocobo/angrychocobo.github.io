@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577315237488">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1577985995620">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577315237488" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1577985995620" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,126 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/7-24-cai-shu-zi-you-xi">
+                        7-24 猜数字游戏
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-17</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+题目要求：
+
+猜数字游戏是令游戏机随机产生一个100以内的正整数，用户输入一个数对其进行猜测，需要你编写程序自动对其与随机产生的被猜数进行比较，并提示大了（“Too big”），还是小了（“Too small”），相等表示猜到了。如果猜到，则结束程序。程序还要求统计猜的次数，如果1次猜出该数，提示“Bingo!”；如果3次以内猜到该数，则提示“Lucky You!”；如果超过3次但是在N（&amp;gt;3）次以内（包括第N次）猜到该数，则提示“Good Guess!”；如果超过N次都没有猜到，则提示“Game Over”，并结束程序。如果在到达N次之前，用户输入了一个负数，也输出“Game Over”，并结束程序。
+
+输入格式:
+输入第一行中给出两个不超过100的正整数，分别是游戏机产生的随机数、以及猜测的最大次数N。最后每行给出一个用户的输入，直到出现负数为止。
+输出格式:
+在一行中输出每次猜测相应的结果，直到输出猜对的结果或“Game Over”则结束。
+输入样例:
+58 4
+70
+50
+56
+58
+60
+-2
+输出样例:
+Too big
+Too small
+Too small
+Good Guess!
+我的错误代码
+#include&amp;lt;stdio.h&amp;gt;
+int main() {
+    int num, n;
+    scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;num, &amp;amp;n);
+    int input = 0, times = 1;
+    do {
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+    if (input == num) {
+        if (times == 1) {
+            printf(&amp;quot;Bingo!\n&amp;quot;);
+            return 0;
+        } else if (times &amp;lt;= 3) {
+            printf(&amp;quot;Lucky You!\n&amp;quot;);
+            return 0;
+        } else if (times  &amp;lt;= n) {
+            printf(&amp;quot;Good Guess!\n&amp;quot;);
+            return 0;
+        } else {
+            printf(&amp;quot;Game Over\n&amp;quot;);
+            return 0;
+        }
+    } else if (num &amp;gt; input) {
+        printf(&amp;quot;Too small\n&amp;quot;);
+        times++;
+    } else {
+        printf(&amp;quot;Too big\n&amp;quot;);
+        times++;
+    }
+    } while ( input &amp;gt;= 0);
+    printf(&amp;quot;Game Over\n&amp;quot;);
+}
+
+我的答案在最后一个测试点总是提示错误，错误原因在于do至少会执行一次，如果第一次输入的值就是负数，会先输出Too small，之后才是Game Over。
+正确代码
+#include &amp;lt;stdio.h&amp;gt;
+int main(){
+    int count=-1, N=-1;
+    int number=-1, guess=-1;
+    count = 0;
+    scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;number, &amp;amp;N);
+    while(count&amp;lt;N){
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;guess);
+        count++;
+        if(guess&amp;lt;0){
+            break;
+        }
+        if(guess==number){
+            if(count==1){
+                printf(&amp;quot;Bingo!\n&amp;quot;);
+                break;
+            }
+            else if(count&amp;lt;=3){
+                printf(&amp;quot;Lucky You!\n&amp;quot;);
+                break;
+            }
+            else{
+                printf(&amp;quot;Good Guess!\n&amp;quot;);
+                break;
+            }
+        }
+        else if(guess&amp;lt;number){
+            printf(&amp;quot;Too small\n&amp;quot;);
+        }
+        else{
+            printf(&amp;quot;Too big\n&amp;quot;);
+        }
+    }
+    if(guess&amp;lt;0 || count==N&amp;amp;&amp;amp;guess!=number){
+        printf(&amp;quot;Game Over\n&amp;quot;);
+    }
+
+    return 0;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/7-24-cai-shu-zi-you-xi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/nid">
@@ -384,7 +504,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
             #踩坑
         </a>
                         
@@ -570,87 +690,6 @@ JavaScript 中的 task queues
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-1">
-                        两数之和1 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-27</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-other_1">
-            #算法
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            题目描述
-
-给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
-你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
-示例:
-给定 nums = [2, 7, 11, 15], target = 9
-因为 nums[0] + nums[1] = 2 + 7 = 9
-所以返回 [0, 1]
-
-解法1 直接双循环莽
-var twoSum = function(nums, target) {
-    for(var i=0;i&amp;lt;nums.length;i++){
-        for(var j=i+1;j&amp;lt;nums.length;j++){
-            if(nums[i]+nums[j]==target)
-                return [i,j];
-        }
-    }
-};
-
-时间复杂度：O(n2)
-解法2 两遍哈希表
-首先，js是没有内置的哈希表数据结构的。所以先用java来做这道题，日后记得学习哈希表知识，并尝试自己用js实现一个出来！ @自己
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            map.put(nums[i], i);
-        }
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) &amp;amp;&amp;amp; map.get(complement) != i) {
-                return new int[] { i, map.get(complement) };
-            }
-        }
-        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
-    }
-}
-
-解法3 一遍哈希表
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/liang-shu-zhi-he-1">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -671,7 +710,7 @@ class Solution {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577315237488)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1577985995620)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
