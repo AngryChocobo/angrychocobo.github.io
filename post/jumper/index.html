@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    两数之和1  | 老桔的小站（悄咪咪
+    Jumper | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1578880744154">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,72 +99,39 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            两数之和1 
+                            Jumper
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-07-27</time>
+                            <time class="post-time">2020-01-09</time>
                             
-                                <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-other_1">
-                            #算法
-                        </a>
-                                
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="题目描述">题目描述</h2>
-<blockquote>
-<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>
-你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。<br>
-示例:<br>
-给定 nums = [2, 7, 11, 15], target = 9<br>
-因为 nums[0] + nums[1] = 2 + 7 = 9<br>
-所以返回 [0, 1]</p>
-</blockquote>
-<h2 id="解法1-直接双循环莽">解法1 直接双循环莽</h2>
-<pre><code class="language-js">var twoSum = function(nums, target) {
-    for(var i=0;i&lt;nums.length;i++){
-        for(var j=i+1;j&lt;nums.length;j++){
-            if(nums[i]+nums[j]==target)
-                return [i,j];
-        }
-    }
-};
-</code></pre>
-<p>时间复杂度：O(n2)</p>
-<h2 id="解法2-两遍哈希表">解法2 两遍哈希表</h2>
-<p>首先，js是没有内置的哈希表数据结构的。所以先用java来做这道题，日后记得学习哈希表知识，并尝试自己用js实现一个出来！ @自己</p>
-<pre><code class="language-java">class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
-        for (int i = 0; i &lt; nums.length; i++) {
-            map.put(nums[i], i);
-        }
-        for (int i = 0; i &lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) &amp;&amp; map.get(complement) != i) {
-                return new int[] { i, map.get(complement) };
-            }
-        }
-        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
-    }
-}
-</code></pre>
-<h2 id="解法3-一遍哈希表">解法3 一遍哈希表</h2>
-<pre><code class="language-java">class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
-        for (int i = 0; i &lt; nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
-    }
-}
-</code></pre>
+                                    <h2 id="构成">构成</h2>
+<ul>
+<li>player</li>
+<li>box</li>
+</ul>
+<h2 id="细节">细节</h2>
+<ul>
+<li>生成距离的box</li>
+<li>camera跟随移动</li>
+<li>按压 变形</li>
+<li>抛物线移动</li>
+<li>碰撞检测
+<ul>
+<li>跳到平台上</li>
+<li>边缘坠落</li>
+<li>跳出平台</li>
+</ul>
+</li>
+<li>如何让物体按轨迹移动</li>
+<li>生成移动轨迹 -&gt; 生成抛物线轨迹 （创造线条来辅助）</li>
+<li>使用精灵来当作HUD</li>
+</ul>
+<h2 id="坑">坑</h2>
+<p>.parameters : Object<br>
+一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。</p>
 
                                 </div>
                     </article>
@@ -172,9 +139,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">
+                            <a href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">
                                 <h3 class="post-title">
-                                    两数之和2 输入有序数组
+                                    菜鸟学WebGL - 初识WebGL
                                 </h3>
                             </a>
                         </div>
@@ -195,10 +162,9 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
-<li><a href="#%E8%A7%A3%E6%B3%951-%E7%9B%B4%E6%8E%A5%E5%8F%8C%E5%BE%AA%E7%8E%AF%E8%8E%BD">解法1 直接双循环莽</a></li>
-<li><a href="#%E8%A7%A3%E6%B3%952-%E4%B8%A4%E9%81%8D%E5%93%88%E5%B8%8C%E8%A1%A8">解法2 两遍哈希表</a></li>
-<li><a href="#%E8%A7%A3%E6%B3%953-%E4%B8%80%E9%81%8D%E5%93%88%E5%B8%8C%E8%A1%A8">解法3 一遍哈希表</a></li>
+<li><a href="#%E6%9E%84%E6%88%90">构成</a></li>
+<li><a href="#%E7%BB%86%E8%8A%82">细节</a></li>
+<li><a href="#%E5%9D%91">坑</a></li>
 </ul>
 </li>
 </ul>

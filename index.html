@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1578578017728">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1578880744154">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1578578017728" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1578880744154" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,6 +99,54 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/jumper">
+                        Jumper
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            构成
+
+player
+box
+
+细节
+
+生成距离的box
+camera跟随移动
+按压 变形
+抛物线移动
+碰撞检测
+
+跳到平台上
+边缘坠落
+跳出平台
+
+
+如何让物体按轨迹移动
+生成移动轨迹 -&amp;gt; 生成抛物线轨迹 （创造线条来辅助）
+使用精灵来当作HUD
+
+坑
+.parameters : Object
+一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/jumper">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">
                         菜鸟学WebGL - 初识WebGL
                     </a>
@@ -133,6 +181,10 @@ mesh.scale.x = 2; //模型沿x轴放大一倍
 ConeGeometry(圆锥几何体)
 MeshBasicMaterial不受光照影响，所以用它来当地板无法显示阴影
 为什么球体的阴影是一个矩形？需要设置光照范围
+点光源似乎配置阴影有些特殊
+平面光光源（RectAreaLight）可以模拟明亮的窗户或者灯管，但是似乎对性能有严重的影响
+.parameters : Object
+一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。
 
 
                                         </div>
@@ -883,68 +935,6 @@ Todo
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/chu-xue-vue-de-yi-huo-ji-lu">
-                        初学Vue的疑惑记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-10-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
- 下面两种写法有何区别？  &amp;lt;input v-bind:value=&amp;quot;msg&amp;quot; /&amp;gt;  // 为什么这样修改不会导致vue的data变化？  
-  &amp;lt;input v-model=&amp;quot;msg&amp;quot; /&amp;gt;
-
-
- vue的自定义组件似乎不支持自闭合
- 不设置vue的el 不设置vue的`el`会如何？
- 生命周期函数的：创建vm.$el并用其替换&#34;el&#34;是什么意思?
- 什么是动态参数？
- 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
-答： 官网提到了：我们提供的函数将用作属性 vm.reserveMessage 的getter函数 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
-答： 官网提到了：`我们提供的函数将用作属性 vm.reserveMessage 的getter函数`，大概是这样
- 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。
- is=&#34;todo-item&#34; 是干什么的？ 必须的吗？
- 只能以数组形式为组件传递props吗？
- $emit 方法？
- Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？
- Vue单页面组件，不需要导出（光有模版的情况）
-   scope是什么？
- 路由传参数，必须加props：true
- props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?
-[ ]
-
-发现的其他问题
-
-
- npm i axios 不需要--save 直接保存到了dependencies中。
-
-
- 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`
-&amp;quot;rules&amp;quot;: {
-    &amp;quot;no-unused-expressions&amp;quot;: 1
-  }
-
-
-
- 双击需要绑定 双击需要绑定`dblclick`
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/chu-xue-vue-de-yi-huo-ji-lu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -963,7 +953,7 @@ Todo
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1578578017728)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1578880744154)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
