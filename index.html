@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1578880744154">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1579104721463">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1578880744154" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1579104721463" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -185,6 +185,9 @@ MeshBasicMaterial不受光照影响，所以用它来当地板无法显示阴影
 平面光光源（RectAreaLight）可以模拟明亮的窗户或者灯管，但是似乎对性能有严重的影响
 .parameters : Object
 一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。
+three.js中，文字mesh需要重设中心点，否则会默认按照左测作为中心点
+小的纹理文件不代表会占用的内存小，占用内存（bytes）= width * height * 4 * 1.33
+
 
 
                                         </div>
@@ -953,7 +956,7 @@ Todo
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1578880744154)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1579104721463)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
