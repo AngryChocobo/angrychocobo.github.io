@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1579104721463">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583162884519">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1579104721463" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583162884519" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,547 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">
+                        Vue Todo项目
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-31</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...
+这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。
+记录遇到的问题
+
+
+ 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick
+
+
+ 双击todo，使其可编辑，input显示出来自动获取焦点
+
+
+ 子组件input如何修改父组件传递的input值？
+
+ 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同
+ 父组件为子组件传递回调函数，由子组件调用
+
+
+
+  和   和 区别
+
+
+ 如何实现  答：  如何实现  答： 
+
+
+ 如何调用父组件的自定义指令
+
+
+ 为什么key只能是数字或字符串？
+
+
+ v-if切换组件时，是否会导致子组件的create和destory ?
+
+
+使用自定义指令实现
+&amp;lt;input type=&amp;quot;text&amp;quot; ...  v-todo-focus=&amp;quot;todo === editedTodo&amp;quot;&amp;gt;
+directives: {
+			&#39;todo-focus&#39;: function (el, binding) {
+				if (binding.value) {
+					el.focus();
+				}
+			}
+		}
+
+
+ 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？
+ @click=&#34;someFun(value)&#34; 绑定的不是函数的返回值？
+ 如何通过watch实现修改todos时自动记录到localStorage ?
+
+watch: {
+        todos: {
+            deep: true,
+            handler: todoStorage.save
+        }
+    }
+
+可以优化的点
+
+按键是否回车可以改为 @keyup.enter=&amp;quot;xx&amp;quot; 来处理
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">
+                        深入学习React生命周期函数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-28</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            工作中简单使用了生命周期函数已经无法满足我了。想要深入地了解生命周期函数，并了解在版本升级的变化原因...
+概览
+组件的生命周期函数可以分为三个阶段： Mounting、Updating、Unmounting
+Mounting阶段的生命周期函数
+
+constructor(props)
+(static)get­Derived­State­From­Props(props, state)
+render()
+componentDidMount()
+UNSAFE_componentWillMount()
+
+Updating阶段的生命周期函数
+
+(static)getDerivedStateFromProps(props, state)
+shouldComponentUpdate(nextProps, nextState)
+render()
+getSnapshotBeforeUpdate(prevProps, prevState)
+componentDidUpdate(prevProps, prevState, snapshot)
+UNSAFE_componentWillUpdate()
+UNSAFE_componentWillReceiveProps(nextProps, nextState)
+
+Unmounting阶段的生命周期函数
+
+componentWillUnmount()
+
+Error Handling
+
+(static)getDerivedStateFromError()
+componentDidCatch()
+
+细节
+constructor(props)
+
+如果你不需要局部state或者绑定函数，不需要实现（implement）它
+应该首先super(props)，否则this.props将为undefined，导致bug（调用了super后，如果没有props，this.props为{} ）
+不应该在这里setState（ReactV16.11测试，这样做会报错，并且并不会生效）
+Avoid copying props into state! Only use this pattern if you intentionally want to ignore prop updates. 不要用props初始化state，除非你特意想要忽略props的更新
+
+render()
+
+在shouldComponentUpdate()返回false时不会执行
+
+在shouldComponentUpdate(nextProps, nextState)
+
+🤔️在初始化和调用forceState()时不会被调用
+不要依赖它来“阻止”渲染，因为这会导致Bug。考虑使用内置的PureComponent，而不是手工编写shouldComponentUpdate()。PureComponent对props和state进行了浅层比较，减少了您跳过必要更新的可能性
+返回false不会阻止子组件由于他们的state改变重新render(Note that returning false does not prevent child components from re-rendering when their state changes.)
+在这里进行深层次的检查如JSON.stringify()是很浪费性能的
+当前，如果shouldComponentUpdate()返回false，则不会调用unsafe_ComponentWillUpdate()、render()和ComponentDidUpdate()。
+在将来，React可能会将shouldComponentUpdate()视为提示而不是严格的指令，并且返回false仍然可能导致重新呈现组件。 (why ???)
+
+
+不返回值，以及返回null等值会如何？
+答：不返回值会报错提示: shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false. 返回null被认为是false
+为什么从输出看，nextState已经被改变了？
+答：是的。setState一定会改变state，但是不一定引起重新render，这里要注意shouldComponentUpdate并不是真的阻止了setState（我之前理解错误）
+
+componentDidMount()
+
+在这里绑定事件处理程序是比较好的
+在这里访问接口也很合适
+
+getSnapshotBeforeUpdate(prevProps, prevState)
+
+任何返回值都会被传递给componentDidUpdate
+
+static getDerivedStateFromError(error)
+
+在&amp;quot;render&amp;quot;阶段捕获错误
+只能捕获子组件的错误
+
+componentDidUpdate(prevProps, prevState, snapshot)
+
+首次render之后不会执行
+操作dom的合适时机
+在这里可以设计条件来重新请求接口
+在这里可以setState，但是要注意不要造成无限循环
+getSnapshotBeforeUpdate()会为componentDidUpdate传递snapshot参数，否则为undefined
+
+UNSAFE_componentWillReceiveProps(nextProps, nextState)
+
+不安全的方法，推荐使用新Api：getDerivedStateFromProps
+直接使用componentWillReceiveProps会提示Warning
+在Reavt V17 componentWillReceiveProps将不能使用
+和getDerivedStateFromProps方法不能同时存在
+和getDerivedStateFromProps区别1: 组件直接渲染和子组件直接渲染不会被调用
+和getDerivedStateFromProps区别1: 无返回值，后者返回state
+
+getDerivedStateFromProps()
+
+触发时机很多： constructor()之后、接收到 &amp;quot;new&amp;quot; props、 setState()之后、 forceState()之后
+它存在只为了一个目的，提供了从父组件props的改变来更新子组件内部state的功能（getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.）
+派生状态应该谨慎使用。我们看到的所有派生state的问题最终都可以归结为(1)无条件地从props更新state  (2)每当props和state不匹配时更新state
+
+
+For a long time, the lifecycle componentWillReceiveProps was the only way to update state in response to a change in props without an additional render. In version 16.3, we introduced a replacement lifecycle, getDerivedStateFromProps to solve the same use cases in a safer way.
+React 16.4 included a bugfix for getDerivedStateFromProps which caused some existing bugs in React components to reproduce more consistently.
+The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable.
+
+
+一个常见的错误观念就是getDerivedStateFromProps和getDerivedStateFromProps仅在props改变时被调用，实际上在父组件重新render时它们就会被调用，而不管之前的和现在的props有没有差异。（A common misconception is that getDerivedStateFromProps and componentWillReceiveProps are only called when props “change”. These lifecycles are called any time a parent component rerenders, regardless of whether the props are “different” from before.）
+
+疑问列表
+
+ static函数是什么?
+
+
+getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.
+
+
+[ ]
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/react-todo-xiang-mu">
+                        React ToDo项目
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-26</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            经典的ToDo列表项目，自己按照网上的效果实现一次，认真完成。
+需求分析
+
+ 回车新建
+ item content 双击编辑
+ item 前的checkbox点击可切换完成状态
+ item 后的x点击删除该项
+ 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`
+ 至少有一条todo时，下方出现阴影的提示栏，
+ 至少有一条todo时，下方出现状态筛选 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`
+ 至少有一条完成的todo时，状态筛选栏右侧出现清除全部完成 至少有一条完成的todo时，状态筛选栏右侧出现`清除全部完成`按钮
+ 切换状态改变hash
+ 数据持久存储到localstorage
+
+数据
+state(状态): [All, Active, Completed]
+基本原型（真鸡儿丑)：
+
+样式难点：
+
+ 自定义的checkBox （demo是切换图片实现的）
+ 下方功能区的三层阴影
+
+功能难点：
+
+ 切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载
+ NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)
+
+重构
+
+本阶段JSX 展开查看
+import React from &#39;react&#39;;
+import { NavLink, HashRouter } from &#39;react-router-dom&#39;;
+import &#39;./App.css&#39;;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [{
+        id: 1,
+        text: &#39;你好&#39;,
+        isCompleted: false
+      }],
+      filter: window.location.hash.split(&amp;quot;/&amp;quot;).pop() || &#39;All&#39;,
+      inputText: &#39;&#39;
+    };
+    this.states = [&#39;All&#39;, &#39;Active&#39;, &#39;Completed&#39;];
+  }
+
+  handleDelete = (id) =&amp;gt; {
+    this.setState({
+      todos: this.state.todos.filter(todo =&amp;gt; todo.id !== id)
+    });
+  }
+
+  handleInputKeyDown = (event) =&amp;gt; {
+    if (event.keyCode === 13) {
+      const { todos, inputText } = this.state;
+      this.setState({
+        todos: [...todos, {
+          id: todos.length + 1,
+          text: inputText,
+          isCompleted: false
+        }],
+        inputText: &#39;&#39;
+      })
+    }
+  }
+
+  handleToggleState = todo =&amp;gt; {
+    const { todos } = this.state;
+    // debugger;
+    // let/ newTodo = Object.assign({}, todo); //这里疑似修改了原数据
+    let newTodo = todos.find(v =&amp;gt; v === todo);
+    newTodo.isCompleted = !newTodo.isCompleted;
+    this.setState({
+      // todos: Object.assign([], todos,
+      // Object.assign(newTodo, { isCompleted: !newTodo.isCompleted }))
+      todos
+    });
+  }
+
+  handleChangeTodoText = todo =&amp;gt; {
+    const { todos } = this.state;
+    let newTodo = todos.find(v =&amp;gt; v === todo);
+    newTodo.isEditing = true;
+    this.setState({
+      todos
+    });
+  }
+
+  refreshTodos = () =&amp;gt; {
+    const { todos } = this.state;
+    // 可以考虑仅修改一项
+    this.setState({
+      todos: todos.map(todo =&amp;gt; Object.assign({}, todo, { isEditing: false }))
+    });
+  }
+
+  handleCompleteAll = () =&amp;gt; {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.map(todo =&amp;gt; Object.assign({}, todo, { isCompleted: true }))
+    });
+  }
+
+  render() {
+    const { inputText, todos, filter } = this.state;
+    return (
+      &amp;lt;div className=&amp;quot;App&amp;quot; &amp;gt;
+        &amp;lt;HashRouter&amp;gt;
+          &amp;lt;header className=&amp;quot;App-header&amp;quot;&amp;gt;
+            &amp;lt;h1&amp;gt;todos&amp;lt;/h1&amp;gt;
+            &amp;lt;div className=&amp;quot;header&amp;quot;&amp;gt;
+              {todos.filter(todo =&amp;gt; todo.isCompleted === filter || filter === &amp;quot;All&amp;quot;).length &amp;gt; 0 &amp;amp;&amp;amp; &amp;lt;button onClick={this.handleCompleteAll}&amp;gt;全部完成&amp;lt;/button&amp;gt;}
+              &amp;lt;input
+                className=&amp;quot;inputText&amp;quot;
+                value={inputText}
+                placeholder=&amp;quot;What need to be done ？&amp;quot;
+                onChange={e =&amp;gt; this.setState({ inputText: e.target.value })}
+                onKeyDown={this.handleInputKeyDown}
+              /&amp;gt;
+            &amp;lt;/div&amp;gt;
+            {todos.length &amp;gt; 0 &amp;amp;&amp;amp; (
+              &amp;lt;React.Fragment&amp;gt;
+                &amp;lt;ul className=&amp;quot;todos&amp;quot;&amp;gt;
+                  {todos.filter(todo =&amp;gt; (filter === &amp;quot;Active&amp;quot; &amp;amp;&amp;amp; !todo.isCompleted) || (filter === &amp;quot;Completed&amp;quot; &amp;amp;&amp;amp; todo.isCompleted) || filter === &amp;quot;All&amp;quot;).map((todo) =&amp;gt; {
+                    return (
+                      &amp;lt;li key={todo.id} className=&amp;quot;todo&amp;quot;&amp;gt;
+                        &amp;lt;input
+                          type=&amp;quot;checkbox&amp;quot;
+                          checked={todo.isCompleted}
+                          onChange={() =&amp;gt; this.handleToggleState(todo)}
+                        /&amp;gt;
+                        &amp;lt;p
+                          className={todo.isCompleted ? &amp;quot;completed&amp;quot; : &amp;quot;&amp;quot;}
+                          onDoubleClick={() =&amp;gt; this.handleChangeTodoText(todo)}
+                          onBlur={this.refreshTodos}
+                        &amp;gt;
+                          {todo.isEditing ? (
+                            &amp;lt;input value={todo.text} onChange={e =&amp;gt; {
+                              const newTodos = [...todos];
+                              const newTodo = newTodos.find(v =&amp;gt; v === todo);
+                              newTodo.text = e.target.value;
+                              this.setState({
+                                todos: newTodos
+                              })
+                            }} /&amp;gt;
+                          ) : todo.text}
+                        &amp;lt;/p&amp;gt;
+                        &amp;lt;button className=&amp;quot;delete&amp;quot; onClick={() =&amp;gt; this.handleDelete(todo.id)}&amp;gt;&amp;lt;/button&amp;gt;
+                      &amp;lt;/li&amp;gt;
+                    )
+                  })}
+                &amp;lt;/ul&amp;gt;
+              &amp;lt;/React.Fragment&amp;gt;
+            )}
+            {todos.length &amp;gt; 0 &amp;amp;&amp;amp; (
+              &amp;lt;div className=&amp;quot;bar&amp;quot;&amp;gt;
+                &amp;lt;span&amp;gt;{todos.length} items left&amp;lt;/span&amp;gt;
+                &amp;lt;div&amp;gt;
+                  {this.states.map(state =&amp;gt; (
+                    &amp;lt;NavLink
+                      to={state}
+                      key={state}
+                      className=&amp;quot;state&amp;quot;
+                      onClick={() =&amp;gt; this.setState({ filter: state })}
+                    // activeClassName=&amp;quot;active&amp;quot;
+                    &amp;gt;
+                      {state}
+                    &amp;lt;/NavLink&amp;gt;
+                  ))}
+                &amp;lt;/div&amp;gt;
+                &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+              &amp;lt;/div&amp;gt;
+            )}
+          &amp;lt;/header&amp;gt;
+        &amp;lt;/HashRouter&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+export default App;
+
+
+
+本阶段CSS 展开查看
+.App {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.App-header {
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+}
+
+.header,
+.bar {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.header input {
+  flex: 1;
+  border: none;
+  outline: none;
+  margin-left: 8px;
+}
+
+.todos {
+  margin: 0;
+  border: 1px solid #ccc;
+  padding: 0;
+}
+
+.todo {
+  position: relative;
+  padding: 8px;
+}
+
+.todo input[type=&amp;quot;checkbox&amp;quot;] {
+  zoom: 2;
+  -webkit-appearance: none;
+}
+
+.todo p {
+  background-position: center left;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 10px 0 10px 50px;
+  flex: 1;
+  text-align: left;
+}
+
+.todo p {
+  background-image: url(&#39;data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E&#39;)
+}
+
+.todo p.completed {
+  background-image: url(&#39;data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E&#39;)
+}
+
+
+.todo .delete {
+  position: absolute;
+  right: 10px;
+  top: 10;
+  border: none;
+  font-size: 36px;
+}
+
+.todo .delete::after {
+  content: &amp;quot;x&amp;quot;;
+}
+
+.bar {
+  justify-content: space-between;
+  position: relative;
+}
+
+.bar::after {
+  content: &amp;quot;&amp;quot;;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.bar .state {
+  color: inherit;
+  text-decoration-line: none;
+  margin: 0 8px;
+  padding: 3px 7px;
+}
+
+.state.active {
+  border: 1px solid #a00;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+}
+
+
+可以分为Form、Todos、Filters三部分:
+Form
+该组件拥有自己的局部状态inputText，不需要关心todo列表
+Todos
+该组件需要父组件传todos、修改todo信息的回调函数，以及onBlur将所有todo的isEditing设置为false、删除todo项的回调函数
+Todo
+其实也可以不拆
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/react-todo-xiang-mu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/chu-xue-vue-de-yi-huo-ji-lu">
@@ -313,7 +854,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #实战
         </a>
                         
@@ -488,171 +1029,6 @@ export function fetchWords() {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
-                        redux中间件临时记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            export function fetchWords() {
-// Thunk middleware 知道如何处理函数。
-// 这里把 dispatch 方法通过参数的形式传给函数，
-// 以此来让它自己也能 dispatch action。
-
-return function (dispatch) {
-
-    // 首次 dispatch：更新应用的 state 来通知
-    // API 请求发起了。
-
-    dispatch(requestWords())
-
-    // thunk middleware 调用的函数可以有返回值，
-    // 它会被当作 dispatch 方法的返回值传递。
-
-    // 这个案例中，我们返回一个等待处理的 promise。
-    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-    return fetch(`http://127.0.0.1:3001/words`)
-        .then(function (response) {
-            return response.json();
-        },
-            // 不要使用 catch，因为会捕获
-            // 在 dispatch 和渲染中出现的任何错误，
-            // 导致 &#39;Unexpected batch number&#39; 错误。
-            // https://github.com/facebook/react/issues/6895
-            error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-        )
-        .then(json =&amp;gt;
-        // 可以多次 dispatch！
-        // 这里，使用 API 请求结果来更新应用的 state。
-        {
-            if (json) {
-                setTimeout(() =&amp;gt; {
-                    dispatch(receiveWords(json));
-                }, 2000);
-            } else {
-                dispatch(fetchError());
-            }
-
-        }
-        );
-}
-
-}
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
-                        使用fetch请求接口并设置cookie未生效的原因
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-02</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-error">
-            #踩坑
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
-//但是这样一来又有了跨域的问题。晕，先睡了
-似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
-那么fetch呢..
-还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">
-                        不使用reject  让create-react-app支持less的方法
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-31</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            create-react-app是默认支持sass的，但是less需要做一些特殊处理：
-
-对创建好的create-react-app项目安装依赖包：
-
-npm install react-app-rewired --save
-npm install react-app-rewire-less --save
-
-
-修改项目的package.json：
-
-  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;start&amp;quot;: &amp;quot;react-scripts start&amp;quot;,
-    &amp;quot;build&amp;quot;: &amp;quot;react-scripts build&amp;quot;,
-    &amp;quot;test&amp;quot;: &amp;quot;react-scripts test&amp;quot;,
-    &amp;quot;eject&amp;quot;: &amp;quot;react-scripts eject&amp;quot;
-  }
-
-
-项目根目录创建文件config-overrides.js
-
-const {
-    override,
-    fixBabelImports,
-    addLessLoader
-} = require(&#39;customize-cra&#39;);
-
-module.exports = override(
-    fixBabelImports(&#39;import&#39;, {
-        libraryName: &#39;antd&#39;,
-        libraryDirectory: &#39;es&#39;,
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            &#39;@primary-color&#39;: &#39;#1DA57A&#39;
-        },
-    })
-);
-
-顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -673,7 +1049,7 @@ module.exports = override(
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1579104721463)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583162884519)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

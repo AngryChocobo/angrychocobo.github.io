@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-01-15T16:12:05.694Z</updated>
+    <updated>2020-03-02T15:28:07.275Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,62 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue-Chat项目问题：require项目中的图片]]></title>
+        <id>https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-require-xiang-mu-zhong-de-tu-pian</id>
+        <link href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-require-xiang-mu-zhong-de-tu-pian">
+        </link>
+        <updated>2020-03-02T15:23:05.000Z</updated>
+        <content type="html"><![CDATA[<p>想法是这样的：</p>
+<ol>
+<li>数据库中仅存储图片的名称，如：head-1.jpg</li>
+<li>图片的src设置为 <code>图片路径前缀 + data.src</code>，对该图路径进行require，否则require缺省图head.jpg</li>
+<li>但是webpack似乎将图片加入了md5值，会出现类似require(&quot;head.4ec60207.jpg&quot;)失败的error</li>
+</ol>
+<p>解决方案：</p>
+<ol>
+<li>配置webpack的file-loader，对图片不加入md5的文件名。缺点是可能图片不会立刻刷新？</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue-cli支持alias别名的配置方式]]></title>
+        <id>https://angrychocobo.github.io//post/vue-cli-zhi-chi-alias-bie-ming-de-pei-zhi-fang-shi</id>
+        <link href="https://angrychocobo.github.io//post/vue-cli-zhi-chi-alias-bie-ming-de-pei-zhi-fang-shi">
+        </link>
+        <updated>2020-02-28T02:16:30.000Z</updated>
+        <content type="html"><![CDATA[<p>项目根目录创建一个vue.config.js文件</p>
+<pre><code class="language-js">const path = require('path');
+function resolve (dir) {
+    return path.join(__dirname, dir)
+}
+module.exports = {
+    lintOnSave: true,
+    chainWebpack: (config)=&gt;{
+        config.resolve.alias
+            .set('@$', resolve('src'))
+            .set('@assets',resolve('src/assets'))
+            .set('@components',resolve('src/components'))
+            .set('@views',resolve('src/views'))
+            .set('@pages',resolve('src/pages'))
+            .set('static',resolve('src/static'))
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TypeScript笔记]]></title>
+        <id>https://angrychocobo.github.io//post/typescript-bi-ji</id>
+        <link href="https://angrychocobo.github.io//post/typescript-bi-ji">
+        </link>
+        <updated>2020-02-05T06:24:02.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>tsc --init生成的配置文件中，不包含include和exclude，默认会编译目录下所有ts文件（猜测）</li>
+<li>配置noImplicitAny来禁止any类型</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Jumper]]></title>
         <id>https://angrychocobo.github.io//post/jumper</id>
@@ -163,10 +219,10 @@ animate()启动</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2226648"><label class="task-list-item-label" for="task-item-2226648"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6153044"><label class="task-list-item-label" for="task-item-6153044"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7850184"><label class="task-list-item-label" for="task-item-7850184"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3818084"><label class="task-list-item-label" for="task-item-3818084"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8788746"><label class="task-list-item-label" for="task-item-8788746"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3463246"><label class="task-list-item-label" for="task-item-3463246"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6823278"><label class="task-list-item-label" for="task-item-6823278"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7657178"><label class="task-list-item-label" for="task-item-7657178"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
 </ul>
 <h3 id="改进">改进</h3>
 <ul>
@@ -203,502 +259,6 @@ this.scene.add(light);
 当然webgl难度会比web开发难许多，更是考验我残废的数学功底，但是我还是想去试试，试试自己究竟能做到什么程度，在兴趣的支持下，面对困难究竟能坚持多久...<br>
 <code>整</code><br>
 2019.12.23 晚23:30</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Vue Todo项目]]></title>
-        <id>https://angrychocobo.github.io//post/vue-todo-xiang-mu</id>
-        <link href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">
-        </link>
-        <updated>2019-10-31T11:00:58.000Z</updated>
-        <content type="html"><![CDATA[<p>首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...</p>
-<p>这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。</p>
-<h3 id="记录遇到的问题">记录遇到的问题</h3>
-<ul class="contains-task-list">
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2098409"><label class="task-list-item-label" for="task-item-2098409"> 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2488246"><label class="task-list-item-label" for="task-item-2488246"> 双击todo，使其可编辑，input显示出来自动获取焦点</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2101409"><label class="task-list-item-label" for="task-item-2101409"> 子组件input如何修改父组件传递的input值？</label></p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7735969"><label class="task-list-item-label" for="task-item-7735969"> 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6792612"><label class="task-list-item-label" for="task-item-6792612"> 父组件为子组件传递回调函数，由子组件调用</label></li>
-</ul>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7751131"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos"><label class="task-list-item-label" for="task-item-7751131"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos">区别</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-880034"> 如何实现 <a v-bind:href="#/item"> 答： <label class="task-list-item-label" for="task-item-880034"> 如何实现 <a v-bind:href="#/item"> 答： <a v-bind:href="'#' + item "></label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5981172"><label class="task-list-item-label" for="task-item-5981172"> 如何调用父组件的自定义指令</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8240621"><label class="task-list-item-label" for="task-item-8240621"> 为什么key只能是数字或字符串？</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1976483"><label class="task-list-item-label" for="task-item-1976483"> v-if切换组件时，是否会导致子组件的create和destory ?</label></p>
-</li>
-</ul>
-<pre><code class="language-vue">使用自定义指令实现
-&lt;input type=&quot;text&quot; ...  v-todo-focus=&quot;todo === editedTodo&quot;&gt;
-directives: {
-			'todo-focus': function (el, binding) {
-				if (binding.value) {
-					el.focus();
-				}
-			}
-		}
-</code></pre>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4267153"><label class="task-list-item-label" for="task-item-4267153"> 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8810403"><label class="task-list-item-label" for="task-item-8810403"> @click="someFun(value)" 绑定的不是函数的返回值？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1796688"><label class="task-list-item-label" for="task-item-1796688"> 如何通过watch实现修改todos时自动记录到localStorage ?</label></li>
-</ul>
-<pre><code class="language-vue">watch: {
-        todos: {
-            deep: true,
-            handler: todoStorage.save
-        }
-    }
-</code></pre>
-<h3 id="可以优化的点">可以优化的点</h3>
-<ul>
-<li>按键是否回车可以改为 @keyup.enter=&quot;xx&quot; 来处理</li>
-<li></li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[深入学习React生命周期函数]]></title>
-        <id>https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu</id>
-        <link href="https://angrychocobo.github.io//post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu">
-        </link>
-        <updated>2019-10-28T13:29:00.000Z</updated>
-        <content type="html"><![CDATA[<p>工作中简单使用了生命周期函数已经无法满足我了。想要深入地了解生命周期函数，并了解在版本升级的变化原因...</p>
-<h2 id="概览">概览</h2>
-<p>组件的生命周期函数可以分为三个阶段： Mounting、Updating、Unmounting</p>
-<h3 id="mounting阶段的生命周期函数">Mounting阶段的生命周期函数</h3>
-<ul>
-<li>constructor(props)</li>
-<li>(static)get­Derived­State­From­Props(props, state)</li>
-<li>render()</li>
-<li>componentDidMount()</li>
-<li><s>UNSAFE_componentWillMount()</s></li>
-</ul>
-<h3 id="updating阶段的生命周期函数">Updating阶段的生命周期函数</h3>
-<ul>
-<li>(static)getDerivedStateFromProps(props, state)</li>
-<li>shouldComponentUpdate(nextProps, nextState)</li>
-<li>render()</li>
-<li>getSnapshotBeforeUpdate(prevProps, prevState)</li>
-<li>componentDidUpdate(prevProps, prevState, snapshot)</li>
-<li><s>UNSAFE_componentWillUpdate()</s></li>
-<li><s>UNSAFE_componentWillReceiveProps(nextProps, nextState)</s></li>
-</ul>
-<h3 id="unmounting阶段的生命周期函数">Unmounting阶段的生命周期函数</h3>
-<ul>
-<li>componentWillUnmount()</li>
-</ul>
-<h3 id="error-handling">Error Handling</h3>
-<ul>
-<li>(static)getDerivedStateFromError()</li>
-<li>componentDidCatch()</li>
-</ul>
-<h2 id="细节">细节</h2>
-<h3 id="constructorprops">constructor(props)</h3>
-<ul>
-<li>如果你不需要局部state或者绑定函数，不需要实现（implement）它</li>
-<li>应该首先super(props)，否则this.props将为undefined，导致bug（调用了super后，如果没有props，this.props为{} ）</li>
-<li>不应该在这里setState（ReactV16.11测试，这样做会报错，并且并不会生效）</li>
-<li><strong>Avoid copying props into state! Only use this pattern if you intentionally want to ignore prop updates.</strong> 不要用props初始化state，除非你特意想要忽略props的更新</li>
-</ul>
-<h3 id="render">render()</h3>
-<ul>
-<li>在shouldComponentUpdate()返回false时不会执行</li>
-</ul>
-<h3 id="在shouldcomponentupdatenextprops-nextstate">在shouldComponentUpdate(nextProps, nextState)</h3>
-<ul>
-<li>🤔️在初始化和调用forceState()时不会被调用</li>
-<li>不要依赖它来“阻止”渲染，因为这会导致Bug。考虑使用内置的PureComponent，而不是手工编写shouldComponentUpdate()。PureComponent对props和state进行了浅层比较，减少了您跳过必要更新的可能性</li>
-<li><strong>返回false不会阻止子组件由于他们的state改变重新render</strong>(Note that returning false does not prevent child components from re-rendering when their state changes.)</li>
-<li>在这里进行深层次的检查如JSON.stringify()是很浪费性能的</li>
-<li>当前，如果shouldComponentUpdate()返回false，则不会调用unsafe_ComponentWillUpdate()、render()和ComponentDidUpdate()。<br>
-在将来，React可能会将shouldComponentUpdate()视为提示而不是严格的指令，并且返回false仍然可能导致重新呈现组件。 (why ???)</li>
-</ul>
-<blockquote>
-<p>不返回值，以及返回null等值会如何？<br>
-答：不返回值会报错提示: shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false. 返回null被认为是false<br>
-为什么从输出看，nextState已经被改变了？<br>
-答：是的。setState一定会改变state，但是不一定引起重新render，这里要注意shouldComponentUpdate并不是真的阻止了setState（我之前理解错误）</p>
-</blockquote>
-<h3 id="componentdidmount">componentDidMount()</h3>
-<ul>
-<li>在这里绑定事件处理程序是比较好的</li>
-<li>在这里访问接口也很合适</li>
-</ul>
-<h3 id="getsnapshotbeforeupdateprevprops-prevstate">getSnapshotBeforeUpdate(prevProps, prevState)</h3>
-<ul>
-<li>任何返回值都会被传递给componentDidUpdate</li>
-</ul>
-<h3 id="static-getderivedstatefromerrorerror">static getDerivedStateFromError(error)</h3>
-<ul>
-<li>在&quot;render&quot;阶段捕获错误</li>
-<li>只能捕获子组件的错误</li>
-</ul>
-<h3 id="componentdidupdateprevprops-prevstate-snapshot">componentDidUpdate(prevProps, prevState, snapshot)</h3>
-<ul>
-<li>首次render之后不会执行</li>
-<li>操作dom的合适时机</li>
-<li>在这里可以设计条件来重新请求接口</li>
-<li>在这里可以setState，但是要注意不要造成无限循环</li>
-<li>getSnapshotBeforeUpdate()会为componentDidUpdate传递snapshot参数，否则为undefined</li>
-</ul>
-<h3 id="unsafe_componentwillreceivepropsnextprops-nextstate">UNSAFE_componentWillReceiveProps(nextProps, nextState)</h3>
-<ul>
-<li>不安全的方法，推荐使用新Api：getDerivedStateFromProps</li>
-<li>直接使用componentWillReceiveProps会提示Warning</li>
-<li>在Reavt V17 componentWillReceiveProps将不能使用</li>
-<li>和getDerivedStateFromProps方法不能同时存在</li>
-<li><strong>和getDerivedStateFromProps区别1: 组件直接渲染和子组件直接渲染不会被调用</strong></li>
-<li><strong>和getDerivedStateFromProps区别1: 无返回值，后者返回state</strong></li>
-</ul>
-<h3 id="getderivedstatefromprops">getDerivedStateFromProps()</h3>
-<ul>
-<li>触发时机很多： constructor()之后、接收到 &quot;new&quot; props、 setState()之后、 forceState()之后</li>
-<li>它存在只为了一个目的，提供了从父组件props的改变来更新子组件内部state的功能（getDerivedStateFromProps exists for only one purpose. It enables a component to update its internal state as the result of changes in props.）</li>
-<li>派生状态应该谨慎使用。我们看到的所有派生state的问题最终都可以归结为(1)无条件地从props更新state  (2)每当props和state不匹配时更新state</li>
-</ul>
-<blockquote>
-<p>For a long time, the lifecycle componentWillReceiveProps was the only way to update state in response to a change in props without an additional render. In version 16.3, we introduced a replacement lifecycle, getDerivedStateFromProps to solve the same use cases in a safer way.<br>
-React 16.4 included a bugfix for getDerivedStateFromProps which caused some existing bugs in React components to reproduce more consistently.<br>
-The getDerivedStateFromProps bugfix in 16.4 makes derived state more predictable.</p>
-</blockquote>
-<blockquote>
-<p>一个常见的错误观念就是getDerivedStateFromProps和getDerivedStateFromProps仅在props改变时被调用，实际上在父组件重新render时它们就会被调用，而不管之前的和现在的props有没有差异。（A common misconception is that getDerivedStateFromProps and componentWillReceiveProps are only called when props “change”. These lifecycles are called any time a parent component rerenders, regardless of whether the props are “different” from before.）</p>
-</blockquote>
-<h2 id="疑问列表">疑问列表</h2>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1779185"><label class="task-list-item-label" for="task-item-1779185"> static函数是什么?</label></li>
-</ul>
-<blockquote>
-<p>getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.</p>
-</blockquote>
-<ul>
-<li>[ ]</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[React ToDo项目]]></title>
-        <id>https://angrychocobo.github.io//post/react-todo-xiang-mu</id>
-        <link href="https://angrychocobo.github.io//post/react-todo-xiang-mu">
-        </link>
-        <updated>2019-10-26T13:07:40.000Z</updated>
-        <content type="html"><![CDATA[<p>经典的ToDo列表项目，自己按照网上的效果实现一次，认真完成。</p>
-<h3 id="需求分析">需求分析</h3>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9843316"><label class="task-list-item-label" for="task-item-9843316"> 回车新建</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3502715"><label class="task-list-item-label" for="task-item-3502715"> item content 双击编辑</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-796719"><label class="task-list-item-label" for="task-item-796719"> item 前的checkbox点击可切换完成状态</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9022464"><label class="task-list-item-label" for="task-item-9022464"> item 后的x点击删除该项</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6200588"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为<label class="task-list-item-label" for="task-item-6200588"> 至少有一条todo时，输入栏前存在按钮，点击可以设置所有item为`完成`</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-305166"><label class="task-list-item-label" for="task-item-305166"> 至少有一条todo时，下方出现阴影的提示栏，</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9503162"> 至少有一条todo时，下方出现状态筛选<label class="task-list-item-label" for="task-item-9503162"> 至少有一条todo时，下方出现状态筛选`[All, Active, Completed]`</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7415728"> 至少有一条完成的todo时，状态筛选栏右侧出现<code>清除全部完成</code><label class="task-list-item-label" for="task-item-7415728"> 至少有一条完成的todo时，状态筛选栏右侧出现`清除全部完成`按钮</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8989795"><label class="task-list-item-label" for="task-item-8989795"> 切换状态改变hash</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1033743"><label class="task-list-item-label" for="task-item-1033743"> 数据持久存储到localstorage</label></li>
-</ul>
-<h3 id="数据">数据</h3>
-<p>state(状态): [All, Active, Completed]</p>
-<p>基本原型（真鸡儿丑)：<br>
-<img src="https://chocoboimg-1258068192.cos.ap-chengdu.myqcloud.com/Pasted%20Graphic_%E5%89%AF%E6%9C%AC.png" alt=""></p>
-<p>样式难点：</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2464484"><label class="task-list-item-label" for="task-item-2464484"> 自定义的checkBox （demo是切换图片实现的）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4862106"><label class="task-list-item-label" for="task-item-4862106"> 下方功能区的三层阴影</label></li>
-</ul>
-<p>功能难点：</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4697016"><label class="task-list-item-label" for="task-item-4697016"> 切换状态筛选改变hash后，刷新页面，状态的筛选初始值应该从url加载</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8652384"><label class="task-list-item-label" for="task-item-8652384"> NavLink，当匹配的hash不存在时应该默认选中All，但是... (demo以空作为All状态，匹配不到则All被选中)</label></li>
-</ul>
-<h2 id="重构">重构</h2>
-<details>
-<summary>本阶段JSX 展开查看</summary>
-<pre><code class="language-jsx">import React from 'react';
-import { NavLink, HashRouter } from 'react-router-dom';
-import './App.css';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [{
-        id: 1,
-        text: '你好',
-        isCompleted: false
-      }],
-      filter: window.location.hash.split(&quot;/&quot;).pop() || 'All',
-      inputText: ''
-    };
-    this.states = ['All', 'Active', 'Completed'];
-  }
-
-  handleDelete = (id) =&gt; {
-    this.setState({
-      todos: this.state.todos.filter(todo =&gt; todo.id !== id)
-    });
-  }
-
-  handleInputKeyDown = (event) =&gt; {
-    if (event.keyCode === 13) {
-      const { todos, inputText } = this.state;
-      this.setState({
-        todos: [...todos, {
-          id: todos.length + 1,
-          text: inputText,
-          isCompleted: false
-        }],
-        inputText: ''
-      })
-    }
-  }
-
-  handleToggleState = todo =&gt; {
-    const { todos } = this.state;
-    // debugger;
-    // let/ newTodo = Object.assign({}, todo); //这里疑似修改了原数据
-    let newTodo = todos.find(v =&gt; v === todo);
-    newTodo.isCompleted = !newTodo.isCompleted;
-    this.setState({
-      // todos: Object.assign([], todos,
-      // Object.assign(newTodo, { isCompleted: !newTodo.isCompleted }))
-      todos
-    });
-  }
-
-  handleChangeTodoText = todo =&gt; {
-    const { todos } = this.state;
-    let newTodo = todos.find(v =&gt; v === todo);
-    newTodo.isEditing = true;
-    this.setState({
-      todos
-    });
-  }
-
-  refreshTodos = () =&gt; {
-    const { todos } = this.state;
-    // 可以考虑仅修改一项
-    this.setState({
-      todos: todos.map(todo =&gt; Object.assign({}, todo, { isEditing: false }))
-    });
-  }
-
-  handleCompleteAll = () =&gt; {
-    const { todos } = this.state;
-    this.setState({
-      todos: todos.map(todo =&gt; Object.assign({}, todo, { isCompleted: true }))
-    });
-  }
-
-  render() {
-    const { inputText, todos, filter } = this.state;
-    return (
-      &lt;div className=&quot;App&quot; &gt;
-        &lt;HashRouter&gt;
-          &lt;header className=&quot;App-header&quot;&gt;
-            &lt;h1&gt;todos&lt;/h1&gt;
-            &lt;div className=&quot;header&quot;&gt;
-              {todos.filter(todo =&gt; todo.isCompleted === filter || filter === &quot;All&quot;).length &gt; 0 &amp;&amp; &lt;button onClick={this.handleCompleteAll}&gt;全部完成&lt;/button&gt;}
-              &lt;input
-                className=&quot;inputText&quot;
-                value={inputText}
-                placeholder=&quot;What need to be done ？&quot;
-                onChange={e =&gt; this.setState({ inputText: e.target.value })}
-                onKeyDown={this.handleInputKeyDown}
-              /&gt;
-            &lt;/div&gt;
-            {todos.length &gt; 0 &amp;&amp; (
-              &lt;React.Fragment&gt;
-                &lt;ul className=&quot;todos&quot;&gt;
-                  {todos.filter(todo =&gt; (filter === &quot;Active&quot; &amp;&amp; !todo.isCompleted) || (filter === &quot;Completed&quot; &amp;&amp; todo.isCompleted) || filter === &quot;All&quot;).map((todo) =&gt; {
-                    return (
-                      &lt;li key={todo.id} className=&quot;todo&quot;&gt;
-                        &lt;input
-                          type=&quot;checkbox&quot;
-                          checked={todo.isCompleted}
-                          onChange={() =&gt; this.handleToggleState(todo)}
-                        /&gt;
-                        &lt;p
-                          className={todo.isCompleted ? &quot;completed&quot; : &quot;&quot;}
-                          onDoubleClick={() =&gt; this.handleChangeTodoText(todo)}
-                          onBlur={this.refreshTodos}
-                        &gt;
-                          {todo.isEditing ? (
-                            &lt;input value={todo.text} onChange={e =&gt; {
-                              const newTodos = [...todos];
-                              const newTodo = newTodos.find(v =&gt; v === todo);
-                              newTodo.text = e.target.value;
-                              this.setState({
-                                todos: newTodos
-                              })
-                            }} /&gt;
-                          ) : todo.text}
-                        &lt;/p&gt;
-                        &lt;button className=&quot;delete&quot; onClick={() =&gt; this.handleDelete(todo.id)}&gt;&lt;/button&gt;
-                      &lt;/li&gt;
-                    )
-                  })}
-                &lt;/ul&gt;
-              &lt;/React.Fragment&gt;
-            )}
-            {todos.length &gt; 0 &amp;&amp; (
-              &lt;div className=&quot;bar&quot;&gt;
-                &lt;span&gt;{todos.length} items left&lt;/span&gt;
-                &lt;div&gt;
-                  {this.states.map(state =&gt; (
-                    &lt;NavLink
-                      to={state}
-                      key={state}
-                      className=&quot;state&quot;
-                      onClick={() =&gt; this.setState({ filter: state })}
-                    // activeClassName=&quot;active&quot;
-                    &gt;
-                      {state}
-                    &lt;/NavLink&gt;
-                  ))}
-                &lt;/div&gt;
-                &lt;div&gt;&lt;/div&gt;
-              &lt;/div&gt;
-            )}
-          &lt;/header&gt;
-        &lt;/HashRouter&gt;
-      &lt;/div&gt;
-    );
-  }
-}
-
-export default App;
-</code></pre>
-</details>
-<details>
-<summary>本阶段CSS 展开查看</summary>
-<pre><code class="language-css">.App {
-  width: 600px;
-  margin: auto;
-  text-align: center;
-}
-
-.App-header {
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
-}
-
-.header,
-.bar {
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-.header input {
-  flex: 1;
-  border: none;
-  outline: none;
-  margin-left: 8px;
-}
-
-.todos {
-  margin: 0;
-  border: 1px solid #ccc;
-  padding: 0;
-}
-
-.todo {
-  position: relative;
-  padding: 8px;
-}
-
-.todo input[type=&quot;checkbox&quot;] {
-  zoom: 2;
-  -webkit-appearance: none;
-}
-
-.todo p {
-  background-position: center left;
-  background-repeat: no-repeat;
-  margin: 0;
-  padding: 10px 0 10px 50px;
-  flex: 1;
-  text-align: left;
-}
-
-.todo p {
-  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')
-}
-
-.todo p.completed {
-  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')
-}
-
-
-.todo .delete {
-  position: absolute;
-  right: 10px;
-  top: 10;
-  border: none;
-  font-size: 36px;
-}
-
-.todo .delete::after {
-  content: &quot;x&quot;;
-}
-
-.bar {
-  justify-content: space-between;
-  position: relative;
-}
-
-.bar::after {
-  content: &quot;&quot;;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 44px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
-
-.bar .state {
-  color: inherit;
-  text-decoration-line: none;
-  margin: 0 8px;
-  padding: 3px 7px;
-}
-
-.state.active {
-  border: 1px solid #a00;
-}
-
-.todo {
-  display: flex;
-  align-items: center;
-}
-</code></pre>
-</details>
-<p>可以分为Form、Todos、Filters三部分:</p>
-<h3 id="form">Form</h3>
-<p>该组件拥有自己的局部状态inputText，不需要关心todo列表</p>
-<h3 id="todos">Todos</h3>
-<p>该组件需要父组件传todos、修改todo信息的回调函数，以及onBlur将所有todo的isEditing设置为false、删除todo项的回调函数</p>
-<h3 id="todo">Todo</h3>
-<p>其实也可以不拆</p>
 ]]></content>
     </entry>
 </feed>
