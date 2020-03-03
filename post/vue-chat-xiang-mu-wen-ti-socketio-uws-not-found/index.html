@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    踩坑 | 老桔的小站（悄咪咪
+    Vue-Chat项目问题：socket.io uws not found | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583234496266">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -19,6 +19,7 @@
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+        
 </head>
 
 <body>
@@ -93,58 +94,47 @@
     });
 </script>
 
-            <div id="main-content" class="post-container main-container">
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
                 <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        踩坑</b>
-    </div>
-    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">
-                        使用fetch请求接口并设置cookie未生效的原因
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-02</time>
-                    
-                        <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-success">
-            #踩坑
-        </a>
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Vue-Chat项目问题：socket.io uws not found
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-03-03</time>
+                            
+                        </div>
                         
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
-//但是这样一来又有了跨域的问题。晕，先睡了
-似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
-那么fetch呢..
-还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
+                                <div class="post-content">
+                                    <p>import io from 'socket.io-client'<br>
+If you don't add &quot;-client&quot;, you are using the server component. This won't work, as there is no &quot;fs&quot; on the browser, just on nodejs side.</p>
+<p>To get typescript import to work, you need npm install of @types/socket.io-client</p>
+<p>Update: Seems, that uws is not required for the client side. I could remove uws without running into errors. Will recheck that, if required...</p>
 
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin">Read More ~</a>
-                            </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu">
+                                <h3 class="post-title">
+                                    Vue-Chat项目问题：设置vant-list的滚动位置到底部
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
                 </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
+                <!-- middle -->
                 <div class="main-container-middle"></div>
-                <!--  -->
+                <!-- right -->
                 <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
                     
+                                <!-- id-card -->
+                                
     <div class="id_card i-card">
         <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583234496266)">
         </div>
@@ -168,13 +158,14 @@
         </div>
     </div>
     
-
-                        <!-- 公告栏 -->
-                        
+                                    
 
                 </div>
-            </div>
 
+
+
+
+            </div>
 
 
             <div class="site-footer">
@@ -186,6 +177,7 @@
   hljs.initHighlightingOnLoad()
 </script>
 
+
     </div>
     <script>
         $('#sidebar').stickySidebar({
@@ -193,6 +185,7 @@
             // bottomSpacing: 60
         });
     </script>
+    
 </body>
 
 </html>

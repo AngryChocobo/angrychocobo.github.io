@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Webgl 笔记模版 | 老桔的小站（悄咪咪
+    Vue-Chat项目问题汇总 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583234496266">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,19 +99,32 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Webgl 笔记模版
+                            Vue-Chat项目问题汇总
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-12-26</time>
+                            <time class="post-time">2020-03-03</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
-<h3 id="程序流程分析">程序流程分析</h3>
-<h3 id="知识点">知识点</h3>
-<h3 id="疑惑">疑惑</h3>
-<h3 id="改进">改进</h3>
+                                    <h2 id="socketio和express组合">socket.io和express组合</h2>
+<pre><code class="language-js">
+const express = require('express')
+const app = express()
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
+http.listen(8888)
+// 注意不能用app.listen
+</code></pre>
+<h2 id="发送一条消息后对应的是sql的insert并不会返回被插入的这条记录于是前端自己保存了临时消息信息push到消息列表中">发送一条消息后，对应的是sql的insert，并不会返回被插入的这条记录，于是前端自己保存了临时消息信息，push到消息列表中</h2>
+<h2 id="其他人为自己发送消息可以通过iosocketssockets获取所有连接中的socket从而找到对应的socket让他为用户emit信息达到推送的目的">其他人为自己发送消息，可以通过io.sockets.sockets获取所有连接中的socket，从而找到对应的socket，让他为用户emit信息，达到推送的目的。</h2>
+<p>登录用户为A，此时B为A发送了消息，则A的消息列表中就应该出现该消息，可选的两种做法是：</p>
+<ol>
+<li>重新加载A用户的消息列表</li>
+<li>将新消息pushA用户的消息列表<br>
+方法2面临的问题就是需要将消息列表提取到更上层的组件中去，因为推送的事件接收必须放到很高级的页面中去，（最起码不能在聊天列表页），会涉及到vuex<br>
+而方法1虽然简单，但是不提取相关命令到vuex的话，也会一层层传递命令，所以抽取vuex似乎成了必须的选择</li>
+</ol>
 
                                 </div>
                     </article>
@@ -119,9 +132,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi">
+                            <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found">
                                 <h3 class="post-title">
-                                    Webgl day2 颜色的影响
+                                    Vue-Chat项目问题：socket.io uws not found
                                 </h3>
                             </a>
                         </div>
@@ -142,15 +155,9 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
-<li><a href="#%E8%BF%99%E4%B8%AA%E6%A8%A1%E7%89%88demo%E9%9C%80%E8%A6%81%E7%9A%84%E8%B5%84%E6%BA%90">这个模版demo需要的资源</a></li>
-<li><a href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">程序流程分析</a></li>
-<li><a href="#%E7%9F%A5%E8%AF%86%E7%82%B9">知识点</a></li>
-<li><a href="#%E7%96%91%E6%83%91">疑惑</a></li>
-<li><a href="#%E6%94%B9%E8%BF%9B">改进</a></li>
-</ul>
-</li>
+<li><a href="#socketio%E5%92%8Cexpress%E7%BB%84%E5%90%88">socket.io和express组合</a></li>
+<li><a href="#%E5%8F%91%E9%80%81%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF%E5%90%8E%E5%AF%B9%E5%BA%94%E7%9A%84%E6%98%AFsql%E7%9A%84insert%E5%B9%B6%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E%E8%A2%AB%E6%8F%92%E5%85%A5%E7%9A%84%E8%BF%99%E6%9D%A1%E8%AE%B0%E5%BD%95%E4%BA%8E%E6%98%AF%E5%89%8D%E7%AB%AF%E8%87%AA%E5%B7%B1%E4%BF%9D%E5%AD%98%E4%BA%86%E4%B8%B4%E6%97%B6%E6%B6%88%E6%81%AF%E4%BF%A1%E6%81%AFpush%E5%88%B0%E6%B6%88%E6%81%AF%E5%88%97%E8%A1%A8%E4%B8%AD">发送一条消息后，对应的是sql的insert，并不会返回被插入的这条记录，于是前端自己保存了临时消息信息，push到消息列表中</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E4%BA%BA%E4%B8%BA%E8%87%AA%E5%B7%B1%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87iosocketssockets%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E8%BF%9E%E6%8E%A5%E4%B8%AD%E7%9A%84socket%E4%BB%8E%E8%80%8C%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84socket%E8%AE%A9%E4%BB%96%E4%B8%BA%E7%94%A8%E6%88%B7emit%E4%BF%A1%E6%81%AF%E8%BE%BE%E5%88%B0%E6%8E%A8%E9%80%81%E7%9A%84%E7%9B%AE%E7%9A%84">其他人为自己发送消息，可以通过io.sockets.sockets获取所有连接中的socket，从而找到对应的socket，让他为用户emit信息，达到推送的目的。</a></li>
 </ul>
 </li>
 </ul>

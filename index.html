@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583163042113">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583234496266">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583163042113" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583234496266" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,101 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">
+                        Vue-Chat项目问题汇总
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-03</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            socket.io和express组合
+
+const express = require(&#39;express&#39;)
+const app = express()
+const http = require(&#39;http&#39;).createServer(app)
+const io = require(&#39;socket.io&#39;)(http)
+http.listen(8888)
+// 注意不能用app.listen
+
+发送一条消息后，对应的是sql的insert，并不会返回被插入的这条记录，于是前端自己保存了临时消息信息，push到消息列表中
+其他人为自己发送消息，可以通过io.sockets.sockets获取所有连接中的socket，从而找到对应的socket，让他为用户emit信息，达到推送的目的。
+登录用户为A，此时B为A发送了消息，则A的消息列表中就应该出现该消息，可选的两种做法是：
+
+重新加载A用户的消息列表
+将新消息pushA用户的消息列表
+方法2面临的问题就是需要将消息列表提取到更上层的组件中去，因为推送的事件接收必须放到很高级的页面中去，（最起码不能在聊天列表页），会涉及到vuex
+而方法1虽然简单，但是不提取相关命令到vuex的话，也会一层层传递命令，所以抽取vuex似乎成了必须的选择
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found">
+                        Vue-Chat项目问题：socket.io uws not found
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-03</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            import io from &#39;socket.io-client&#39;
+If you don&#39;t add &amp;quot;-client&amp;quot;, you are using the server component. This won&#39;t work, as there is no &amp;quot;fs&amp;quot; on the browser, just on nodejs side.
+To get typescript import to work, you need npm install of @types/socket.io-client
+Update: Seems, that uws is not required for the client side. I could remove uws without running into errors. Will recheck that, if required...
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu">
+                        Vue-Chat项目问题：设置vant-list的滚动位置到底部
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-03</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            起因：
+消息列表打开以后应该可以显示列表的最后一条，也就是说消息列表会滚动到底部
+解决方法：
+为van-list设置ref，通过this.refs.xx.refs.xx.refs.xx.el来获取实际dom,并调用dom.scrollIntoView()来实现
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/vue-cli-zhi-chi-alias-bie-ming-de-pei-zhi-fang-shi">
@@ -404,150 +499,6 @@ ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的ap
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti">
-                        Three.js和webgl学习过程遇到的问题
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Q：下载的gltf模型路径
-要么配置webpacl-loader来 加载； 要么使用相对路径，将模型放到html文件的同级路径下（对于vue-cli项目就是public目录）
-Q：加载下载的gltf模型后黑漆漆的什么都看不到
-需要加入光源才能看到。（但是为啥可以看到加入的Cube呢？？？）
-var light = new THREE.PointLight(0xFFFF00);
-/* position the light so it shines on the cube (x, y, z) */
-light.position.set(10, 0, 25);
-this.scene.add(light);
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/xin-de-ye-wang">
-                        新的野望
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-23</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            最近突然想开始搞webgl，已记不起诱因，静下心来想短时间对前端的职业发展并无太大的好处，而且也算是另一个方向，说是转行也没什么毛病，但是真的想去做。
-大学时期有过类似的情绪，那是大二左右，想搞安卓，并幻想了之后以安卓为生的情景，买了几本书，敲了几天代码，不了了之...
-安卓那时候我记得是觉得可以在手机上看到效果，很有成就感，如今的webgl我想也有类似的原因吧！不能给自己带来成就感的东西，学习起来当然会觉得枯燥吧～
-当然webgl难度会比web开发难许多，更是考验我残废的数学功底，但是我还是想去试试，试试自己究竟能做到什么程度，在兴趣的支持下，面对困难究竟能坚持多久...
-整
-2019.12.23 晚23:30
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/xin-de-ye-wang">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">
-                        Vue Todo项目
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-10-31</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...
-这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。
-记录遇到的问题
-
-
- 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick
-
-
- 双击todo，使其可编辑，input显示出来自动获取焦点
-
-
- 子组件input如何修改父组件传递的input值？
-
- 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同
- 父组件为子组件传递回调函数，由子组件调用
-
-
-
-  和   和 区别
-
-
- 如何实现  答：  如何实现  答： 
-
-
- 如何调用父组件的自定义指令
-
-
- 为什么key只能是数字或字符串？
-
-
- v-if切换组件时，是否会导致子组件的create和destory ?
-
-
-使用自定义指令实现
-&amp;lt;input type=&amp;quot;text&amp;quot; ...  v-todo-focus=&amp;quot;todo === editedTodo&amp;quot;&amp;gt;
-directives: {
-			&#39;todo-focus&#39;: function (el, binding) {
-				if (binding.value) {
-					el.focus();
-				}
-			}
-		}
-
-
- 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？
- @click=&#34;someFun(value)&#34; 绑定的不是函数的返回值？
- 如何通过watch实现修改todos时自动记录到localStorage ?
-
-watch: {
-        todos: {
-            deep: true,
-            handler: todoStorage.save
-        }
-    }
-
-可以优化的点
-
-按键是否回车可以改为 @keyup.enter=&amp;quot;xx&amp;quot; 来处理
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-todo-xiang-mu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -566,7 +517,7 @@ watch: {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583163042113)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583234496266)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
