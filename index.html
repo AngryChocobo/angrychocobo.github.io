@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583234496266">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583290787699">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583234496266" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583290787699" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -129,6 +129,23 @@ http.listen(8888)
 将新消息pushA用户的消息列表
 方法2面临的问题就是需要将消息列表提取到更上层的组件中去，因为推送的事件接收必须放到很高级的页面中去，（最起码不能在聊天列表页），会涉及到vuex
 而方法1虽然简单，但是不提取相关命令到vuex的话，也会一层层传递命令，所以抽取vuex似乎成了必须的选择
+
+推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）
+一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据
+实现步骤
+
+vue-cli创建项目
+安装必备的插件vue-router、moment、axios、vant并进行配置和封装
+写页面，会话列表页、会话页、好友列表页等
+创建数据库，创建user、message表
+项目下创建server目录，比使用npm init -y初始化
+server目录安装express、cors、socket.io库
+express写会话页的消息列表、发送消息接口
+会话页调用消息列表、发送消息接口
+发现这样无法做到新消息的推送，前端项目引入socket.io-client
+在显示消息列表的时候，计划将新发送的消息临时保存，待服务器成功响应之后将临时消息插入到消息列表中
+发现在会话页再进行socket.io连接太晚了，想到用vuex抽取相关数据到顶层，并在store中进行socket.io的初始化和相关接口改造
+一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：axios请求的用户数据和socket.io的消息数据
 
 
                                         </div>
@@ -517,7 +534,7 @@ ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的ap
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583234496266)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583290787699)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
