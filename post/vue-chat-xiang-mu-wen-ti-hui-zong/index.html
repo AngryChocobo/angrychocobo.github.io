@@ -7,7 +7,7 @@
 <title>
     Vue-Chat项目问题汇总 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583290787699">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583368958421">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583290787699" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583368958421" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -141,6 +141,11 @@ http.listen(8888)
 <li>在显示消息列表的时候，计划将新发送的消息临时保存，待服务器成功响应之后将临时消息插入到消息列表中</li>
 <li>发现在会话页再进行socket.io连接太晚了，想到用vuex抽取相关数据到顶层，并在store中进行socket.io的初始化和相关接口改造</li>
 <li>一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：axios请求的用户数据和socket.io的消息数据</li>
+<li>放弃query string，使用params来跳转路由传递数据</li>
+<li>TODO写会话列表接口的sql</li>
+<li>想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现</li>
+<li>封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页</li>
+<li>同理封装NavBar，<strong>为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式</strong></li>
 </ol>
 
                                 </div>

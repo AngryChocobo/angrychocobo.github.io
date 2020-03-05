@@ -7,7 +7,7 @@
 <title>
     初学Vue的疑惑记录 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583290787699">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583368958421">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583290787699" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583368958421" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -108,42 +108,42 @@
                         
                                 <div class="post-content">
                                     <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5972678"><label class="task-list-item-label" for="task-item-5972678"> 下面两种写法有何区别？</label><pre><code class="language-js">  &lt;input v-bind:value=&quot;msg&quot; /&gt;  // 为什么这样修改不会导致vue的data变化？  
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-444661"><label class="task-list-item-label" for="task-item-444661"> 下面两种写法有何区别？</label><pre><code class="language-js">  &lt;input v-bind:value=&quot;msg&quot; /&gt;  // 为什么这样修改不会导致vue的data变化？  
   &lt;input v-model=&quot;msg&quot; /&gt;
 </code></pre>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5000802"><label class="task-list-item-label" for="task-item-5000802"> vue的自定义组件似乎不支持自闭合</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2726651"> 不设置vue的<code>el</code><label class="task-list-item-label" for="task-item-2726651"> 不设置vue的`el`会如何？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8049911"><label class="task-list-item-label" for="task-item-8049911"> 生命周期函数的：创建vm.$el并用其替换"el"是什么意思?</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1651459"><label class="task-list-item-label" for="task-item-1651459"> 什么是动态参数？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-994678"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？<br>
-答： 官网提到了：<code>我们提供的函数将用作属性 vm.reserveMessage 的getter函数</code><label class="task-list-item-label" for="task-item-994678"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3268810"><label class="task-list-item-label" for="task-item-3268810"> vue的自定义组件似乎不支持自闭合</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6317698"> 不设置vue的<code>el</code><label class="task-list-item-label" for="task-item-6317698"> 不设置vue的`el`会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9652302"><label class="task-list-item-label" for="task-item-9652302"> 生命周期函数的：创建vm.$el并用其替换"el"是什么意思?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2434524"><label class="task-list-item-label" for="task-item-2434524"> 什么是动态参数？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1290716"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？<br>
+答： 官网提到了：<code>我们提供的函数将用作属性 vm.reserveMessage 的getter函数</code><label class="task-list-item-label" for="task-item-1290716"> 计算属性实际上是一个函数，但是在直接输出时，如 console.log(vue.reverseMessage); 显示的是调用的结果，并且在html模版中也是这样的效果，why ？
 答： 官网提到了：`我们提供的函数将用作属性 vm.reserveMessage 的getter函数`，大概是这样</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2870045"><label class="task-list-item-label" for="task-item-2870045"> 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-39974"><label class="task-list-item-label" for="task-item-39974"> is="todo-item" 是干什么的？ 必须的吗？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7936622"><label class="task-list-item-label" for="task-item-7936622"> 只能以数组形式为组件传递props吗？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1808955"><label class="task-list-item-label" for="task-item-1808955"> $emit 方法？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4276313"><label class="task-list-item-label" for="task-item-4276313"> Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5953273"><label class="task-list-item-label" for="task-item-5953273"> Vue单页面组件，不需要导出（光有模版的情况）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7210020"> <template slot-scope="scope"><label class="task-list-item-label" for="task-item-7210020"> <template slot-scope="scope"> scope是什么？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5256615"><label class="task-list-item-label" for="task-item-5256615"> 路由传参数，必须加props：true</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1575105"><label class="task-list-item-label" for="task-item-1575105"> props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1549448"><label class="task-list-item-label" for="task-item-1549448"> 为什么: 不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9382578"><label class="task-list-item-label" for="task-item-9382578"> is="todo-item" 是干什么的？ 必须的吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8276860"><label class="task-list-item-label" for="task-item-8276860"> 只能以数组形式为组件传递props吗？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2365882"><label class="task-list-item-label" for="task-item-2365882"> $emit 方法？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3328901"><label class="task-list-item-label" for="task-item-3328901"> Element UI库 vue add element时的配置信息，选择覆盖ELement变量会如何？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9923970"><label class="task-list-item-label" for="task-item-9923970"> Vue单页面组件，不需要导出（光有模版的情况）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1630317"> <template slot-scope="scope"><label class="task-list-item-label" for="task-item-1630317"> <template slot-scope="scope"> scope是什么？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6097057"><label class="task-list-item-label" for="task-item-6097057"> 路由传参数，必须加props：true</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-168163"><label class="task-list-item-label" for="task-item-168163"> props、data、method都可以直接通过vue实例访问，如何解决可能的重名问题?</label></li>
 <li>[ ]</li>
 </ul>
 <h1 id="发现的其他问题">发现的其他问题</h1>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-80345"><label class="task-list-item-label" for="task-item-80345"> npm i axios 不需要--save 直接保存到了dependencies中。</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-319724"><label class="task-list-item-label" for="task-item-319724"> npm i axios 不需要--save 直接保存到了dependencies中。</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1384441"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的<label class="task-list-item-label" for="task-item-1384441"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1616861"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的<label class="task-list-item-label" for="task-item-1616861"> 关闭vue-cli的eslint禁止出现未使用的变量：修改package.json的`eslintConfig`</label></p>
 <pre><code class="language-json">&quot;rules&quot;: {
     &quot;no-unused-expressions&quot;: 1
   }
 </code></pre>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1053544"> 双击需要绑定<label class="task-list-item-label" for="task-item-1053544"> 双击需要绑定`dblclick`</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2651387"> 双击需要绑定<label class="task-list-item-label" for="task-item-2651387"> 双击需要绑定`dblclick`</label></p>
 </li>
 </ul>
 
