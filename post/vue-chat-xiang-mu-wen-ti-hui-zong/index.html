@@ -7,7 +7,7 @@
 <title>
     Vue-Chat项目问题汇总 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583368958421">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583403428378">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583368958421" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583403428378" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -127,10 +127,12 @@ http.listen(8888)
 </ol>
 <h2 id="推送功能不正常是由于仅在connection时添加了用户信息没有在disconnect的时候清除掉-并且在connection时候添加用户信息是不够的猜测">推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）</h2>
 <h2 id="一开始是想将用户的头像等信息也放在每一条消息记录数据结构中但是这样一来处理起来麻烦而且数据传输比较大现将其拆分为两部分ajax请求的用户数据和socketio的消息数据">一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据</h2>
+<h1 id="some-pre-processors-such-as-sass-may-not-be-able-to-parse-properly-in-those-cases-you-can-use-the-deep-or-v-deep-combinator-instead-both-are-aliases-for-and-work-exactly-the-same">Some pre-processors, such as Sass, may not be able to parse &gt;&gt;&gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &gt;&gt;&gt; and work exactly the same.</h1>
 <h1 id="实现步骤">实现步骤</h1>
 <ol>
 <li>vue-cli创建项目</li>
 <li>安装必备的插件vue-router、moment、axios、vant并进行配置和封装</li>
+<li>配置webpack的目录别名alias</li>
 <li>写页面，会话列表页、会话页、好友列表页等</li>
 <li>创建数据库，创建user、message表</li>
 <li>项目下创建server目录，比使用npm init -y初始化</li>
@@ -146,6 +148,12 @@ http.listen(8888)
 <li>想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现</li>
 <li>封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页</li>
 <li>同理封装NavBar，<strong>为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式</strong></li>
+<li>想到NavBar得支持插槽</li>
+<li>支持插槽以后，样式会和其他原有的样式不一致，所以<strong>配置主题</strong> (todo)</li>
+<li>好友列表页的搜索功能，搜索结果列表</li>
+<li>写搜索好友的接口和sql，<strong>sql的模糊搜索</strong></li>
+<li>写好友列表接口和sql</li>
+<li>写好友详情页界面</li>
 </ol>
 
                                 </div>
@@ -184,6 +192,7 @@ http.listen(8888)
 <li><a href="#%E4%B8%80%E5%BC%80%E5%A7%8B%E6%98%AF%E6%83%B3%E5%B0%86%E7%94%A8%E6%88%B7%E7%9A%84%E5%A4%B4%E5%83%8F%E7%AD%89%E4%BF%A1%E6%81%AF%E4%B9%9F%E6%94%BE%E5%9C%A8%E6%AF%8F%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF%E8%AE%B0%E5%BD%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E4%BD%86%E6%98%AF%E8%BF%99%E6%A0%B7%E4%B8%80%E6%9D%A5%E5%A4%84%E7%90%86%E8%B5%B7%E6%9D%A5%E9%BA%BB%E7%83%A6%E8%80%8C%E4%B8%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%AF%94%E8%BE%83%E5%A4%A7%E7%8E%B0%E5%B0%86%E5%85%B6%E6%8B%86%E5%88%86%E4%B8%BA%E4%B8%A4%E9%83%A8%E5%88%86ajax%E8%AF%B7%E6%B1%82%E7%9A%84%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%92%8Csocketio%E7%9A%84%E6%B6%88%E6%81%AF%E6%95%B0%E6%8D%AE">一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据</a></li>
 </ul>
 </li>
+<li><a href="#some-pre-processors-such-as-sass-may-not-be-able-to-parse-properly-in-those-cases-you-can-use-the-deep-or-v-deep-combinator-instead-both-are-aliases-for-and-work-exactly-the-same">Some pre-processors, such as Sass, may not be able to parse &gt;&gt;&gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &gt;&gt;&gt; and work exactly the same.</a></li>
 <li><a href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">实现步骤</a></li>
 </ul>
 

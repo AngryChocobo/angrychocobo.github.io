@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583368958421">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583403428378">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583368958421" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583403428378" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -132,10 +132,12 @@ http.listen(8888)
 
 推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）
 一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据
+Some pre-processors, such as Sass, may not be able to parse &amp;gt;&amp;gt;&amp;gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &amp;gt;&amp;gt;&amp;gt; and work exactly the same.
 实现步骤
 
 vue-cli创建项目
 安装必备的插件vue-router、moment、axios、vant并进行配置和封装
+配置webpack的目录别名alias
 写页面，会话列表页、会话页、好友列表页等
 创建数据库，创建user、message表
 项目下创建server目录，比使用npm init -y初始化
@@ -151,6 +153,12 @@ TODO写会话列表接口的sql
 想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现
 封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页
 同理封装NavBar，为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式
+想到NavBar得支持插槽
+支持插槽以后，样式会和其他原有的样式不一致，所以配置主题 (todo)
+好友列表页的搜索功能，搜索结果列表
+写搜索好友的接口和sql，sql的模糊搜索
+写好友列表接口和sql
+写好友详情页界面
 
 
                                         </div>
@@ -539,7 +547,7 @@ ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的ap
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583368958421)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583403428378)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

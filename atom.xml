@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-05T00:42:40.639Z</updated>
+    <updated>2020-03-05T10:17:17.238Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -36,10 +36,12 @@ http.listen(8888)
 </ol>
 <h2 id="推送功能不正常是由于仅在connection时添加了用户信息没有在disconnect的时候清除掉-并且在connection时候添加用户信息是不够的猜测">推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）</h2>
 <h2 id="一开始是想将用户的头像等信息也放在每一条消息记录数据结构中但是这样一来处理起来麻烦而且数据传输比较大现将其拆分为两部分ajax请求的用户数据和socketio的消息数据">一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据</h2>
+<h1 id="some-pre-processors-such-as-sass-may-not-be-able-to-parse-properly-in-those-cases-you-can-use-the-deep-or-v-deep-combinator-instead-both-are-aliases-for-and-work-exactly-the-same">Some pre-processors, such as Sass, may not be able to parse &gt;&gt;&gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &gt;&gt;&gt; and work exactly the same.</h1>
 <h1 id="实现步骤">实现步骤</h1>
 <ol>
 <li>vue-cli创建项目</li>
 <li>安装必备的插件vue-router、moment、axios、vant并进行配置和封装</li>
+<li>配置webpack的目录别名alias</li>
 <li>写页面，会话列表页、会话页、好友列表页等</li>
 <li>创建数据库，创建user、message表</li>
 <li>项目下创建server目录，比使用npm init -y初始化</li>
@@ -55,6 +57,12 @@ http.listen(8888)
 <li>想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现</li>
 <li>封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页</li>
 <li>同理封装NavBar，<strong>为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式</strong></li>
+<li>想到NavBar得支持插槽</li>
+<li>支持插槽以后，样式会和其他原有的样式不一致，所以<strong>配置主题</strong> (todo)</li>
+<li>好友列表页的搜索功能，搜索结果列表</li>
+<li>写搜索好友的接口和sql，<strong>sql的模糊搜索</strong></li>
+<li>写好友列表接口和sql</li>
+<li>写好友详情页界面</li>
 </ol>
 ]]></content>
     </entry>
@@ -273,10 +281,10 @@ animate()启动</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6695438"><label class="task-list-item-label" for="task-item-6695438"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4017086"><label class="task-list-item-label" for="task-item-4017086"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9269359"><label class="task-list-item-label" for="task-item-9269359"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3600052"><label class="task-list-item-label" for="task-item-3600052"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8726861"><label class="task-list-item-label" for="task-item-8726861"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5258895"><label class="task-list-item-label" for="task-item-5258895"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1872848"><label class="task-list-item-label" for="task-item-1872848"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2837302"><label class="task-list-item-label" for="task-item-2837302"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
 </ul>
 <h3 id="改进">改进</h3>
 <ul>
