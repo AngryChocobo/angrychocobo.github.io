@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-05T10:17:17.238Z</updated>
+    <updated>2020-03-06T13:08:11.794Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -63,6 +63,9 @@ http.listen(8888)
 <li>写搜索好友的接口和sql，<strong>sql的模糊搜索</strong></li>
 <li>写好友列表接口和sql</li>
 <li>写好友详情页界面</li>
+<li>服务器安装nginx git nodejs mysql</li>
+<li>生成git key： ssh-keygen</li>
+<li></li>
 </ol>
 ]]></content>
     </entry>
@@ -281,10 +284,10 @@ animate()启动</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8726861"><label class="task-list-item-label" for="task-item-8726861"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5258895"><label class="task-list-item-label" for="task-item-5258895"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1872848"><label class="task-list-item-label" for="task-item-1872848"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2837302"><label class="task-list-item-label" for="task-item-2837302"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9590381"><label class="task-list-item-label" for="task-item-9590381"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7486649"><label class="task-list-item-label" for="task-item-7486649"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5177265"><label class="task-list-item-label" for="task-item-5177265"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9859415"><label class="task-list-item-label" for="task-item-9859415"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
 </ul>
 <h3 id="改进">改进</h3>
 <ul>
