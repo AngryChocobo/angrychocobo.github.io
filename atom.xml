@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-06T16:24:32.185Z</updated>
+    <updated>2020-03-09T02:12:00.554Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -53,7 +53,6 @@ http.listen(8888)
 <li>发现在会话页再进行socket.io连接太晚了，想到用vuex抽取相关数据到顶层，并在store中进行socket.io的初始化和相关接口改造</li>
 <li>一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：axios请求的用户数据和socket.io的消息数据</li>
 <li>放弃query string，使用params来跳转路由传递数据</li>
-<li>TODO写会话列表接口的sql</li>
 <li>想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现</li>
 <li>封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页</li>
 <li>同理封装NavBar，<strong>为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式</strong></li>
@@ -62,10 +61,48 @@ http.listen(8888)
 <li>好友列表页的搜索功能，搜索结果列表</li>
 <li>写搜索好友的接口和sql，<strong>sql的模糊搜索</strong></li>
 <li>写好友列表接口和sql</li>
-<li>写好友详情页界面</li>
 <li>服务器安装nginx git nodejs mysql</li>
 <li>生成git key： ssh-keygen</li>
 <li>应该在创建一个临时会话列表的表，之前想简单的把有过聊天记录的用户查出来，但仔细想一下，用户是可以移除对话记录的</li>
+<li>写会话列表接口的sql</li>
+<li>欲实现登陆注册的功能，前端需要对用户的密码进行不可逆的加密，引入库bcrypt</li>
+<li>登陆请求写到了vuex中，这样登陆成功后跳转页面就需要在mutation或action中使用router，暂时没想到好的办法，作为commit的payload传吧 ** store直接引入router对象即可 **</li>
+<li>要有生成jwt的代码，引入jsonwebtoken库，登陆成功后返回token；以及校验token、存储token的逻辑</li>
+<li>将token存到store中；封装axios，将token放到请求header中；axios的error进行统一处理</li>
+<li>登陆成功后将token和loggedInUser存到localstorage中</li>
+<li>store的token和loggedInUser初值，从localstorage取，以避免刷新页面登陆状态丢失</li>
+<li>跳转路由的登陆状态，由路由守卫来实现</li>
+<li>**socket存在了store中，刷新就会丢失，难道还要再存到localstorage中？或者说，应该什么时候去创建socket连接?目前放到了store.js最后 **</li>
+<li>写用户详情页界面，开始准备实现添加好友功能</li>
+<li>添加好友的细节设定：
+<ol>
+<li>在好友搜索，通过id或username查找，之后点击查看详情，发送好友申请，可选备注内容</li>
+<li>同一个目标只能发出一次申请</li>
+<li>收到好友请求，会显示在好友列表的专属区域内，点击查看详情，可以通过或拒绝</li>
+<li>若通过好友请求，则自动改添加对方到会话列表</li>
+<li>若拒绝好友请求，申请人会收到<strong>通知</strong>，并可以再次发出申请</li>
+<li><TODO> 设置好友申请的自动通过</li>
+</ol>
+</li>
+<li>申请好友记录 做成 单独表，A申请加B，同时，B也可能申请A，所以通过时候要同时update两条记录</li>
+<li>查询当前用户是否是自己的好友，有两种办法：
+<ol>
+<li>查friend表，看二者id，是否存在对应关系</li>
+<li>查makeFriendRecord表，看二者id，是否存在对应关系，并且状态stats是已通过<br>
+这里我觉得只应该使用方法1，如果2人成为好友，之后又解除了好友关系，则存在已通过的记录，但实际上并不是好友</li>
+</ol>
+</li>
+<li><TODO> 查询用户信息时，sql不应该返回password(不能简单粗暴使用select *)</li>
+<li>查询出来用户信息以后，根据是否是好友来区别显示</li>
+<li>如何实现添加好友功能？
+<ol>
+<li>普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中</li>
+<li>使用socket.io发出好友请求，后续逻辑一致</li>
+<li>觉得似乎没理由使用第一种。额外的逻辑也没能带来什么好处</li>
+</ol>
+</li>
+<li>突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理</li>
+<li>注意mock数据时候要补全相关表</li>
 </ol>
 ]]></content>
     </entry>
@@ -284,10 +321,10 @@ animate()启动</li>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3118229"><label class="task-list-item-label" for="task-item-3118229"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2318822"><label class="task-list-item-label" for="task-item-2318822"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4428069"><label class="task-list-item-label" for="task-item-4428069"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-606247"><label class="task-list-item-label" for="task-item-606247"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4134674"><label class="task-list-item-label" for="task-item-4134674"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-628981"><label class="task-list-item-label" for="task-item-628981"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9976210"><label class="task-list-item-label" for="task-item-9976210"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3794439"><label class="task-list-item-label" for="task-item-3794439"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
 </ul>
 <h3 id="改进">改进</h3>
 <ul>
