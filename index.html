@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583719911849">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583939018493">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583719911849" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583939018493" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,67 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">
+                        vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-10</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            代码很简单：
+&amp;lt;van-list&amp;gt;
+      &amp;lt;van-cell
+        class=&amp;quot;friend&amp;quot;
+        v-for=&amp;quot;friend in friendRequestList&amp;quot;
+        :key=&amp;quot;friend.id&amp;quot;
+        @click=&amp;quot;checkFriendInfo(friend)&amp;quot;
+      &amp;gt;
+        &amp;lt;img :src=&amp;quot;getImgSrc(friend.src)&amp;quot; :alt=&amp;quot;friend.name&amp;quot; /&amp;gt;
+        &amp;lt;span class=&amp;quot;username&amp;quot;&amp;gt;{{ friend.username }}&amp;lt;/span&amp;gt;
+      &amp;lt;/van-cell&amp;gt;
+    &amp;lt;/van-list&amp;gt;
+
+...
+computed: {
+    friendRequestList() {
+      return this.$store.state.friendRequestList
+    },
+}
+...
+
+&amp;lt;style lang=&amp;quot;less&amp;quot; scoped&amp;gt;
+.friend-request {
+  padding: 0;
+  .friend {
+    /deep/ .van-cell__value {
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+&amp;lt;/style&amp;gt;
+
+首先猜测是vant的bug，先用简单div试试
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">
@@ -194,11 +255,21 @@ store的token和loggedInUser初值，从localstorage取，以避免刷新页面�
 
 普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中
 使用socket.io发出好友请求，后续逻辑一致
-觉得似乎没理由使用第一种。额外的逻辑也没能带来什么好处
+普通的axios无法访问到socket.io的socket，并emit，所以只能用方法2
 
 
-突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理
+突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理 (还需要整理)
+实现查看自己“新的好友“的列表功能
+为什么action要规定使用context来dispatch和访问state呢？
+计划实现未读消息，
+
+每条消息都加入已读的字段，当用户进入和某用户聊天页面后，将对该用户的所有未读状态改为已读，未读消息条数由前端自行处理
+但是还要看到和每个人的未读消息数，应该在更新会话列表接口时得到这一数据
+
+
+系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来
 注意mock数据时候要补全相关表
+
 
 
                                         </div>
@@ -504,71 +575,6 @@ AxisHelper 作者自己写的
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/webgl-day1">
-                        Webgl day1 基础的几何球体
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～
-每日争取做完一个demo
-
-这个模版demo需要的资源
-
-KeyboardState.js 猜测是一个按键处理程序
-THREE.clock 时钟？ 程序中没有用到
-Detector.js 创建了全屏幕大小的canvas
-Stats.js 插件实现了性能、Fps监控
-OrbitControls.js 轨道控制器，实现了拖拽改变相机位置
-全屏幕、改变尺寸js和jquery不再赘述
-
-程序流程分析
-
-首先初始化一些全局变量
-之后就是两个方法调用
-init()初始化
-animate()启动
-
-知识点
-
-MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）
-SphereGeometry： 球几何体
-MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材
-MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）
-Skybox： 天空盒
-创建相同的物体，可以使用Geometry.clone()方法
-scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）
-作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position
-
-疑惑
-
- NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？
- 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？
- 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）
- floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？
-
-改进
-
-ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/webgl-day1">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -587,7 +593,7 @@ ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的ap
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583719911849)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583939018493)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

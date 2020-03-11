@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Jumper | 老桔的小站（悄咪咪
+    vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583939018493">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,39 +99,52 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Jumper
+                            vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-01-09</time>
+                            <time class="post-time">2020-03-10</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="构成">构成</h2>
-<ul>
-<li>player</li>
-<li>box</li>
-</ul>
-<h2 id="细节">细节</h2>
-<ul>
-<li>生成距离的box</li>
-<li>camera跟随移动</li>
-<li>按压 变形</li>
-<li>抛物线移动</li>
-<li>碰撞检测
-<ul>
-<li>跳到平台上</li>
-<li>边缘坠落</li>
-<li>跳出平台</li>
-</ul>
-</li>
-<li>如何让物体按轨迹移动</li>
-<li>生成移动轨迹 -&gt; 生成抛物线轨迹 （创造线条来辅助）</li>
-<li>使用精灵来当作HUD</li>
-</ul>
-<h2 id="坑">坑</h2>
-<p>.parameters : Object<br>
-一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。</p>
+                                    <p>代码很简单：</p>
+<pre><code class="language-js">&lt;van-list&gt;
+      &lt;van-cell
+        class=&quot;friend&quot;
+        v-for=&quot;friend in friendRequestList&quot;
+        :key=&quot;friend.id&quot;
+        @click=&quot;checkFriendInfo(friend)&quot;
+      &gt;
+        &lt;img :src=&quot;getImgSrc(friend.src)&quot; :alt=&quot;friend.name&quot; /&gt;
+        &lt;span class=&quot;username&quot;&gt;{{ friend.username }}&lt;/span&gt;
+      &lt;/van-cell&gt;
+    &lt;/van-list&gt;
+
+...
+computed: {
+    friendRequestList() {
+      return this.$store.state.friendRequestList
+    },
+}
+...
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.friend-request {
+  padding: 0;
+  .friend {
+    /deep/ .van-cell__value {
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<p>首先猜测是vant的bug，先用简单div试试</p>
 
                                 </div>
                     </article>
@@ -139,9 +152,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">
+                            <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">
                                 <h3 class="post-title">
-                                    菜鸟学WebGL - 初识WebGL
+                                    Vue-Chat项目问题汇总
                                 </h3>
                             </a>
                         </div>
@@ -154,48 +167,32 @@
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E6%9E%84%E6%88%90">构成</a></li>
-<li><a href="#%E7%BB%86%E8%8A%82">细节</a></li>
-<li><a href="#%E5%9D%91">坑</a></li>
-</ul>
-</li>
-</ul>
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1583939018493)">
+        </div>
+        <h1 class="id_card-title">
+            老桔的小站（悄咪咪
+        </h1>
+        <h2 class="id_card-description">
+            边学边忘
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
     </div>
     
-                            
+                                    
 
                 </div>
 

@@ -7,7 +7,7 @@
 <title>
     Vue-Chat项目问题汇总 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583719911849">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1583939018493">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -28,7 +28,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583719911849" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1583939018493" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -189,11 +189,21 @@ http.listen(8888)
 <ol>
 <li>普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中</li>
 <li>使用socket.io发出好友请求，后续逻辑一致</li>
-<li>觉得似乎没理由使用第一种。额外的逻辑也没能带来什么好处</li>
+<li>普通的axios无法访问到socket.io的socket，并emit，所以只能用方法2</li>
 </ol>
 </li>
-<li>突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理</li>
+<li>突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理 (还需要整理)</li>
+<li>实现查看自己“新的好友“的列表功能</li>
+<li><strong>为什么action要规定使用context来dispatch和访问state呢？</strong></li>
+<li>计划实现未读消息，
+<ol>
+<li>每条消息都加入已读的字段，当用户进入和某用户聊天页面后，将对该用户的所有未读状态改为已读，未读消息条数由前端自行处理</li>
+<li>但是还要看到和每个人的未读消息数，应该在更新会话列表接口时得到这一数据</li>
+</ol>
+</li>
+<li>系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来</li>
 <li>注意mock数据时候要补全相关表</li>
+<li></li>
 </ol>
 
                                 </div>

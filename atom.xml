@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-09T02:12:00.554Z</updated>
+    <updated>2020-03-11T15:03:41.212Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,52 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效]]></title>
+        <id>https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao</id>
+        <link href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">
+        </link>
+        <updated>2020-03-10T01:48:38.000Z</updated>
+        <content type="html"><![CDATA[<p>代码很简单：</p>
+<pre><code class="language-js">&lt;van-list&gt;
+      &lt;van-cell
+        class=&quot;friend&quot;
+        v-for=&quot;friend in friendRequestList&quot;
+        :key=&quot;friend.id&quot;
+        @click=&quot;checkFriendInfo(friend)&quot;
+      &gt;
+        &lt;img :src=&quot;getImgSrc(friend.src)&quot; :alt=&quot;friend.name&quot; /&gt;
+        &lt;span class=&quot;username&quot;&gt;{{ friend.username }}&lt;/span&gt;
+      &lt;/van-cell&gt;
+    &lt;/van-list&gt;
+
+...
+computed: {
+    friendRequestList() {
+      return this.$store.state.friendRequestList
+    },
+}
+...
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.friend-request {
+  padding: 0;
+  .friend {
+    /deep/ .van-cell__value {
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<p>首先猜测是vant的bug，先用简单div试试</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue-Chat项目问题汇总]]></title>
         <id>https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong</id>
@@ -98,11 +144,21 @@ http.listen(8888)
 <ol>
 <li>普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中</li>
 <li>使用socket.io发出好友请求，后续逻辑一致</li>
-<li>觉得似乎没理由使用第一种。额外的逻辑也没能带来什么好处</li>
+<li>普通的axios无法访问到socket.io的socket，并emit，所以只能用方法2</li>
 </ol>
 </li>
-<li>突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理</li>
+<li>突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理 (还需要整理)</li>
+<li>实现查看自己“新的好友“的列表功能</li>
+<li><strong>为什么action要规定使用context来dispatch和访问state呢？</strong></li>
+<li>计划实现未读消息，
+<ol>
+<li>每条消息都加入已读的字段，当用户进入和某用户聊天页面后，将对该用户的所有未读状态改为已读，未读消息条数由前端自行处理</li>
+<li>但是还要看到和每个人的未读消息数，应该在更新会话列表接口时得到这一数据</li>
+</ol>
+</li>
+<li>系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来</li>
 <li>注意mock数据时候要补全相关表</li>
+<li></li>
 </ol>
 ]]></content>
     </entry>
@@ -280,56 +336,6 @@ console.log(child);<br>
 </ul>
 <h3 id="疑惑">疑惑</h3>
 <h3 id="改进">改进</h3>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Webgl day1 基础的几何球体]]></title>
-        <id>https://angrychocobo.github.io//post/webgl-day1</id>
-        <link href="https://angrychocobo.github.io//post/webgl-day1">
-        </link>
-        <updated>2019-12-23T21:49:48.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～<br>
-每日争取做完一个demo</p>
-</blockquote>
-<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
-<ul>
-<li>KeyboardState.js 猜测是一个按键处理程序</li>
-<li>THREE.clock 时钟？ 程序中没有用到</li>
-<li>Detector.js 创建了全屏幕大小的canvas</li>
-<li>Stats.js 插件实现了性能、Fps监控</li>
-<li>OrbitControls.js 轨道控制器，实现了拖拽改变相机位置</li>
-<li>全屏幕、改变尺寸js和jquery不再赘述</li>
-</ul>
-<h3 id="程序流程分析">程序流程分析</h3>
-<ol>
-<li>首先初始化一些全局变量</li>
-<li>之后就是两个方法调用<br>
-init()初始化<br>
-animate()启动</li>
-</ol>
-<h3 id="知识点">知识点</h3>
-<ul>
-<li>MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）</li>
-<li>SphereGeometry： 球几何体</li>
-<li>MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材</li>
-<li>MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）</li>
-<li>Skybox： 天空盒</li>
-<li>创建相同的物体，可以使用Geometry.clone()方法</li>
-<li>scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）</li>
-<li>作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position</li>
-</ul>
-<h3 id="疑惑">疑惑</h3>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4134674"><label class="task-list-item-label" for="task-item-4134674"> NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-628981"><label class="task-list-item-label" for="task-item-628981"> 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9976210"><label class="task-list-item-label" for="task-item-9976210"> 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3794439"><label class="task-list-item-label" for="task-item-3794439"> floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？</label></li>
-</ul>
-<h3 id="改进">改进</h3>
-<ul>
-<li>ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
