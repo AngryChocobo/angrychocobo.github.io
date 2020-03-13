@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-11T15:03:41.212Z</updated>
+    <updated>2020-03-13T01:26:07.557Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -157,6 +157,7 @@ http.listen(8888)
 </ol>
 </li>
 <li>系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来</li>
+<li>渐渐的，store变得很大，该拆分了，先把actions里的socket.io部分拆出去</li>
 <li>注意mock数据时候要补全相关表</li>
 <li></li>
 </ol>
