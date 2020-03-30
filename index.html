@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1584062765216">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1585538638288">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1584062765216" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1585538638288" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -238,7 +238,7 @@ store的token和loggedInUser初值，从localstorage取，以避免刷新页面�
 收到好友请求，会显示在好友列表的专属区域内，点击查看详情，可以通过或拒绝
 若通过好友请求，则自动改添加对方到会话列表
 若拒绝好友请求，申请人会收到通知，并可以再次发出申请
- 设置好友申请的自动通过
+TODO 设置好友申请的自动通过
 
 
 申请好友记录 做成 单独表，A申请加B，同时，B也可能申请A，所以通过时候要同时update两条记录
@@ -249,7 +249,7 @@ store的token和loggedInUser初值，从localstorage取，以避免刷新页面�
 这里我觉得只应该使用方法1，如果2人成为好友，之后又解除了好友关系，则存在已通过的记录，但实际上并不是好友
 
 
- 查询用户信息时，sql不应该返回password(不能简单粗暴使用select *)
+TODO 查询用户信息时，sql不应该返回password(不能简单粗暴使用select *)
 查询出来用户信息以后，根据是否是好友来区别显示
 如何实现添加好友功能？
 
@@ -270,7 +270,33 @@ store的token和loggedInUser初值，从localstorage取，以避免刷新页面�
 系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来
 渐渐的，store变得很大，该拆分了，先把actions里的socket.io部分拆出去
 注意mock数据时候要补全相关表
+创建删除数据库数据的快捷接口
+忘记了加username的防重复判断，计划使用Sequelize重构时加入
+~~ BUG 从route.params.xx取出来的id数字会变成字符串，导致全等判断为false ~~
+TODO 注册后自动登录
+TODO 新用户登陆的引导添加好友
+TODO 新用户登陆后选择头像、设置昵称
+TODO 头像上传和修改
 
+
+ 新朋友数量提醒
+ 注册和登陆的验证码
+ 对话气泡样式
+ 可能出现的重复通过好友请求（insert之前必须先select）
+ 解决发送消息 -&gt; 后退，看不到自己的最后发言的bug
+ 添加好友的推送
+ socket连接错误的提示
+ 使用sequelize重新实现mysql相关接口
+
+ 登陆
+ 注册
+ 搜索用户
+ 查看用户信息(包含是否是好友的状态)
+ 发送好友请求
+
+
+ 登陆次数统计
+[ ]
 
 
                                         </div>
@@ -594,7 +620,7 @@ AxisHelper 作者自己写的
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1584062765216)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1585538638288)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
