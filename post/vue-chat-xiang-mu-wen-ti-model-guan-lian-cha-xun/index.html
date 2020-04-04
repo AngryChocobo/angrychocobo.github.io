@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    菜鸟学WebGL - 初识WebGL | 老桔的小站（悄咪咪
+    Vue-Chat 项目问题：Model关联查询 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1586015766996">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,43 +99,62 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            菜鸟学WebGL - 初识WebGL
+                            Vue-Chat 项目问题：Model关联查询
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-01-02</time>
+                            <time class="post-time">2020-03-30</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <ul>
-<li>WebGL has a color buffer（颜色缓冲区）, depth buffer（深度缓冲区）, and stencil buffer（模板缓冲区）.</li>
-<li>rotation是以欧拉角（Euler）来旋转的</li>
-<li>obj.getObjectByName(&quot;firstObj&quot;) //类似getElementById</li>
-<li>obj.getObjectById(1); //返回id值为1的3d对象</li>
-<li>mesh.visible = false; //设置为false，模型将不会被渲染到场景内</li>
-<li>scene.remove(mesh); //将一个模型从场景中删除</li>
-<li>scene.children  //模型中的所有3d对象</li>
-<li>将按顺序分别将mesh1和mesh2打印出来<br>
-mesh1.add(mesh2); //mesh2是mesh1的子元素<br>
-scene.add(mesh1); //mesh1是场景对象的子元素<br>
-scene.traverse(fucntion(child){<br>
-console.log(child);<br>
-});</li>
-<li>mesh.scale.x = 2; //模型沿x轴放大一倍</li>
-<li>使用BufferGeometry比Geometry有更好的性能，适用于放到场景内不会变化的几何体</li>
-<li>直接修改已经加入到scene的几何体的width等构造函数传递的参数的值似乎不能生效</li>
-<li>官方demo的绘制CircleGeometry（圆几何体）的代码是假的。该代码并不会显示出区块的边缘线</li>
-<li>ConeGeometry(圆锥几何体)</li>
-<li>MeshBasicMaterial不受光照影响，所以用它来当地板<strong>无法显示阴影</strong></li>
-<li>为什么球体的阴影是一个矩形？需要设置光照范围</li>
-<li>点光源似乎配置阴影有些特殊</li>
-<li>平面光光源（RectAreaLight）可以模拟明亮的窗户或者灯管，但是似乎对性能有严重的影响</li>
-<li>.parameters : Object<br>
-一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。</li>
-<li>three.js中，文字mesh需要重设中心点，否则会默认按照左测作为中心点</li>
-<li>小的纹理文件不代表会占用的内存小，占用内存（bytes）= width * height * 4 * 1.33</li>
-<li></li>
-</ul>
+                                    <h3 id="问题1-使用class生命的model关联查询会出现报错">问题1: 使用Class生命的Model，关联查询会出现报错</h3>
+<p>例如：</p>
+<pre><code class="language-js">
+class Friends extends Sequelize.Model {}
+Friends.init(
+  {
+    friendRemark: {
+      type: Sequelize.STRING,
+    },
+  },
+  {sequelize, modelName: 'newFriends'},
+)
+
+
+class Users = extends Sequelize.Model {}
+Users.init({
+  username: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  nickname: {
+    type: Sequelize.STRING,
+  },
+  src: {
+    type: Sequelize.STRING,
+  }
+}, {sequelize, modelName: 'newUsers'},
+)
+
+
+Friends.belongsTo(Users, {foreignKey: 'userId', as: 'UserInfo'})
+Friends.belongsTo(Users, {foreignKey: 'friendId', as: 'FriendUserInfo'})
+
+</code></pre>
+<blockquote>
+<p>SELECT <code>newFriends</code>.<code>id</code>, <code>newFriends</code>.<code>friendRemark</code>, <code>newFriends</code>.<code>userId</code>, <code>newFriends</code>.<code>friendId</code>, <code>UserInfo</code>.<code>id</code> AS <code>UserInfo.id</code>, <code>UserInfo</code>.<code>username</code> AS <code>UserInfo.username</code>, <code>UserInfo</code>.<code>password</code> AS <code>UserInfo.password</code>, <code>UserInfo</code>.<code>nickname</code> AS <code>UserInfo.nickname</code>, <code>UserInfo</code>.<code>src</code> AS <code>UserInfo.src</code>, <code>FriendUserInfo</code>.<code>id</code> AS <code>FriendUserInfo.id</code>, <code>FriendUserInfo</code>.<code>username</code> AS <code>FriendUserInfo.username</code>, <code>FriendUserInfo</code>.<code>password</code> AS <code>FriendUserInfo.password</code>, <code>FriendUserInfo</code>.<code>nickname</code> AS <code>FriendUserInfo.nickname</code>, <code>FriendUserInfo</code>.<code>src</code> AS <code>FriendUserInfo.src</code> FROM <code>newFriends</code> AS <code>newFriends</code> LEFT OUTER JOIN <code>newUsers</code> AS <code>UserInfo</code> ON <code>newFriends</code>.<code>id</code> = <code>UserInfo</code>.<code>userId</code> LEFT OUTER JOIN <code>newUsers</code> AS <code>FriendUserInfo</code> ON <code>newFriends</code>.<code>id</code> = <code>FriendUserInfo</code>.<code>friendId</code>;<br>
+sequelize.js:1187<br>
+Unhandled rejection SequelizeDatabaseError: Unknown column 'FriendUserInfo.friendId' in 'on clause'</p>
+</blockquote>
+<p>暂时的解决方法：使用define语法</p>
+<p>const Friends = sequelize.define('newFriends', {<br>
+friendRemark: {<br>
+type: Sequelize.STRING,<br>
+},<br>
+})</p>
 
                                 </div>
                     </article>
@@ -143,9 +162,9 @@ console.log(child);<br>
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban">
+                            <a href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">
                                 <h3 class="post-title">
-                                    Webgl 笔记模版
+                                    vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
                                 </h3>
                             </a>
                         </div>
@@ -158,32 +177,50 @@ console.log(child);<br>
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1586015766996)">
-        </div>
-        <h1 class="id_card-title">
-            老桔的小站（悄咪咪
-        </h1>
-        <h2 class="id_card-description">
-            边学边忘
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%981-%E4%BD%BF%E7%94%A8class%E7%94%9F%E5%91%BD%E7%9A%84model%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E4%BC%9A%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99">问题1: 使用Class生命的Model，关联查询会出现报错</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
-                                    
+                            
 
                 </div>
 

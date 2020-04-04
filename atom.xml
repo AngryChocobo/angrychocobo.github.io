@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-03-30T03:24:00.316Z</updated>
+    <updated>2020-04-04T15:56:09.128Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,62 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue-Chat 项目问题：Model关联查询]]></title>
+        <id>https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun</id>
+        <link href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">
+        </link>
+        <updated>2020-03-30T07:21:10.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="问题1-使用class生命的model关联查询会出现报错">问题1: 使用Class生命的Model，关联查询会出现报错</h3>
+<p>例如：</p>
+<pre><code class="language-js">
+class Friends extends Sequelize.Model {}
+Friends.init(
+  {
+    friendRemark: {
+      type: Sequelize.STRING,
+    },
+  },
+  {sequelize, modelName: 'newFriends'},
+)
+
+
+class Users = extends Sequelize.Model {}
+Users.init({
+  username: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  nickname: {
+    type: Sequelize.STRING,
+  },
+  src: {
+    type: Sequelize.STRING,
+  }
+}, {sequelize, modelName: 'newUsers'},
+)
+
+
+Friends.belongsTo(Users, {foreignKey: 'userId', as: 'UserInfo'})
+Friends.belongsTo(Users, {foreignKey: 'friendId', as: 'FriendUserInfo'})
+
+</code></pre>
+<blockquote>
+<p>SELECT <code>newFriends</code>.<code>id</code>, <code>newFriends</code>.<code>friendRemark</code>, <code>newFriends</code>.<code>userId</code>, <code>newFriends</code>.<code>friendId</code>, <code>UserInfo</code>.<code>id</code> AS <code>UserInfo.id</code>, <code>UserInfo</code>.<code>username</code> AS <code>UserInfo.username</code>, <code>UserInfo</code>.<code>password</code> AS <code>UserInfo.password</code>, <code>UserInfo</code>.<code>nickname</code> AS <code>UserInfo.nickname</code>, <code>UserInfo</code>.<code>src</code> AS <code>UserInfo.src</code>, <code>FriendUserInfo</code>.<code>id</code> AS <code>FriendUserInfo.id</code>, <code>FriendUserInfo</code>.<code>username</code> AS <code>FriendUserInfo.username</code>, <code>FriendUserInfo</code>.<code>password</code> AS <code>FriendUserInfo.password</code>, <code>FriendUserInfo</code>.<code>nickname</code> AS <code>FriendUserInfo.nickname</code>, <code>FriendUserInfo</code>.<code>src</code> AS <code>FriendUserInfo.src</code> FROM <code>newFriends</code> AS <code>newFriends</code> LEFT OUTER JOIN <code>newUsers</code> AS <code>UserInfo</code> ON <code>newFriends</code>.<code>id</code> = <code>UserInfo</code>.<code>userId</code> LEFT OUTER JOIN <code>newUsers</code> AS <code>FriendUserInfo</code> ON <code>newFriends</code>.<code>id</code> = <code>FriendUserInfo</code>.<code>friendId</code>;<br>
+sequelize.js:1187<br>
+Unhandled rejection SequelizeDatabaseError: Unknown column 'FriendUserInfo.friendId' in 'on clause'</p>
+</blockquote>
+<p>暂时的解决方法：使用define语法</p>
+<p>const Friends = sequelize.define('newFriends', {<br>
+friendRemark: {<br>
+type: Sequelize.STRING,<br>
+},<br>
+})</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效]]></title>
         <id>https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao</id>
@@ -168,24 +224,28 @@ http.listen(8888)
 <li>TODO 头像上传和修改</li>
 </ol>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2071824"><label class="task-list-item-label" for="task-item-2071824"> 新朋友数量提醒</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5370024"><label class="task-list-item-label" for="task-item-5370024"> 注册和登陆的验证码</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7761775"><label class="task-list-item-label" for="task-item-7761775"> 对话气泡样式</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8388900"><label class="task-list-item-label" for="task-item-8388900"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9171236"><label class="task-list-item-label" for="task-item-9171236"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3651599"><label class="task-list-item-label" for="task-item-3651599"> 添加好友的推送</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5886098"><label class="task-list-item-label" for="task-item-5886098"> socket连接错误的提示</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1252775"><label class="task-list-item-label" for="task-item-1252775"> 使用sequelize重新实现mysql相关接口</label>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8996723"><label class="task-list-item-label" for="task-item-8996723"> 新朋友数量提醒</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6498801"><label class="task-list-item-label" for="task-item-6498801"> 注册和登陆的验证码</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1894784"><label class="task-list-item-label" for="task-item-1894784"> 对话气泡样式</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6168663"><label class="task-list-item-label" for="task-item-6168663"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4424752"><label class="task-list-item-label" for="task-item-4424752"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-425157"><label class="task-list-item-label" for="task-item-425157"> 添加好友的推送</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4050591"><label class="task-list-item-label" for="task-item-4050591"> socket连接错误的提示</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7304436"><label class="task-list-item-label" for="task-item-7304436"> 使用sequelize重新实现mysql相关接口</label>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1007992"><label class="task-list-item-label" for="task-item-1007992"> 登陆</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8739842"><label class="task-list-item-label" for="task-item-8739842"> 注册</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2783477"><label class="task-list-item-label" for="task-item-2783477"> 搜索用户</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5670480"><label class="task-list-item-label" for="task-item-5670480"> 查看用户信息(包含是否是好友的状态)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2308654"><label class="task-list-item-label" for="task-item-2308654"> 发送好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3913697"><label class="task-list-item-label" for="task-item-3913697"> 登陆</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3266550"><label class="task-list-item-label" for="task-item-3266550"> 注册</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4736994"><label class="task-list-item-label" for="task-item-4736994"> 搜索用户</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8395202"><label class="task-list-item-label" for="task-item-8395202"> 查看用户信息(包含是否是好友的状态)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1907666"><label class="task-list-item-label" for="task-item-1907666"> 发送好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7811798"><label class="task-list-item-label" for="task-item-7811798"> 查看好友列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6073621"><label class="task-list-item-label" for="task-item-6073621"> 查看好友请求列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2898480"><label class="task-list-item-label" for="task-item-2898480"> 查看好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4390166"><label class="task-list-item-label" for="task-item-4390166"> 通过好友请求</label></li>
 </ul>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2209878"><label class="task-list-item-label" for="task-item-2209878"> 登陆次数统计</label></li>
-<li>[ ]</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6904867"><label class="task-list-item-label" for="task-item-6904867"> 登陆次数统计</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2260585"><label class="task-list-item-label" for="task-item-2260585"> 头像相关代码重构</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -330,37 +390,6 @@ console.log(child);<br>
         <content type="html"><![CDATA[<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
 <h3 id="程序流程分析">程序流程分析</h3>
 <h3 id="知识点">知识点</h3>
-<h3 id="疑惑">疑惑</h3>
-<h3 id="改进">改进</h3>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Webgl day2 颜色的影响]]></title>
-        <id>https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi</id>
-        <link href="https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi">
-        </link>
-        <updated>2019-12-24T14:35:41.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
-<ul>
-<li>DAT.GUI.min.js</li>
-<li>AxisHelper 作者自己写的</li>
-</ul>
-<h3 id="程序流程分析">程序流程分析</h3>
-<ol>
-<li>需要创建一个会受到光照影响的Phong球体</li>
-<li>使用点光源PointLight</li>
-<li></li>
-</ol>
-<h3 id="知识点">知识点</h3>
-<ul>
-<li>为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)</li>
-<li>环境光(Ambient light)</li>
-<li>漫反射颜色(Diffuse Color)</li>
-<li>自发光颜色(Emissive Color)</li>
-<li>镜面反射颜色(Specular Color)</li>
-<li>光泽度(Shininess amount)</li>
-<li>不透明度(Opacity amount)</li>
-</ul>
 <h3 id="疑惑">疑惑</h3>
 <h3 id="改进">改进</h3>
 ]]></content>

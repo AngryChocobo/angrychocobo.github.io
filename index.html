@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1585538638288">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1586015766996">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1585538638288" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1586015766996" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,77 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">
+                        Vue-Chat 项目问题：Model关联查询
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-30</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            问题1: 使用Class生命的Model，关联查询会出现报错
+例如：
+
+class Friends extends Sequelize.Model {}
+Friends.init(
+  {
+    friendRemark: {
+      type: Sequelize.STRING,
+    },
+  },
+  {sequelize, modelName: &#39;newFriends&#39;},
+)
+
+
+class Users = extends Sequelize.Model {}
+Users.init({
+  username: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  nickname: {
+    type: Sequelize.STRING,
+  },
+  src: {
+    type: Sequelize.STRING,
+  }
+}, {sequelize, modelName: &#39;newUsers&#39;},
+)
+
+
+Friends.belongsTo(Users, {foreignKey: &#39;userId&#39;, as: &#39;UserInfo&#39;})
+Friends.belongsTo(Users, {foreignKey: &#39;friendId&#39;, as: &#39;FriendUserInfo&#39;})
+
+
+
+SELECT newFriends.id, newFriends.friendRemark, newFriends.userId, newFriends.friendId, UserInfo.id AS UserInfo.id, UserInfo.username AS UserInfo.username, UserInfo.password AS UserInfo.password, UserInfo.nickname AS UserInfo.nickname, UserInfo.src AS UserInfo.src, FriendUserInfo.id AS FriendUserInfo.id, FriendUserInfo.username AS FriendUserInfo.username, FriendUserInfo.password AS FriendUserInfo.password, FriendUserInfo.nickname AS FriendUserInfo.nickname, FriendUserInfo.src AS FriendUserInfo.src FROM newFriends AS newFriends LEFT OUTER JOIN newUsers AS UserInfo ON newFriends.id = UserInfo.userId LEFT OUTER JOIN newUsers AS FriendUserInfo ON newFriends.id = FriendUserInfo.friendId;
+sequelize.js:1187
+Unhandled rejection SequelizeDatabaseError: Unknown column &#39;FriendUserInfo.friendId&#39; in &#39;on clause&#39;
+
+暂时的解决方法：使用define语法
+const Friends = sequelize.define(&#39;newFriends&#39;, {
+friendRemark: {
+type: Sequelize.STRING,
+},
+})
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">
@@ -293,10 +364,14 @@ TODO 头像上传和修改
  搜索用户
  查看用户信息(包含是否是好友的状态)
  发送好友请求
+ 查看好友列表
+ 查看好友请求列表
+ 查看好友请求
+ 通过好友请求
 
 
  登陆次数统计
-[ ]
+ 头像相关代码重构
 
 
                                         </div>
@@ -556,52 +631,6 @@ three.js中，文字mesh需要重设中心点，否则会默认按照左测作�
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi">
-                        Webgl day2 颜色的影响
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这个模版demo需要的资源
-
-DAT.GUI.min.js
-AxisHelper 作者自己写的
-
-程序流程分析
-
-需要创建一个会受到光照影响的Phong球体
-使用点光源PointLight
-
-
-知识点
-
-为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)
-环境光(Ambient light)
-漫反射颜色(Diffuse Color)
-自发光颜色(Emissive Color)
-镜面反射颜色(Specular Color)
-光泽度(Shininess amount)
-不透明度(Opacity amount)
-
-疑惑
-改进
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/webgl-day2-demo-xue-xi">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -620,7 +649,7 @@ AxisHelper 作者自己写的
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1585538638288)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1586015766996)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
