@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-05-11T08:47:01.723Z</updated>
+    <updated>2020-05-11T14:21:16.150Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -28,7 +28,7 @@
 </ul>
 <h3 id="todo-app">todo app</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8105760"><label class="task-list-item-label" for="task-item-8105760">   一个mac应用，设置随机时间，切换主题颜色</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2392276"><label class="task-list-item-label" for="task-item-2392276">   一个mac应用，设置随机时间，切换主题颜色</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -271,28 +271,28 @@ http.listen(8888)
 <li>TODO 头像上传和修改</li>
 </ol>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3856291"><label class="task-list-item-label" for="task-item-3856291"> 新朋友数量提醒</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5772511"><label class="task-list-item-label" for="task-item-5772511"> 注册和登陆的验证码</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6228514"><label class="task-list-item-label" for="task-item-6228514"> 对话气泡样式</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7658700"><label class="task-list-item-label" for="task-item-7658700"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8436489"><label class="task-list-item-label" for="task-item-8436489"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-535013"><label class="task-list-item-label" for="task-item-535013"> 添加好友的推送</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1249232"><label class="task-list-item-label" for="task-item-1249232"> socket连接错误的提示</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3087808"><label class="task-list-item-label" for="task-item-3087808"> 使用sequelize重新实现mysql相关接口</label>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4858223"><label class="task-list-item-label" for="task-item-4858223"> 新朋友数量提醒</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4225174"><label class="task-list-item-label" for="task-item-4225174"> 注册和登陆的验证码</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-88782"><label class="task-list-item-label" for="task-item-88782"> 对话气泡样式</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5904147"><label class="task-list-item-label" for="task-item-5904147"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9856805"><label class="task-list-item-label" for="task-item-9856805"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5012192"><label class="task-list-item-label" for="task-item-5012192"> 添加好友的推送</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5034130"><label class="task-list-item-label" for="task-item-5034130"> socket连接错误的提示</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5675631"><label class="task-list-item-label" for="task-item-5675631"> 使用sequelize重新实现mysql相关接口</label>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7145656"><label class="task-list-item-label" for="task-item-7145656"> 登陆</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3616537"><label class="task-list-item-label" for="task-item-3616537"> 注册</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9430443"><label class="task-list-item-label" for="task-item-9430443"> 搜索用户</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1429228"><label class="task-list-item-label" for="task-item-1429228"> 查看用户信息(包含是否是好友的状态)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8479785"><label class="task-list-item-label" for="task-item-8479785"> 发送好友请求</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7120817"><label class="task-list-item-label" for="task-item-7120817"> 查看好友列表</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9181564"><label class="task-list-item-label" for="task-item-9181564"> 查看好友请求列表</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4395719"><label class="task-list-item-label" for="task-item-4395719"> 查看好友请求</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2322425"><label class="task-list-item-label" for="task-item-2322425"> 通过好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5319029"><label class="task-list-item-label" for="task-item-5319029"> 登陆</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4462063"><label class="task-list-item-label" for="task-item-4462063"> 注册</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-531687"><label class="task-list-item-label" for="task-item-531687"> 搜索用户</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9138615"><label class="task-list-item-label" for="task-item-9138615"> 查看用户信息(包含是否是好友的状态)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3938055"><label class="task-list-item-label" for="task-item-3938055"> 发送好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4182807"><label class="task-list-item-label" for="task-item-4182807"> 查看好友列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1257373"><label class="task-list-item-label" for="task-item-1257373"> 查看好友请求列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1048367"><label class="task-list-item-label" for="task-item-1048367"> 查看好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9893312"><label class="task-list-item-label" for="task-item-9893312"> 通过好友请求</label></li>
 </ul>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1160992"><label class="task-list-item-label" for="task-item-1160992"> 登陆次数统计</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-689716"><label class="task-list-item-label" for="task-item-689716"> 头像相关代码重构</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4788054"><label class="task-list-item-label" for="task-item-4788054"> 登陆次数统计</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1966818"><label class="task-list-item-label" for="task-item-1966818"> 头像相关代码重构</label></li>
 </ul>
 ]]></content>
     </entry>
