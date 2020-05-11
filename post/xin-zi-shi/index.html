@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Vue实现视频网站 | 老桔的小站（悄咪咪
+    新姿势 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1589186819654">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,30 +99,42 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Vue实现视频网站
+                            新姿势
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-11-06</time>
+                            <time class="post-time">2020-05-11</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <p>首先开始做管理端，顺便整理思路<br>
-技术栈：nest.js<br>
-安装nest.js npm install -g @nestjs/cli<br>
-创建管理端： nest new server<br>
-创建单体项目： nest g app admin</p>
-<p>至此，后台存在两个项目admin和server。</p>
-<p>启动admin项目：nest start -w admin</p>
-<p>创建admin和server公共的库(数据库模块)： nest g lib db</p>
-<p>安装nest的数据库包：yarn add nestjs-typegoose @typegoose/typegoose<br>
-安装moogoose： yarn add mongoose @types/mongoose</p>
-<p>在libs/db/src/db.module.ts中引入typegoose模块</p>
+                                    <h3 id="git">git</h3>
+<ul>
+<li>git stash 将临时代码提交到脏工作区
+<ul>
+<li>通过git stash apply恢复；</li>
+<li>通过git stash list查看stash列表</li>
+<li>通过git stash drop [stash名] 或git stash pop 删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="todo-app">todo app</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8105760"><label class="task-list-item-label" for="task-item-8105760">   一个mac应用，设置随机时间，切换主题颜色</label></li>
+</ul>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io//post/typescript-cai-keng">
+                                <h3 class="post-title">
+                                    TypeScript踩坑
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -131,32 +143,51 @@
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1589186819654)">
-        </div>
-        <h1 class="id_card-title">
-            老桔的小站（悄咪咪
-        </h1>
-        <h2 class="id_card-description">
-            边学边忘
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#git">git</a></li>
+<li><a href="#todo-app">todo app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
-                                    
+                            
 
                 </div>
 

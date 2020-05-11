@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-04-04T15:56:09.128Z</updated>
+    <updated>2020-05-11T08:47:01.723Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io//atom.xml"/>
@@ -10,6 +10,53 @@
     <logo>https://angrychocobo.github.io//images/avatar.png</logo>
     <icon>https://angrychocobo.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 老桔的小站（悄咪咪</rights>
+    <entry>
+        <title type="html"><![CDATA[新姿势]]></title>
+        <id>https://angrychocobo.github.io//post/xin-zi-shi</id>
+        <link href="https://angrychocobo.github.io//post/xin-zi-shi">
+        </link>
+        <updated>2020-05-11T08:42:12.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="git">git</h3>
+<ul>
+<li>git stash 将临时代码提交到脏工作区
+<ul>
+<li>通过git stash apply恢复；</li>
+<li>通过git stash list查看stash列表</li>
+<li>通过git stash drop [stash名] 或git stash pop 删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="todo-app">todo app</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8105760"><label class="task-list-item-label" for="task-item-8105760">   一个mac应用，设置随机时间，切换主题颜色</label></li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TypeScript踩坑]]></title>
+        <id>https://angrychocobo.github.io//post/typescript-cai-keng</id>
+        <link href="https://angrychocobo.github.io//post/typescript-cai-keng">
+        </link>
+        <updated>2020-04-06T14:09:12.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="放到vue项目中后提示import-vue页面报错">放到vue项目中后，提示import vue页面报错</h2>
+<p>在项目目录创建x.d.ts文件：</p>
+<pre><code class="language-ts">declare module '*.vue' {
+  import Vue from 'vue'
+  export default Vue
+}
+</code></pre>
+<p>之后在ts的配置文件种引入:</p>
+<pre><code class="language-json">&quot;include&quot;: [
+    // 需要编译的ts文件一个*表示文件匹配**表示忽略文件的深度问题
+    &quot;./src/**/*.ts&quot;
+  ],
+</code></pre>
+<p>最后如果发现错误还存在的话，重启一下vscode，就会发现报错消失了（坑我半小时）<br>
+燃鹅，此时vscode点击vue文件的路径跳转的话，会发现打开的不是我们声明的vue文件，而是声明的类型文件</p>
+<h2 id="使用interface报错module-parse-failed-the-keyword-interface-is-reserved">使用interface报错：Module parse failed: The keyword 'interface' is reserved</h2>
+<h2 id="调用window等全局对象">调用window等全局对象</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue-Chat 项目问题：Model关联查询]]></title>
         <id>https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun</id>
@@ -224,28 +271,28 @@ http.listen(8888)
 <li>TODO 头像上传和修改</li>
 </ol>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8996723"><label class="task-list-item-label" for="task-item-8996723"> 新朋友数量提醒</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6498801"><label class="task-list-item-label" for="task-item-6498801"> 注册和登陆的验证码</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1894784"><label class="task-list-item-label" for="task-item-1894784"> 对话气泡样式</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6168663"><label class="task-list-item-label" for="task-item-6168663"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4424752"><label class="task-list-item-label" for="task-item-4424752"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-425157"><label class="task-list-item-label" for="task-item-425157"> 添加好友的推送</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4050591"><label class="task-list-item-label" for="task-item-4050591"> socket连接错误的提示</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7304436"><label class="task-list-item-label" for="task-item-7304436"> 使用sequelize重新实现mysql相关接口</label>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3856291"><label class="task-list-item-label" for="task-item-3856291"> 新朋友数量提醒</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5772511"><label class="task-list-item-label" for="task-item-5772511"> 注册和登陆的验证码</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6228514"><label class="task-list-item-label" for="task-item-6228514"> 对话气泡样式</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7658700"><label class="task-list-item-label" for="task-item-7658700"> 可能出现的重复通过好友请求（insert之前必须先select）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8436489"><label class="task-list-item-label" for="task-item-8436489"> 解决发送消息 -> 后退，看不到自己的最后发言的bug</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-535013"><label class="task-list-item-label" for="task-item-535013"> 添加好友的推送</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1249232"><label class="task-list-item-label" for="task-item-1249232"> socket连接错误的提示</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3087808"><label class="task-list-item-label" for="task-item-3087808"> 使用sequelize重新实现mysql相关接口</label>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3913697"><label class="task-list-item-label" for="task-item-3913697"> 登陆</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3266550"><label class="task-list-item-label" for="task-item-3266550"> 注册</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4736994"><label class="task-list-item-label" for="task-item-4736994"> 搜索用户</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8395202"><label class="task-list-item-label" for="task-item-8395202"> 查看用户信息(包含是否是好友的状态)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1907666"><label class="task-list-item-label" for="task-item-1907666"> 发送好友请求</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7811798"><label class="task-list-item-label" for="task-item-7811798"> 查看好友列表</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6073621"><label class="task-list-item-label" for="task-item-6073621"> 查看好友请求列表</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2898480"><label class="task-list-item-label" for="task-item-2898480"> 查看好友请求</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4390166"><label class="task-list-item-label" for="task-item-4390166"> 通过好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7145656"><label class="task-list-item-label" for="task-item-7145656"> 登陆</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3616537"><label class="task-list-item-label" for="task-item-3616537"> 注册</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9430443"><label class="task-list-item-label" for="task-item-9430443"> 搜索用户</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1429228"><label class="task-list-item-label" for="task-item-1429228"> 查看用户信息(包含是否是好友的状态)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8479785"><label class="task-list-item-label" for="task-item-8479785"> 发送好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7120817"><label class="task-list-item-label" for="task-item-7120817"> 查看好友列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9181564"><label class="task-list-item-label" for="task-item-9181564"> 查看好友请求列表</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4395719"><label class="task-list-item-label" for="task-item-4395719"> 查看好友请求</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2322425"><label class="task-list-item-label" for="task-item-2322425"> 通过好友请求</label></li>
 </ul>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6904867"><label class="task-list-item-label" for="task-item-6904867"> 登陆次数统计</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2260585"><label class="task-list-item-label" for="task-item-2260585"> 头像相关代码重构</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1160992"><label class="task-list-item-label" for="task-item-1160992"> 登陆次数统计</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-689716"><label class="task-list-item-label" for="task-item-689716"> 头像相关代码重构</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -342,56 +389,6 @@ module.exports = {
 <h2 id="坑">坑</h2>
 <p>.parameters : Object<br>
 一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[菜鸟学WebGL - 初识WebGL]]></title>
-        <id>https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl</id>
-        <link href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">
-        </link>
-        <updated>2020-01-02T02:40:30.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li>WebGL has a color buffer（颜色缓冲区）, depth buffer（深度缓冲区）, and stencil buffer（模板缓冲区）.</li>
-<li>rotation是以欧拉角（Euler）来旋转的</li>
-<li>obj.getObjectByName(&quot;firstObj&quot;) //类似getElementById</li>
-<li>obj.getObjectById(1); //返回id值为1的3d对象</li>
-<li>mesh.visible = false; //设置为false，模型将不会被渲染到场景内</li>
-<li>scene.remove(mesh); //将一个模型从场景中删除</li>
-<li>scene.children  //模型中的所有3d对象</li>
-<li>将按顺序分别将mesh1和mesh2打印出来<br>
-mesh1.add(mesh2); //mesh2是mesh1的子元素<br>
-scene.add(mesh1); //mesh1是场景对象的子元素<br>
-scene.traverse(fucntion(child){<br>
-console.log(child);<br>
-});</li>
-<li>mesh.scale.x = 2; //模型沿x轴放大一倍</li>
-<li>使用BufferGeometry比Geometry有更好的性能，适用于放到场景内不会变化的几何体</li>
-<li>直接修改已经加入到scene的几何体的width等构造函数传递的参数的值似乎不能生效</li>
-<li>官方demo的绘制CircleGeometry（圆几何体）的代码是假的。该代码并不会显示出区块的边缘线</li>
-<li>ConeGeometry(圆锥几何体)</li>
-<li>MeshBasicMaterial不受光照影响，所以用它来当地板<strong>无法显示阴影</strong></li>
-<li>为什么球体的阴影是一个矩形？需要设置光照范围</li>
-<li>点光源似乎配置阴影有些特殊</li>
-<li>平面光光源（RectAreaLight）可以模拟明亮的窗户或者灯管，但是似乎对性能有严重的影响</li>
-<li>.parameters : Object<br>
-一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。</li>
-<li>three.js中，文字mesh需要重设中心点，否则会默认按照左测作为中心点</li>
-<li>小的纹理文件不代表会占用的内存小，占用内存（bytes）= width * height * 4 * 1.33</li>
-<li></li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Webgl 笔记模版]]></title>
-        <id>https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban</id>
-        <link href="https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban">
-        </link>
-        <updated>2019-12-25T22:13:26.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="这个模版demo需要的资源">这个模版demo需要的资源</h3>
-<h3 id="程序流程分析">程序流程分析</h3>
-<h3 id="知识点">知识点</h3>
-<h3 id="疑惑">疑惑</h3>
-<h3 id="改进">改进</h3>
 ]]></content>
     </entry>
 </feed>

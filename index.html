@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1586015766996">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1589186819654">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1586015766996" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1589186819654" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,83 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/xin-zi-shi">
+                        新姿势
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-11</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            git
+
+git stash 将临时代码提交到脏工作区
+
+通过git stash apply恢复；
+通过git stash list查看stash列表
+通过git stash drop [stash名] 或git stash pop 删除
+
+
+
+todo app
+
+   一个mac应用，设置随机时间，切换主题颜色
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/xin-zi-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/typescript-cai-keng">
+                        TypeScript踩坑
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-04-06</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            放到vue项目中后，提示import vue页面报错
+在项目目录创建x.d.ts文件：
+declare module &#39;*.vue&#39; {
+  import Vue from &#39;vue&#39;
+  export default Vue
+}
+
+之后在ts的配置文件种引入:
+&amp;quot;include&amp;quot;: [
+    // 需要编译的ts文件一个*表示文件匹配**表示忽略文件的深度问题
+    &amp;quot;./src/**/*.ts&amp;quot;
+  ],
+
+最后如果发现错误还存在的话，重启一下vscode，就会发现报错消失了（坑我半小时）
+燃鹅，此时vscode点击vue文件的路径跳转的话，会发现打开的不是我们声明的vue文件，而是声明的类型文件
+使用interface报错：Module parse failed: The keyword &#39;interface&#39; is reserved
+调用window等全局对象
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/typescript-cai-keng">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">
@@ -551,86 +628,6 @@ camera跟随移动
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">
-                        菜鸟学WebGL - 初识WebGL
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-02</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-WebGL has a color buffer（颜色缓冲区）, depth buffer（深度缓冲区）, and stencil buffer（模板缓冲区）.
-rotation是以欧拉角（Euler）来旋转的
-obj.getObjectByName(&amp;quot;firstObj&amp;quot;) //类似getElementById
-obj.getObjectById(1); //返回id值为1的3d对象
-mesh.visible = false; //设置为false，模型将不会被渲染到场景内
-scene.remove(mesh); //将一个模型从场景中删除
-scene.children  //模型中的所有3d对象
-将按顺序分别将mesh1和mesh2打印出来
-mesh1.add(mesh2); //mesh2是mesh1的子元素
-scene.add(mesh1); //mesh1是场景对象的子元素
-scene.traverse(fucntion(child){
-console.log(child);
-});
-mesh.scale.x = 2; //模型沿x轴放大一倍
-使用BufferGeometry比Geometry有更好的性能，适用于放到场景内不会变化的几何体
-直接修改已经加入到scene的几何体的width等构造函数传递的参数的值似乎不能生效
-官方demo的绘制CircleGeometry（圆几何体）的代码是假的。该代码并不会显示出区块的边缘线
-ConeGeometry(圆锥几何体)
-MeshBasicMaterial不受光照影响，所以用它来当地板无法显示阴影
-为什么球体的阴影是一个矩形？需要设置光照范围
-点光源似乎配置阴影有些特殊
-平面光光源（RectAreaLight）可以模拟明亮的窗户或者灯管，但是似乎对性能有严重的影响
-.parameters : Object
-一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。
-three.js中，文字mesh需要重设中心点，否则会默认按照左测作为中心点
-小的纹理文件不代表会占用的内存小，占用内存（bytes）= width * height * 4 * 1.33
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/cai-niao-xue-webgl-chu-shi-webgl">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban">
-                        Webgl 笔记模版
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-26</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这个模版demo需要的资源
-程序流程分析
-知识点
-疑惑
-改进
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/webgl-bi-ji-mo-ban">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -649,7 +646,7 @@ three.js中，文字mesh需要重设中心点，否则会默认按照左测作�
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1586015766996)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1589186819654)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
