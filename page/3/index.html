@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1589186819654">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1589541383402">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1589186819654" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1589541383402" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,30 +99,6 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/nid">
-                        node聊天室
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-09-19</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <p>跟着《node.js实战》实现一个聊天室</p>
-
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/nid">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/node-wang-zhe-nong-yao-quan-zhan-kai-fa-01">
                         node王者农药全栈开发01
                     </a>
@@ -131,7 +107,7 @@
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io//tag/a5lKmbRS_" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_3">
             #实战
         </a>
                         
@@ -221,93 +197,6 @@ function hailstone(n) {
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">
-                        博客项目reducer拆分和中间件
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            今天放假，继续撸博客项目。
-
-早晨开始自我怀疑，是不是要继续做下去，当时觉得项目好像没什么意思，即使做出来了自己真的会去用嘛？然后就开始盲目的搜索其他接口，想做点别的项目，还好及时停止了搜索，去打扫了大半个小时的卫生，又洗了几件衣服，吃了外卖，睡一个午觉。 庆幸自己脱离了糟糕的状态，差点放弃~  不过也算是浪费了上午+半个下午了。
-
-主要进行了如下工作：
-
-首页样式变更
-Header、Footer拆分
-reducer拆分，分为了word、post和global
-action也拆出来了
-使用中间件进行了posts列表的获取
-
-遇到的问题
-
- 目前设计是在顶层组件去判断global.errorMsg是不是存在，存在就弹message，如接口错误等errorMsg，并且将更新errorMsg的action也放到了globalReducer中；以及global.isFetching会让ui显示加载Spin动画，也是全局的，这样一来Skeleton由于没有数据，就无法显示了。
-
-反思
-细节理解不够深刻，中间件也只是copy paste阶段，觉得这里应该是高阶函数的知识不懂，导致的懵逼。待补全相关知识（flag）。
-记录临时代码
-export function fetchWords() {
-
-    // Thunk middleware 知道如何处理函数。
-    // 这里把 dispatch 方法通过参数的形式传给函数，
-    // 以此来让它自己也能 dispatch action。
-
-    return function (dispatch) {
-
-        // 首次 dispatch：更新应用的 state 来通知
-        // API 请求发起了。
-
-        dispatch(requestWords())
-
-        // thunk middleware 调用的函数可以有返回值，
-        // 它会被当作 dispatch 方法的返回值传递。
-
-        // 这个案例中，我们返回一个等待处理的 promise。
-        // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-        return fetch(`http://127.0.0.1:3001/words`)
-            .then(function (response) {
-                return response.json();
-            },
-                // 不要使用 catch，因为会捕获
-                // 在 dispatch 和渲染中出现的任何错误，
-                // 导致 &#39;Unexpected batch number&#39; 错误。
-                // https://github.com/facebook/react/issues/6895
-                error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-            )
-            .then(json =&amp;gt;
-            // 可以多次 dispatch！
-            // 这里，使用 API 请求结果来更新应用的 state。
-            {
-                if (json) {
-                    setTimeout(() =&amp;gt; {
-                        dispatch(receiveWords(json));
-                    }, 2000);
-                } else {
-                    dispatch(fetchError());
-                }
-            }
-            );
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/bo-ke-xiang-mu-reducer-chai-fen-he-zhong-jian-jian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io//post/redux-zhong-jian-jian-lin-shi-ji-lu">
                         redux中间件临时记录
                     </a>
@@ -384,7 +273,7 @@ return function (dispatch) {
                     <time class="post-time">2019-08-02</time>
                     
                         <a href="https://angrychocobo.github.io//tag/F1tncGu90" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
             #踩坑
         </a>
                         
@@ -580,7 +469,7 @@ JavaScript 中的 task queues
                     <time class="post-time">2019-07-27</time>
                     
                         <a href="https://angrychocobo.github.io//tag/oTOBbAZF5" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #算法
         </a>
                         
@@ -651,6 +540,104 @@ class Solution {
                 </div>
             </article>
             
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">
+                        两数之和2 输入有序数组
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-27</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            题目要求
+
+给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+说明:
+返回的下标值（index1 和 index2）不是从零开始的。
+你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
+示例:
+输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+
+解法一： 直接双重循环
+var twoSum = function(nums, target) {
+   for(var i = 0; i&amp;lt;nums.length; i++) {
+       for(var j = i + 1; j&amp;lt;nums.length; j++) {
+           if ((nums[i] + nums[j] == target) &amp;amp;&amp;amp; (i &amp;lt; j)) {
+               return [i+1, j+1];
+           }
+       }
+   }
+};
+
+上来直接想到的方法，很笨，但是奏效。执行用时380 ms，内存消耗35 MB
+时间复杂度为O（n2）
+解法二： 双指针
+var twoSum = function(nums, target) {
+    var i = 0, j = nums.length -1;
+		while (i &amp;lt; j) {
+        if (nums[i] + nums[j] == target) {
+            return [i+1, j+1]; 
+        }
+        if(nums[i] + nums[j] &amp;gt; target) {
+            j--;
+        } else {
+            i++;
+        }
+	}
+};
+
+充分理由给定的数组是有序的这一特性。执行用时80 ms，内存消耗35.2 MB
+时间复杂度为O(n)
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io//post/hello-gridea">
+                        Hello Gridea
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-12</time>
+                    
+                        <a href="https://angrychocobo.github.io//tag/sklD6kTGc" class="post-tag i-tag
+                            i-tag-success">
+            #Gridea
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://angrychocobo.github.io//post/hello-gridea" class="post-feature-image" style="background-image:url(https://angrychocobo.github.io//post-images/hello-gridea.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/hello-gridea">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -658,8 +645,6 @@ class Solution {
             <a href="https://angrychocobo.github.io//page/2/" class="page-btn btn">上一页</a>
             
                 
-                    <a href="https://angrychocobo.github.io//page/4/" class="page-btn btn">下一页</a>
-                    
     </div>
     
                 </div>
@@ -671,7 +656,7 @@ class Solution {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1589186819654)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1589541383402)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
