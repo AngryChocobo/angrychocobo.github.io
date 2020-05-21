@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1589795143379">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590074516680">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1589795143379" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590074516680" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,7 +99,158 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/xin-zi-shi">
+                    <a href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">
+                        css动效之LoveLive
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-21</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            首先找到了LoveLive的字体
+分析动效构成
+
+出现两个L，第二个L缓慢向右侧移动
+移动到固定位置后，从Love的o开始往右侧以此出现，每个字母将要完成自己的动画时下一个字母开始出现
+每个字母都是从底部压缩慢慢撑起高度
+最后的感叹号完成后，小延迟
+LoLive！从左到右依次被替换为ラブライブ！
+同时存在粉色樱花效果
+ラブライブ！全部出现后，文字颜色开始逐步变为粉色，同时School idol project开始从底部浮现
+结束
+
+开始实现
+
+每个字母似乎都是独立的，所以得对每一个字母进行设置动画
+
+遇到的难点
+
+如何将文字从压扁的状态向上方恢复，首先想到的是transform: scale() 从0到1，或者transform: rotateX() 从90deg到0。 但是这样一来，效果是文字从中间向两边“膨胀”。  解决方案： transform-origin: bottom
+继续上个问题，虽然实现了从底部压扁恢复，但是transform-origin:bottom会从dom的底部为起点，但是文字存在line-height，导致看起来文字离origin点有一些距离。   解决方案： 1. 使用图片替换文字   2. 把文字font-size设置得比较大，line-height设置得比较小，但是度不好把控
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-wei-xin-xuan-ran-ceng-ji/">
+                        css动效之微信渲染层级 
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-20</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            坑
+
+rotate() 并不是rotateX和rotateY的缩写，而是rotateZ的简写...
+光设置background: url(./popout.png); 图片并不会显示，加上 background-size: contain就好了
+移动端的hover出发之后，用户放开手后，不会恢复之前的状态
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-wei-xin-xuan-ran-ceng-ji/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/transform-scale-de-yi-xie-xiao-keng/">
+                        transform: scale的一些小坑
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-19</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            想要的效果：hover时候内容变大，但是发现文字会抖动 ，大概代码如下
+&amp;lt;div class=&amp;quot;list&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;item green&amp;quot;&amp;gt;我是一个绿色的div&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+     .list:hover .green {
+        transform: scale(2);
+        transition-duration: 1s;
+      }
+&amp;lt;/style&amp;gt;
+
+暂时的解决方案是
+.list:hover .green {
+    transform: scale(2)  translateZ(0);
+    transition-duration: 1s;
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/transform-scale-de-yi-xie-xiao-keng/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/wei-lai-yi-ge-yue-de-ji-hua/">
+                        未来一个月的计划
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-18</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            vue-chat
+
+ 检查当前的逻辑，确保基本功能正常
+ 提交到腾讯云，暂不使用docker
+
+深入基础
+
+ css变形动画transform
+ css动画animation
+ canvas绘图
+ echarts
+ d3.js
+ 正则表达式
+ Promise
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/wei-lai-yi-ge-yue-de-ji-hua/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/xin-zi-shi/">
                         新姿势
                     </a>
                 </h2>
@@ -134,14 +285,14 @@ todo app
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/xin-zi-shi">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/xin-zi-shi/">Read More ~</a>
                             </div>
                 </div>
             </article>
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/typescript-cai-keng">
+                    <a href="https://angrychocobo.github.io/post/typescript-cai-keng/">
                         TypeScript踩坑
                     </a>
                 </h2>
@@ -174,14 +325,14 @@ declare module &#39;*.vue&#39; {
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/typescript-cai-keng">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/typescript-cai-keng/">Read More ~</a>
                             </div>
                 </div>
             </article>
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">
                         Vue-Chat 项目问题：Model关联查询
                     </a>
                 </h2>
@@ -245,14 +396,14 @@ type: Sequelize.STRING,
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">Read More ~</a>
                             </div>
                 </div>
             </article>
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">
+                    <a href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">
                         vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
                     </a>
                 </h2>
@@ -306,14 +457,14 @@ computed: {
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">Read More ~</a>
                             </div>
                 </div>
             </article>
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">
                         Vue-Chat项目问题汇总
                     </a>
                 </h2>
@@ -454,18 +605,19 @@ TODO 头像上传和修改
 
  登陆次数统计
  头像相关代码重构
+ 记录未发送的草稿消息
 
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-hui-zong">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">Read More ~</a>
                             </div>
                 </div>
             </article>
             
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">
                         Vue-Chat项目问题：socket.io uws not found
                     </a>
                 </h2>
@@ -485,150 +637,7 @@ Update: Seems, that uws is not required for the client side. I could remove uws 
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu">
-                        Vue-Chat项目问题：设置vant-list的滚动位置到底部
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-03-03</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            起因：
-消息列表打开以后应该可以显示列表的最后一条，也就是说消息列表会滚动到底部
-解决方法：
-为van-list设置ref，通过this.refs.xx.refs.xx.refs.xx.el来获取实际dom,并调用dom.scrollIntoView()来实现
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/vue-cli-zhi-chi-alias-bie-ming-de-pei-zhi-fang-shi">
-                        Vue-cli支持alias别名的配置方式
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-02-28</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            项目根目录创建一个vue.config.js文件
-const path = require(&#39;path&#39;);
-function resolve (dir) {
-    return path.join(__dirname, dir)
-}
-module.exports = {
-    lintOnSave: true,
-    chainWebpack: (config)=&amp;gt;{
-        config.resolve.alias
-            .set(&#39;@$&#39;, resolve(&#39;src&#39;))
-            .set(&#39;@assets&#39;,resolve(&#39;src/assets&#39;))
-            .set(&#39;@components&#39;,resolve(&#39;src/components&#39;))
-            .set(&#39;@views&#39;,resolve(&#39;src/views&#39;))
-            .set(&#39;@pages&#39;,resolve(&#39;src/pages&#39;))
-            .set(&#39;static&#39;,resolve(&#39;src/static&#39;))
-    }
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/vue-cli-zhi-chi-alias-bie-ming-de-pei-zhi-fang-shi">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/typescript-bi-ji">
-                        TypeScript笔记
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-02-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-tsc --init生成的配置文件中，不包含include和exclude，默认会编译目录下所有ts文件（猜测）
-配置noImplicitAny来禁止any类型
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/typescript-bi-ji">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io//post/jumper">
-                        Jumper
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-01-09</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            构成
-
-player
-box
-
-细节
-
-生成距离的box
-camera跟随移动
-按压 变形
-抛物线移动
-碰撞检测
-
-跳到平台上
-边缘坠落
-跳出平台
-
-
-如何让物体按轨迹移动
-生成移动轨迹 -&amp;gt; 生成抛物线轨迹 （创造线条来辅助）
-使用精灵来当作HUD
-
-坑
-.parameters : Object
-一个包含着构造函数中每个参数的对象。在对象实例化之后，对该属性的任何修改都不会改变这个几何体。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io//post/jumper">Read More ~</a>
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">Read More ~</a>
                             </div>
                 </div>
             </article>
@@ -638,7 +647,7 @@ camera跟随移动
     <div class="pagination-container">
         
                 
-                    <a href="https://angrychocobo.github.io//page/2/" class="page-btn btn">下一页</a>
+                    <a href="https://angrychocobo.github.io/page/2" class="page-btn btn">下一页</a>
                     
     </div>
     
@@ -651,7 +660,7 @@ camera跟随移动
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1589795143379)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590074516680)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

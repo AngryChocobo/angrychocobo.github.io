@@ -1,0 +1,445 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    老桔的小站（悄咪咪
+</title>
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590074516680">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://angrychocobo.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://angrychocobo.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://angrychocobo.github.io/">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590074516680" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    老桔的小站（悄咪咪
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/js-shi-jian-xun-huan-xue-xi-1/">
+                        js Event Loop学习  异步执行顺序 
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-29</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            console.log(&#39;start&#39;)
+
+setTimeout(function() {
+    console.log(&#39;timeout&#39;)
+}, 0)
+
+new Promise(function(resolve) {
+    console.log(&#39;promise&#39;)
+    resolve()
+}).then(function() {
+    console.log(&#39;promise resolved&#39;)
+})
+
+console.log(&#39;end&#39;)
+
+在js的Event Loop中，每一次循环叫做一个tick
+macrotask(task) 和 microtask(jobs)
+在ECMAScript中，microtask称为jobs，macrotask可称为task
+task包括
+
+script(整体代码)
+setTimeout, setInterval, setImmediate,
+I/O
+ajax请求不属于宏任务，js线程遇到ajax请求，会将请求交给对应的http线程处理，一旦请求返回结果，就会将对应的回调放入宏任务队列，等请求完成执行
+
+jobs包括
+
+process.nextTick
+Promise then
+Object.observe(已废弃)
+MutationObserver(html5新特性)
+运行机制：
+
+
+执行一个宏任务（执行栈中没有就从事件队列中获取）
+执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
+宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
+当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
+渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
+
+
+在每次tick运行时，会从task queue中依次执行，task执行过程中遇到microtask，便将其放到microtasks queue中；当task执行完毕后，检查microtask queue是否为空，若不为空则依次执行microtask queue的microtask；最后，这次tick执行完毕，开始执行第二次tick
+浏览器包含哪些进程？
+
+Browser进程：浏览器的主进程（负责协调、主控），只有一个。作用有
+
+负责浏览器界面显示，与用户交互。如前进，后退等
+负责各个页面的管理，创建和销毁其他进程
+将Renderer进程得到的内存中的Bitmap，绘制到用户界面上
+
+
+第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建
+GPU进程：最多一个，用于3D绘制等
+浏览器渲染进程（浏览器内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为网络资源的管理，下载等
+
+浏览器渲染进程（浏览器内核）的常驻线程
+
+
+GUI渲染线程
+负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行。注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
+JS引擎线程
+也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）。JS引擎线程负责解析Javascript脚本，运行代码。JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序。同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
+事件触发线程
+归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）。当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中。当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）。
+定时触发器线程
+传说中的setInterval与setTimeout所在线程。浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）。因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）。注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
+异步http请求线程
+在XMLHttpRequest在连接后是通过浏览器新开一个线程请求。将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
+
+实际上每个任务都会有一个对应的任务源 target source(任务源)，每个任务都放到对应任务源的任务队列中，每个任务源根据不同浏览器或其他引擎 (例如 nodejs) 的实现，自己安排不同的优先级，从而调控某类任务的执行顺序。例如浏览器认为鼠标事件频率很高，所以可以把鼠标事件的任务源优先级设的更高，而 nodejs 中 i/o 优先级更高，就针对此类任务源可以提升执行优先级。
+参考文献：
+
+浏览器中的进程和线程
+从Promise来看JavaScript中的Event Loop、Tasks和Microtasks
+JavaScript 中的 task queues
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/js-shi-jian-xun-huan-xue-xi-1/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/liang-shu-zhi-he-1/">
+                        两数之和1 
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-27</time>
+                    
+                        <a href="https://angrychocobo.github.io/tag/oTOBbAZF5/" class="post-tag i-tag
+                            i-tag-other_4">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            题目描述
+
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+示例:
+给定 nums = [2, 7, 11, 15], target = 9
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+
+解法1 直接双循环莽
+var twoSum = function(nums, target) {
+    for(var i=0;i&amp;lt;nums.length;i++){
+        for(var j=i+1;j&amp;lt;nums.length;j++){
+            if(nums[i]+nums[j]==target)
+                return [i,j];
+        }
+    }
+};
+
+时间复杂度：O(n2)
+解法2 两遍哈希表
+首先，js是没有内置的哈希表数据结构的。所以先用java来做这道题，日后记得学习哈希表知识，并尝试自己用js实现一个出来！ @自己
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
+        for (int i = 0; i &amp;lt; nums.length; i++) {
+            map.put(nums[i], i);
+        }
+        for (int i = 0; i &amp;lt; nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement) &amp;amp;&amp;amp; map.get(complement) != i) {
+                return new int[] { i, map.get(complement) };
+            }
+        }
+        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
+    }
+}
+
+解法3 一遍哈希表
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;();
+        for (int i = 0; i &amp;lt; nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+        throw new IllegalArgumentException(&amp;quot;No two sum solution&amp;quot;);
+    }
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/liang-shu-zhi-he-1/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu/">
+                        两数之和2 输入有序数组
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-27</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            题目要求
+
+给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+说明:
+返回的下标值（index1 和 index2）不是从零开始的。
+你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
+示例:
+输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+
+解法一： 直接双重循环
+var twoSum = function(nums, target) {
+   for(var i = 0; i&amp;lt;nums.length; i++) {
+       for(var j = i + 1; j&amp;lt;nums.length; j++) {
+           if ((nums[i] + nums[j] == target) &amp;amp;&amp;amp; (i &amp;lt; j)) {
+               return [i+1, j+1];
+           }
+       }
+   }
+};
+
+上来直接想到的方法，很笨，但是奏效。执行用时380 ms，内存消耗35 MB
+时间复杂度为O（n2）
+解法二： 双指针
+var twoSum = function(nums, target) {
+    var i = 0, j = nums.length -1;
+		while (i &amp;lt; j) {
+        if (nums[i] + nums[j] == target) {
+            return [i+1, j+1]; 
+        }
+        if(nums[i] + nums[j] &amp;gt; target) {
+            j--;
+        } else {
+            i++;
+        }
+	}
+};
+
+充分理由给定的数组是有序的这一特性。执行用时80 ms，内存消耗35.2 MB
+时间复杂度为O(n)
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/liang-shu-zhi-he-2-shu-ru-you-xu-shu-zu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/hello-gridea/">
+                        Hello Gridea
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-12</time>
+                    
+                        <a href="https://angrychocobo.github.io/tag/sklD6kTGc/" class="post-tag i-tag
+                            i-tag-other_4">
+            #Gridea
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://angrychocobo.github.io/post/hello-gridea/" class="post-feature-image" style="background-image:url(https://angrychocobo.github.io//post-images/hello-gridea.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/hello-gridea/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://angrychocobo.github.io/page/3/" class="page-btn btn">上一页</a>
+            
+                
+    </div>
+    
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590074516680)">
+        </div>
+        <h1 class="id_card-title">
+            老桔的小站（悄咪咪
+        </h1>
+        <h2 class="id_card-description">
+            边学边忘
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+   | 
+  <a class="rss" href="https://angrychocobo.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>
