@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-05-31T02:32:35.223Z</updated>
+    <updated>2020-05-31T02:33:56.532Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io/atom.xml"/>
@@ -61,6 +61,7 @@
 </ol>
 <h3 id="感悟">感悟</h3>
 <p>实际上应该是树的后续遍历的非递归实现方法。自己数据结构太菜了，导致没有思路</p>
+<h1 id="吃了没文化的亏">吃了没文化的亏</h1>
 ]]></content>
     </entry>
     <entry>
@@ -187,9 +188,9 @@ export default {
         <updated>2020-05-22T14:53:17.000Z</updated>
         <content type="html"><![CDATA[<h3 id="遇到的问题">遇到的问题</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6124211"><label class="task-list-item-label" for="task-item-6124211"> 高分屏的canvas内容发虚</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7485777"><label class="task-list-item-label" for="task-item-7485777"> 绘制圆 context.arc 中的弧度值大小，并不随顺时针/逆时针而改变，换句话说，逆时针画一个四分之三的圆弧，应该为： context.arc(x, y, radius,  0, Math.PI * 0.5, true)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1839495"><label class="task-list-item-label" for="task-item-1839495"> 如果当前代码的path没有封闭，closePath会自动进行封闭</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8929758"><label class="task-list-item-label" for="task-item-8929758"> 高分屏的canvas内容发虚</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-234627"><label class="task-list-item-label" for="task-item-234627"> 绘制圆 context.arc 中的弧度值大小，并不随顺时针/逆时针而改变，换句话说，逆时针画一个四分之三的圆弧，应该为： context.arc(x, y, radius,  0, Math.PI * 0.5, true)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2620768"><label class="task-list-item-label" for="task-item-2620768"> 如果当前代码的path没有封闭，closePath会自动进行封闭</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -258,18 +259,18 @@ export default {
         <updated>2020-05-18T14:57:09.000Z</updated>
         <content type="html"><![CDATA[<h2 id="vue-chat">vue-chat</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4920924"><label class="task-list-item-label" for="task-item-4920924"> 检查当前的逻辑，确保基本功能正常</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4219447"><label class="task-list-item-label" for="task-item-4219447"> 提交到腾讯云，暂不使用docker</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5104807"><label class="task-list-item-label" for="task-item-5104807"> 检查当前的逻辑，确保基本功能正常</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9845544"><label class="task-list-item-label" for="task-item-9845544"> 提交到腾讯云，暂不使用docker</label></li>
 </ul>
 <h2 id="深入基础">深入基础</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1251728"><label class="task-list-item-label" for="task-item-1251728"> css变形动画transform</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8141394"><label class="task-list-item-label" for="task-item-8141394"> css动画animation</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4102098"><label class="task-list-item-label" for="task-item-4102098"> canvas绘图</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-415801"><label class="task-list-item-label" for="task-item-415801"> echarts</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1516512"><label class="task-list-item-label" for="task-item-1516512"> d3.js</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7439281"><label class="task-list-item-label" for="task-item-7439281"> 正则表达式</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2849634"><label class="task-list-item-label" for="task-item-2849634"> Promise</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2674062"><label class="task-list-item-label" for="task-item-2674062"> css变形动画transform</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-703526"><label class="task-list-item-label" for="task-item-703526"> css动画animation</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8736647"><label class="task-list-item-label" for="task-item-8736647"> canvas绘图</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3869351"><label class="task-list-item-label" for="task-item-3869351"> echarts</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-385967"><label class="task-list-item-label" for="task-item-385967"> d3.js</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6633490"><label class="task-list-item-label" for="task-item-6633490"> 正则表达式</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6711491"><label class="task-list-item-label" for="task-item-6711491"> Promise</label></li>
 </ul>
 ]]></content>
     </entry>
@@ -295,8 +296,8 @@ export default {
 </ul>
 <h3 id="todo-app">todo app</h3>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-12427"><label class="task-list-item-label" for="task-item-12427">   一个mac应用，设置随机时间，切换主题颜色</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9851587"><label class="task-list-item-label" for="task-item-9851587">   切换密码显示、隐藏的组件</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5077835"><label class="task-list-item-label" for="task-item-5077835">   一个mac应用，设置随机时间，切换主题颜色</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7648705"><label class="task-list-item-label" for="task-item-7648705">   切换密码显示、隐藏的组件</label></li>
 </ul>
 ]]></content>
     </entry>
