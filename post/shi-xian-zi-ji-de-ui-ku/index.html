@@ -1,0 +1,274 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    实现自己的ui库 | 老桔的小站（悄咪咪
+</title>
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892353005">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://angrychocobo.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://angrychocobo.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://angrychocobo.github.io/">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892353005" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    老桔的小站（悄咪咪
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            实现自己的ui库
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-05-30</time>
+                            
+                        </div>
+                        
+                                <div class="post-content">
+                                    <blockquote>
+<p>npm初始化相关的操作步骤略</p>
+</blockquote>
+<h3 id="跨组件传值的方法">跨组件传值的方法：</h3>
+<ul>
+<li>
+<p>provide/inject， 缺点： provide的值可以被自组件修改，并且不是响应式的 (暂时的理解)</p>
+</li>
+<li>
+<p>自定义dispatch和broadcast （element也是这么干的）</p>
+<p>要实现的 dispatch 和 broadcast 方法，将具有以下功能：</p>
+</li>
+</ul>
+<p>在子组件调用 dispatch 方法，向上级指定的组件实例（最近的）上触发自定义事件，并传递数据，且该上级组件已预先通过 $on 监听了这个事件；<br>
+相反，在父组件调用 broadcast 方法，向下级指定的组件实例（最近的）上触发自定义事件，并传递数据，且该下级组件已预先通过 $on 监听了这个事件。</p>
+<pre><code class="language-js">// emittter.js 
+function broadcast(componentName, eventName, params) {
+ this.$children.forEach((child) =&gt; {
+   const name = child.$options.name;
+   if (name === componentName) {
+     child.$emit.apply(child, [eventName].concat(params));
+   } else {
+     broadcast.apply(child, [componentName, eventName].concat([params]));
+   }
+ });
+}
+export default {
+ methods: {
+   dispatch(componentName, eventName, params) {
+     console.log(&quot;inner dispatch&quot;, this.$parent);
+     let parent = this.$parent || this.$root;
+     let name = parent.$options.name;
+
+     while (parent &amp;&amp; (!name || name !== componentName)) {
+       parent = parent.$parent;
+
+       if (parent) {
+         name = parent.$options.name;
+       }
+     }
+     if (parent) {
+       parent.$emit.apply(parent, [eventName].concat(params));
+     }
+   },
+   broadcast(componentName, eventName, params) {
+     broadcast.call(this, componentName, eventName, params);
+   },
+ },
+};
+
+</code></pre>
+<p>boradcast和dispatch原理就是递归的向<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">或</mi></mrow><annotation encoding="application/x-tex">parent或</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">或</span></span></span></span>children寻找name和调用时传入的componentName匹配的vue组件实例，找到了的话，就让它自己<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>m</mi><mi>i</mi><mi>t</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">个</mi><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">由</mi><mi mathvariant="normal">于</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">可</mi><mi mathvariant="normal">以</mi></mrow><annotation encoding="application/x-tex">emit一个event，由于组件可以</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">由</span><span class="mord cjk_fallback">于</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">以</span></span></span></span>on自己$emit的事件，所以实现了通信的效果。（自己说话自己接收）</p>
+<h4 id="这种方法的不足之处">这种方法的不足之处</h4>
+<ol>
+<li>子组件的name如果修改了，或者没写name，那么通信就会失败; 如果name相同，并且监听了相同的eventName，那么这些相同name的组件都会触发对应的函数。（由于是业务组件，所以这个缺点可以避免）</li>
+<li>mounted顺序是先自组件，后父组件，那么如果子组件mounted时候去dispatch，父组件mounted时候<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>n</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">就</mi><mi mathvariant="normal">会</mi><mi mathvariant="normal">接</mi><mi mathvariant="normal">收</mi><mi mathvariant="normal">不</mi><mi mathvariant="normal">到</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">应</mi><mi mathvariant="normal">的</mi><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">。</mi><mi mathvariant="normal">解</mi><mi mathvariant="normal">决</mi><mi mathvariant="normal">方</mi><mi mathvariant="normal">案</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">父</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">在</mi><mi>c</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi mathvariant="normal">阶</mi><mi mathvariant="normal">段</mi><mi mathvariant="normal">去</mi></mrow><annotation encoding="application/x-tex">on，就会接收不到对应的event。解决方案： 父组件在created阶段去</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">就</span><span class="mord cjk_fallback">会</span><span class="mord cjk_fallback">接</span><span class="mord cjk_fallback">收</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">到</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">应</span><span class="mord cjk_fallback">的</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">。</span><span class="mord cjk_fallback">解</span><span class="mord cjk_fallback">决</span><span class="mord cjk_fallback">方</span><span class="mord cjk_fallback">案</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">父</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">在</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord cjk_fallback">阶</span><span class="mord cjk_fallback">段</span><span class="mord cjk_fallback">去</span></span></span></span>on</li>
+</ol>
+<h4 id="语法分析">语法分析</h4>
+<ol>
+<li>broadcast和dispatch二者都是递归操作，为何broadcast把函数抽取出去了呢？</li>
+<li>child.<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>m</mi><mi>i</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi><mo>(</mo><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mo separator="true">,</mo><mo>[</mo><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>N</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo>]</mo><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>n</mi><mi>c</mi><mi>a</mi><mi>t</mi><mo>(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>s</mi><mo>)</mo><mo>)</mo><mo separator="true">;</mo><mi mathvariant="normal">为</mi><mi mathvariant="normal">什</mi><mi mathvariant="normal">么</mi><mi mathvariant="normal">这</mi><mi mathvariant="normal">里</mi><mi mathvariant="normal">不</mi><mi mathvariant="normal">改</mi><mi mathvariant="normal">成</mi><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">emit.apply(child, [eventName].concat(params)); 为什么这里不改成 child.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mopen">(</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">d</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mclose">]</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mclose">)</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">什</span><span class="mord cjk_fallback">么</span><span class="mord cjk_fallback">这</span><span class="mord cjk_fallback">里</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">改</span><span class="mord cjk_fallback">成</span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">d</span><span class="mord">.</span></span></span></span>emit.call(child, eventName,params) 呢？</li>
+</ol>
+<h3 id=""></h3>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io/post/vue-shi-jian-jian-ting-qi-de-xi-jie-ji-lu/">
+                                <h3 class="post-title">
+                                    Vue事件监听器的细节记录
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E8%B7%A8%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95">跨组件传值的方法：</a>
+<ul>
+<li><a href="#%E8%BF%99%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84">这种方法的不足之处</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90">语法分析</a></li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+   | 
+  <a class="rss" href="https://angrychocobo.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+</body>
+
+</html>

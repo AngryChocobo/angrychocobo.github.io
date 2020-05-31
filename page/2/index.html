@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590074516680">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892353005">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590074516680" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892353005" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,325 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">
+                        Vue-Chat 项目问题：Model关联查询
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-30</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            问题1: 使用Class生命的Model，关联查询会出现报错
+例如：
+
+class Friends extends Sequelize.Model {}
+Friends.init(
+  {
+    friendRemark: {
+      type: Sequelize.STRING,
+    },
+  },
+  {sequelize, modelName: &#39;newFriends&#39;},
+)
+
+
+class Users = extends Sequelize.Model {}
+Users.init({
+  username: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  nickname: {
+    type: Sequelize.STRING,
+  },
+  src: {
+    type: Sequelize.STRING,
+  }
+}, {sequelize, modelName: &#39;newUsers&#39;},
+)
+
+
+Friends.belongsTo(Users, {foreignKey: &#39;userId&#39;, as: &#39;UserInfo&#39;})
+Friends.belongsTo(Users, {foreignKey: &#39;friendId&#39;, as: &#39;FriendUserInfo&#39;})
+
+
+
+SELECT newFriends.id, newFriends.friendRemark, newFriends.userId, newFriends.friendId, UserInfo.id AS UserInfo.id, UserInfo.username AS UserInfo.username, UserInfo.password AS UserInfo.password, UserInfo.nickname AS UserInfo.nickname, UserInfo.src AS UserInfo.src, FriendUserInfo.id AS FriendUserInfo.id, FriendUserInfo.username AS FriendUserInfo.username, FriendUserInfo.password AS FriendUserInfo.password, FriendUserInfo.nickname AS FriendUserInfo.nickname, FriendUserInfo.src AS FriendUserInfo.src FROM newFriends AS newFriends LEFT OUTER JOIN newUsers AS UserInfo ON newFriends.id = UserInfo.userId LEFT OUTER JOIN newUsers AS FriendUserInfo ON newFriends.id = FriendUserInfo.friendId;
+sequelize.js:1187
+Unhandled rejection SequelizeDatabaseError: Unknown column &#39;FriendUserInfo.friendId&#39; in &#39;on clause&#39;
+
+暂时的解决方法：使用define语法
+const Friends = sequelize.define(&#39;newFriends&#39;, {
+friendRemark: {
+type: Sequelize.STRING,
+},
+})
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">
+                        vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-10</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            代码很简单：
+&amp;lt;van-list&amp;gt;
+      &amp;lt;van-cell
+        class=&amp;quot;friend&amp;quot;
+        v-for=&amp;quot;friend in friendRequestList&amp;quot;
+        :key=&amp;quot;friend.id&amp;quot;
+        @click=&amp;quot;checkFriendInfo(friend)&amp;quot;
+      &amp;gt;
+        &amp;lt;img :src=&amp;quot;getImgSrc(friend.src)&amp;quot; :alt=&amp;quot;friend.name&amp;quot; /&amp;gt;
+        &amp;lt;span class=&amp;quot;username&amp;quot;&amp;gt;{{ friend.username }}&amp;lt;/span&amp;gt;
+      &amp;lt;/van-cell&amp;gt;
+    &amp;lt;/van-list&amp;gt;
+
+...
+computed: {
+    friendRequestList() {
+      return this.$store.state.friendRequestList
+    },
+}
+...
+
+&amp;lt;style lang=&amp;quot;less&amp;quot; scoped&amp;gt;
+.friend-request {
+  padding: 0;
+  .friend {
+    /deep/ .van-cell__value {
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+&amp;lt;/style&amp;gt;
+
+首先猜测是vant的bug，先用简单div试试
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">
+                        Vue-Chat项目问题汇总
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-03</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            socket.io和express组合
+
+const express = require(&#39;express&#39;)
+const app = express()
+const http = require(&#39;http&#39;).createServer(app)
+const io = require(&#39;socket.io&#39;)(http)
+http.listen(8888)
+// 注意不能用app.listen
+
+发送一条消息后，对应的是sql的insert，并不会返回被插入的这条记录，于是前端自己保存了临时消息信息，push到消息列表中
+其他人为自己发送消息，可以通过io.sockets.sockets获取所有连接中的socket，从而找到对应的socket，让他为用户emit信息，达到推送的目的。
+登录用户为A，此时B为A发送了消息，则A的消息列表中就应该出现该消息，可选的两种做法是：
+
+重新加载A用户的消息列表
+将新消息pushA用户的消息列表
+方法2面临的问题就是需要将消息列表提取到更上层的组件中去，因为推送的事件接收必须放到很高级的页面中去，（最起码不能在聊天列表页），会涉及到vuex
+而方法1虽然简单，但是不提取相关命令到vuex的话，也会一层层传递命令，所以抽取vuex似乎成了必须的选择
+
+推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）
+一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据
+Some pre-processors, such as Sass, may not be able to parse &amp;gt;&amp;gt;&amp;gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &amp;gt;&amp;gt;&amp;gt; and work exactly the same.
+实现步骤
+
+vue-cli创建项目
+安装必备的插件vue-router、moment、axios、vant并进行配置和封装
+配置webpack的目录别名alias
+写页面，会话列表页、会话页、好友列表页等
+创建数据库，创建user、message表
+项目下创建server目录，比使用npm init -y初始化
+server目录安装express、cors、socket.io库
+express写会话页的消息列表、发送消息接口
+会话页调用消息列表、发送消息接口
+发现这样无法做到新消息的推送，前端项目引入socket.io-client
+在显示消息列表的时候，计划将新发送的消息临时保存，待服务器成功响应之后将临时消息插入到消息列表中
+发现在会话页再进行socket.io连接太晚了，想到用vuex抽取相关数据到顶层，并在store中进行socket.io的初始化和相关接口改造
+一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：axios请求的用户数据和socket.io的消息数据
+放弃query string，使用params来跳转路由传递数据
+想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现
+封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页
+同理封装NavBar，为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式
+想到NavBar得支持插槽
+支持插槽以后，样式会和其他原有的样式不一致，所以配置主题 (todo)
+好友列表页的搜索功能，搜索结果列表
+写搜索好友的接口和sql，sql的模糊搜索
+写好友列表接口和sql
+服务器安装nginx git nodejs mysql
+生成git key： ssh-keygen
+应该在创建一个临时会话列表的表，之前想简单的把有过聊天记录的用户查出来，但仔细想一下，用户是可以移除对话记录的
+写会话列表接口的sql
+欲实现登陆注册的功能，前端需要对用户的密码进行不可逆的加密，引入库bcrypt
+登陆请求写到了vuex中，这样登陆成功后跳转页面就需要在mutation或action中使用router，暂时没想到好的办法，作为commit的payload传吧 ** store直接引入router对象即可 **
+要有生成jwt的代码，引入jsonwebtoken库，登陆成功后返回token；以及校验token、存储token的逻辑
+将token存到store中；封装axios，将token放到请求header中；axios的error进行统一处理
+登陆成功后将token和loggedInUser存到localstorage中
+store的token和loggedInUser初值，从localstorage取，以避免刷新页面登陆状态丢失
+跳转路由的登陆状态，由路由守卫来实现
+**socket存在了store中，刷新就会丢失，难道还要再存到localstorage中？或者说，应该什么时候去创建socket连接?目前放到了store.js最后 **
+写用户详情页界面，开始准备实现添加好友功能
+添加好友的细节设定：
+
+在好友搜索，通过id或username查找，之后点击查看详情，发送好友申请，可选备注内容
+同一个目标只能发出一次申请
+收到好友请求，会显示在好友列表的专属区域内，点击查看详情，可以通过或拒绝
+若通过好友请求，则自动改添加对方到会话列表
+若拒绝好友请求，申请人会收到通知，并可以再次发出申请
+TODO 设置好友申请的自动通过
+
+
+申请好友记录 做成 单独表，A申请加B，同时，B也可能申请A，所以通过时候要同时update两条记录
+查询当前用户是否是自己的好友，有两种办法：
+
+查friend表，看二者id，是否存在对应关系
+查makeFriendRecord表，看二者id，是否存在对应关系，并且状态stats是已通过
+这里我觉得只应该使用方法1，如果2人成为好友，之后又解除了好友关系，则存在已通过的记录，但实际上并不是好友
+
+
+TODO 查询用户信息时，sql不应该返回password(不能简单粗暴使用select *)
+查询出来用户信息以后，根据是否是好友来区别显示
+如何实现添加好友功能？
+
+普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中
+使用socket.io发出好友请求，后续逻辑一致
+普通的axios无法访问到socket.io的socket，并emit，所以只能用方法2
+
+
+突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理 (还需要整理)
+实现查看自己“新的好友“的列表功能
+为什么action要规定使用context来dispatch和访问state呢？
+计划实现未读消息，
+
+每条消息都加入已读的字段，当用户进入和某用户聊天页面后，将对该用户的所有未读状态改为已读，未读消息条数由前端自行处理
+但是还要看到和每个人的未读消息数，应该在更新会话列表接口时得到这一数据
+
+
+系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来
+渐渐的，store变得很大，该拆分了，先把actions里的socket.io部分拆出去
+注意mock数据时候要补全相关表
+创建删除数据库数据的快捷接口
+忘记了加username的防重复判断，计划使用Sequelize重构时加入
+~~ BUG 从route.params.xx取出来的id数字会变成字符串，导致全等判断为false ~~
+TODO 注册后自动登录
+TODO 新用户登陆的引导添加好友
+TODO 新用户登陆后选择头像、设置昵称
+TODO 头像上传和修改
+
+
+ 新朋友数量提醒
+ 注册和登陆的验证码
+ 对话气泡样式
+ 可能出现的重复通过好友请求（insert之前必须先select）
+ 解决发送消息 -&gt; 后退，看不到自己的最后发言的bug
+ 添加好友的推送
+ socket连接错误的提示
+ 使用sequelize重新实现mysql相关接口
+
+ 登陆
+ 注册
+ 搜索用户
+ 查看用户信息(包含是否是好友的状态)
+ 发送好友请求
+ 查看好友列表
+ 查看好友请求列表
+ 查看好友请求
+ 通过好友请求
+
+
+ 登陆次数统计
+ 头像相关代码重构
+
+ 封装了UserAvatar组件，使用了v-bind=&#34;attrs&#34;来向子组件传递参数
+
+
+ 记录未发送的草稿消息
+ localStorage中不再保存用户的具体信息，以免修改了数据之后不会显示最新的值
+ props的default仅对undefined生效，UserAvatar的头像，从数据库读取是null，所以不会显示默认的图片
+ 循环引用的问题。axios逻辑需要拿到store的token， store一开始初始化，需要用axios请求接口。 解决方案：参考了手摸手的项目模版，大佬是在beforeRouter时候做的判断，并请求接口
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">
+                        Vue-Chat项目问题：socket.io uws not found
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-03</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            import io from &#39;socket.io-client&#39;
+If you don&#39;t add &amp;quot;-client&amp;quot;, you are using the server component. This won&#39;t work, as there is no &amp;quot;fs&amp;quot; on the browser, just on nodejs side.
+To get typescript import to work, you need npm install of @types/socket.io-client
+Update: Seems, that uws is not required for the client side. I could remove uws without running into errors. Will recheck that, if required...
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-she-zhi-vant-list-de-gun-dong-wei-zhi-dao-di-bu/">
@@ -320,232 +639,6 @@ three.js中，文字mesh需要重设中心点，否则会默认按照左测作�
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/webgl-day2-demo-xue-xi/">
-                        Webgl day2 颜色的影响
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这个模版demo需要的资源
-
-DAT.GUI.min.js
-AxisHelper 作者自己写的
-
-程序流程分析
-
-需要创建一个会受到光照影响的Phong球体
-使用点光源PointLight
-
-
-知识点
-
-为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)
-环境光(Ambient light)
-漫反射颜色(Diffuse Color)
-自发光颜色(Emissive Color)
-镜面反射颜色(Specular Color)
-光泽度(Shininess amount)
-不透明度(Opacity amount)
-
-疑惑
-改进
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/webgl-day2-demo-xue-xi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/webgl-day1/">
-                        Webgl day1 基础的几何球体
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～
-每日争取做完一个demo
-
-这个模版demo需要的资源
-
-KeyboardState.js 猜测是一个按键处理程序
-THREE.clock 时钟？ 程序中没有用到
-Detector.js 创建了全屏幕大小的canvas
-Stats.js 插件实现了性能、Fps监控
-OrbitControls.js 轨道控制器，实现了拖拽改变相机位置
-全屏幕、改变尺寸js和jquery不再赘述
-
-程序流程分析
-
-首先初始化一些全局变量
-之后就是两个方法调用
-init()初始化
-animate()启动
-
-知识点
-
-MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）
-SphereGeometry： 球几何体
-MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材
-MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）
-Skybox： 天空盒
-创建相同的物体，可以使用Geometry.clone()方法
-scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）
-作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position
-
-疑惑
-
- NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？
- 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？
- 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）
- floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？
-
-改进
-
-ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/webgl-day1/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti/">
-                        Three.js和webgl学习过程遇到的问题
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-12-24</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Q：下载的gltf模型路径
-要么配置webpacl-loader来 加载； 要么使用相对路径，将模型放到html文件的同级路径下（对于vue-cli项目就是public目录）
-Q：加载下载的gltf模型后黑漆漆的什么都看不到
-需要加入光源才能看到。（但是为啥可以看到加入的Cube呢？？？）
-var light = new THREE.PointLight(0xFFFF00);
-/* position the light so it shines on the cube (x, y, z) */
-light.position.set(10, 0, 25);
-this.scene.add(light);
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/vue-todo-xiang-mu/">
-                        Vue Todo项目
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-10-31</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...
-这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。
-记录遇到的问题
-
-
- 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick
-
-
- 双击todo，使其可编辑，input显示出来自动获取焦点
-
-
- 子组件input如何修改父组件传递的input值？
-
- 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同
- 父组件为子组件传递回调函数，由子组件调用
-
-
-
-  和   和 区别
-
-
- 如何实现  答：  如何实现  答： 
-
-
- 如何调用父组件的自定义指令
-
-
- 为什么key只能是数字或字符串？
-
-
- v-if切换组件时，是否会导致子组件的create和destory ?
-
-
-使用自定义指令实现
-&amp;lt;input type=&amp;quot;text&amp;quot; ...  v-todo-focus=&amp;quot;todo === editedTodo&amp;quot;&amp;gt;
-directives: {
-			&#39;todo-focus&#39;: function (el, binding) {
-				if (binding.value) {
-					el.focus();
-				}
-			}
-		}
-
-
- 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？
- @click=&#34;someFun(value)&#34; 绑定的不是函数的返回值？
- 如何通过watch实现修改todos时自动记录到localStorage ?
-
-watch: {
-        todos: {
-            deep: true,
-            handler: todoStorage.save
-        }
-    }
-
-可以优化的点
-
-按键是否回车可以改为 @keyup.enter=&amp;quot;xx&amp;quot; 来处理
-
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-todo-xiang-mu/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -566,7 +659,7 @@ watch: {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590074516680)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590892353005)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

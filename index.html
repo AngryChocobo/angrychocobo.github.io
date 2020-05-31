@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590074516680">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892353005">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590074516680" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892353005" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,6 +99,264 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/bu-shi-yong-di-gui-ru-he-shi-xian-bian-li-shu/">
+                        不使用递归如何实现遍历树？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-31</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            起因是实现vue功能函数，向下查找组件的所有后代组件，找到name符合要求的，递归版本的非常容易实现：
+function _findComponentsDownward(
+  component,
+  componentName,
+  components = []
+) {
+  const children = component.$children;
+  if (children) {
+    for (const child of children) {
+      if (child.$options.name === componentName) {
+        components.push(child);
+      }
+      _findComponentsDownward(child, componentName, components);
+    }
+  }
+  return components;
+}
+
+但是非递归的要如何实现呢？实际上可以用栈来实现～
+function findComponentsDownward(component, componentName) {
+  const components = [];
+  const stack = [];
+  stack.push(component);
+  while (stack.length) {
+    const target = stack.pop();
+    if (target.$options.name === componentName) {
+      components.push(target);
+    }
+    const children = target.$children;
+    if (children) {
+      children.forEach((child) =&amp;gt; {
+        stack.push(child);
+      });
+    }
+  }
+
+原理：
+
+将根组件入栈
+循环直到栈为空
+取出栈顶组件，判断是否是目标
+将该组件的子组件依次入栈（如果存在子组件）
+
+感悟
+实际上应该是树的后续遍历的非递归实现方法。自己数据结构太菜了，导致没有思路
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/bu-shi-yong-di-gui-ru-he-shi-xian-bian-li-shu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/shi-xian-zi-ji-de-ui-ku/">
+                        实现自己的ui库
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-30</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+npm初始化相关的操作步骤略
+
+跨组件传值的方法：
+
+
+provide/inject， 缺点： provide的值可以被自组件修改，并且不是响应式的 (暂时的理解)
+
+
+自定义dispatch和broadcast （element也是这么干的）
+要实现的 dispatch 和 broadcast 方法，将具有以下功能：
+
+
+在子组件调用 dispatch 方法，向上级指定的组件实例（最近的）上触发自定义事件，并传递数据，且该上级组件已预先通过 $on 监听了这个事件；
+相反，在父组件调用 broadcast 方法，向下级指定的组件实例（最近的）上触发自定义事件，并传递数据，且该下级组件已预先通过 $on 监听了这个事件。
+// emittter.js 
+function broadcast(componentName, eventName, params) {
+ this.$children.forEach((child) =&amp;gt; {
+   const name = child.$options.name;
+   if (name === componentName) {
+     child.$emit.apply(child, [eventName].concat(params));
+   } else {
+     broadcast.apply(child, [componentName, eventName].concat([params]));
+   }
+ });
+}
+export default {
+ methods: {
+   dispatch(componentName, eventName, params) {
+     console.log(&amp;quot;inner dispatch&amp;quot;, this.$parent);
+     let parent = this.$parent || this.$root;
+     let name = parent.$options.name;
+
+     while (parent &amp;amp;&amp;amp; (!name || name !== componentName)) {
+       parent = parent.$parent;
+
+       if (parent) {
+         name = parent.$options.name;
+       }
+     }
+     if (parent) {
+       parent.$emit.apply(parent, [eventName].concat(params));
+     }
+   },
+   broadcast(componentName, eventName, params) {
+     broadcast.call(this, componentName, eventName, params);
+   },
+ },
+};
+
+
+boradcast和dispatch原理就是递归的向parent或parent或parent或children寻找name和调用时传入的componentName匹配的vue组件实例，找到了的话，就让它自己emit一个event，由于组件可以emit一个event，由于组件可以emit一个event，由于组件可以on自己$emit的事件，所以实现了通信的效果。（自己说话自己接收）
+这种方法的不足之处
+
+子组件的name如果修改了，或者没写name，那么通信就会失败; 如果name相同，并且监听了相同的eventName，那么这些相同name的组件都会触发对应的函数。（由于是业务组件，所以这个缺点可以避免）
+mounted顺序是先自组件，后父组件，那么如果子组件mounted时候去dispatch，父组件mounted时候on，就会接收不到对应的event。解决方案：父组件在created阶段去on，就会接收不到对应的event。解决方案： 父组件在created阶段去on，就会接收不到对应的event。解决方案：父组件在created阶段去on
+
+语法分析
+
+broadcast和dispatch二者都是递归操作，为何broadcast把函数抽取出去了呢？
+child.emit.apply(child,[eventName].concat(params));为什么这里不改成child.emit.apply(child, [eventName].concat(params)); 为什么这里不改成 child.emit.apply(child,[eventName].concat(params));为什么这里不改成child.emit.call(child, eventName,params) 呢？
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/shi-xian-zi-ji-de-ui-ku/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-shi-jian-jian-ting-qi-de-xi-jie-ji-lu/">
+                        Vue事件监听器的细节记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-30</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            首先存在如下的dom结构
+// Button.vue
+&amp;lt;div @click=&amp;quot;handleDivClick&amp;quot;&amp;gt;
+    &amp;lt;button class=&amp;quot;my-btn&amp;quot; @click=&amp;quot;handleClick&amp;quot;&amp;gt;
+      &amp;lt;slot&amp;gt;&amp;lt;/slot&amp;gt;
+    &amp;lt;/button&amp;gt;
+  &amp;lt;/div&amp;gt;
+
+
+默认事件是冒泡的，所以，点击button，调用handleClick之后，会继续调用handleDivClick
+想要阻止冒泡，可以用两种办法解决 :
+
+handleClick(e) {   e.stopPropagation() }
+&amp;lt;button @click.stop=&amp;quot;handleClick&amp;quot;&amp;gt;
+
+
+若表单中只有一个button，并且没有设置type=&amp;quot;button&amp;quot;，默认type会是submit，点击就会触发表单提交，导致页面刷新，同理有两种办法：
+
+handleClick(e) {   e.preventDefault() }
+&amp;lt;button @click.prevent=&amp;quot;handleClick&amp;quot;&amp;gt;
+
+
+虽然触发页面提交成功了，但是实际上如果没有阻止冒泡的话，div还是会触发点击事件的，所以如果像阻止冒泡并阻止事件的默认行为，可以将以上的方法结合使用，原生的写法省略，vue的话就得： &amp;lt;button  @click.stop.prevent=&amp;quot;handleClick&amp;quot;&amp;gt;，反过来也是可以的 @click.prevent.stop
+如果div @click.self， button @click ，那么点击button时候，不会触发div的click函数， 表现出来的效果类似阻止冒泡，但是实际上还是冒泡了，如果在div外再套一层dom，就可以看出来冒泡的效果。这个self是如何实现的呢？ 也简单： if ( event.target === event.currentTarget ) { //do something }
+passive 一般是用在滚动事件上的修饰符，用来提高移动端的滚动体验。可以提高性能的原因是浏览器每次触发滚动事件时候都会去判断是否存在preventDefault，设置了passive true以后就可以跳过该步骤，从而提高性能（显而易见，passive和 prevent不会同时存在）
+native，本意是“原生”，官方给出的解释是监听组件根元素的原生事件，只能用在组件上，比如以上的Button组件， 调用的地方如果 &amp;lt;Button  @click=&amp;quot;show&amp;quot; /&amp;gt; ，则只会触发show函数，无法触发handleClick。设置了 &amp;lt;Button  @click.native=&amp;quot;show&amp;quot; /&amp;gt;  就可以先触发handleClick，再触发show
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-shi-jian-jian-ting-qi-de-xi-jie-ji-lu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-yuan-li-xue-xi/">
+                        Vue原理学习
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-29</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            响应式系统的原理
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-yuan-li-xue-xi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/canvas-xue-xi-ji-lu/">
+                        Canvas学习记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-22</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            遇到的问题
+
+ 高分屏的canvas内容发虚
+ 绘制圆 context.arc 中的弧度值大小，并不随顺时针/逆时针而改变，换句话说，逆时针画一个四分之三的圆弧，应该为： context.arc(x, y, radius,  0, Math.PI * 0.5, true)
+ 如果当前代码的path没有封闭，closePath会自动进行封闭
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/canvas-xue-xi-ji-lu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">
                         css动效之LoveLive
                     </a>
@@ -132,40 +390,14 @@ LoLive！从左到右依次被替换为ラブライブ！
 
 如何将文字从压扁的状态向上方恢复，首先想到的是transform: scale() 从0到1，或者transform: rotateX() 从90deg到0。 但是这样一来，效果是文字从中间向两边“膨胀”。  解决方案： transform-origin: bottom
 继续上个问题，虽然实现了从底部压扁恢复，但是transform-origin:bottom会从dom的底部为起点，但是文字存在line-height，导致看起来文字离origin点有一些距离。   解决方案： 1. 使用图片替换文字   2. 把文字font-size设置得比较大，line-height设置得比较小，但是度不好把控
+text-shadow属性，并不能做到原视频的效果
+ラブライブ！替换效果，要求从左到右依次出现。  解决方案：做一个遮罩，动画开始后遮罩往右移动，但是由于文字有text-shadow效果，导致出戏，可以通过加入粉色樱花效果来遮盖
+那么粉色樱花效果该如何实现呢？简单来看，樱花是随着ラブライブ！出现而散开，散开一段时间后消散。   解决方案：
 
 
                                         </div>
                                         
                                             <a class="btn btn-text" href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-wei-xin-xuan-ran-ceng-ji/">
-                        css动效之微信渲染层级 
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-20</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            坑
-
-rotate() 并不是rotateX和rotateY的缩写，而是rotateZ的简写...
-光设置background: url(./popout.png); 图片并不会显示，加上 background-size: contain就好了
-移动端的hover出发之后，用户放开手后，不会恢复之前的状态
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-wei-xin-xuan-ran-ceng-ji/">Read More ~</a>
                             </div>
                 </div>
             </article>
@@ -330,318 +562,6 @@ declare module &#39;*.vue&#39; {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">
-                        Vue-Chat 项目问题：Model关联查询
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-03-30</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            问题1: 使用Class生命的Model，关联查询会出现报错
-例如：
-
-class Friends extends Sequelize.Model {}
-Friends.init(
-  {
-    friendRemark: {
-      type: Sequelize.STRING,
-    },
-  },
-  {sequelize, modelName: &#39;newFriends&#39;},
-)
-
-
-class Users = extends Sequelize.Model {}
-Users.init({
-  username: {
-    type: Sequelize.STRING,
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  nickname: {
-    type: Sequelize.STRING,
-  },
-  src: {
-    type: Sequelize.STRING,
-  }
-}, {sequelize, modelName: &#39;newUsers&#39;},
-)
-
-
-Friends.belongsTo(Users, {foreignKey: &#39;userId&#39;, as: &#39;UserInfo&#39;})
-Friends.belongsTo(Users, {foreignKey: &#39;friendId&#39;, as: &#39;FriendUserInfo&#39;})
-
-
-
-SELECT newFriends.id, newFriends.friendRemark, newFriends.userId, newFriends.friendId, UserInfo.id AS UserInfo.id, UserInfo.username AS UserInfo.username, UserInfo.password AS UserInfo.password, UserInfo.nickname AS UserInfo.nickname, UserInfo.src AS UserInfo.src, FriendUserInfo.id AS FriendUserInfo.id, FriendUserInfo.username AS FriendUserInfo.username, FriendUserInfo.password AS FriendUserInfo.password, FriendUserInfo.nickname AS FriendUserInfo.nickname, FriendUserInfo.src AS FriendUserInfo.src FROM newFriends AS newFriends LEFT OUTER JOIN newUsers AS UserInfo ON newFriends.id = UserInfo.userId LEFT OUTER JOIN newUsers AS FriendUserInfo ON newFriends.id = FriendUserInfo.friendId;
-sequelize.js:1187
-Unhandled rejection SequelizeDatabaseError: Unknown column &#39;FriendUserInfo.friendId&#39; in &#39;on clause&#39;
-
-暂时的解决方法：使用define语法
-const Friends = sequelize.define(&#39;newFriends&#39;, {
-friendRemark: {
-type: Sequelize.STRING,
-},
-})
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-model-guan-lian-cha-xun/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">
-                        vue的v-for指令渲染的第一个元素没有data-xxx属性，导致样式失效
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-03-10</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            代码很简单：
-&amp;lt;van-list&amp;gt;
-      &amp;lt;van-cell
-        class=&amp;quot;friend&amp;quot;
-        v-for=&amp;quot;friend in friendRequestList&amp;quot;
-        :key=&amp;quot;friend.id&amp;quot;
-        @click=&amp;quot;checkFriendInfo(friend)&amp;quot;
-      &amp;gt;
-        &amp;lt;img :src=&amp;quot;getImgSrc(friend.src)&amp;quot; :alt=&amp;quot;friend.name&amp;quot; /&amp;gt;
-        &amp;lt;span class=&amp;quot;username&amp;quot;&amp;gt;{{ friend.username }}&amp;lt;/span&amp;gt;
-      &amp;lt;/van-cell&amp;gt;
-    &amp;lt;/van-list&amp;gt;
-
-...
-computed: {
-    friendRequestList() {
-      return this.$store.state.friendRequestList
-    },
-}
-...
-
-&amp;lt;style lang=&amp;quot;less&amp;quot; scoped&amp;gt;
-.friend-request {
-  padding: 0;
-  .friend {
-    /deep/ .van-cell__value {
-      display: flex;
-      align-items: center;
-      img {
-        width: 32px;
-        margin-right: 8px;
-      }
-    }
-  }
-}
-&amp;lt;/style&amp;gt;
-
-首先猜测是vant的bug，先用简单div试试
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-de-v-for-zhi-ling-xuan-ran-de-di-yi-ge-yuan-su-mei-you-data-xxx-shu-xing-dao-zhi-yang-shi-shi-xiao/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">
-                        Vue-Chat项目问题汇总
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-03-03</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            socket.io和express组合
-
-const express = require(&#39;express&#39;)
-const app = express()
-const http = require(&#39;http&#39;).createServer(app)
-const io = require(&#39;socket.io&#39;)(http)
-http.listen(8888)
-// 注意不能用app.listen
-
-发送一条消息后，对应的是sql的insert，并不会返回被插入的这条记录，于是前端自己保存了临时消息信息，push到消息列表中
-其他人为自己发送消息，可以通过io.sockets.sockets获取所有连接中的socket，从而找到对应的socket，让他为用户emit信息，达到推送的目的。
-登录用户为A，此时B为A发送了消息，则A的消息列表中就应该出现该消息，可选的两种做法是：
-
-重新加载A用户的消息列表
-将新消息pushA用户的消息列表
-方法2面临的问题就是需要将消息列表提取到更上层的组件中去，因为推送的事件接收必须放到很高级的页面中去，（最起码不能在聊天列表页），会涉及到vuex
-而方法1虽然简单，但是不提取相关命令到vuex的话，也会一层层传递命令，所以抽取vuex似乎成了必须的选择
-
-推送功能不正常，是由于仅在connection时添加了用户信息，没有在disconnect的时候清除掉。并且在connection时候添加用户信息是不够的（猜测）
-一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：ajax请求的用户数据和socket.io的消息数据
-Some pre-processors, such as Sass, may not be able to parse &amp;gt;&amp;gt;&amp;gt; properly. In those cases you can use the /deep/ or ::v-deep combinator instead - both are aliases for &amp;gt;&amp;gt;&amp;gt; and work exactly the same.
-实现步骤
-
-vue-cli创建项目
-安装必备的插件vue-router、moment、axios、vant并进行配置和封装
-配置webpack的目录别名alias
-写页面，会话列表页、会话页、好友列表页等
-创建数据库，创建user、message表
-项目下创建server目录，比使用npm init -y初始化
-server目录安装express、cors、socket.io库
-express写会话页的消息列表、发送消息接口
-会话页调用消息列表、发送消息接口
-发现这样无法做到新消息的推送，前端项目引入socket.io-client
-在显示消息列表的时候，计划将新发送的消息临时保存，待服务器成功响应之后将临时消息插入到消息列表中
-发现在会话页再进行socket.io连接太晚了，想到用vuex抽取相关数据到顶层，并在store中进行socket.io的初始化和相关接口改造
-一开始是想将用户的头像等信息也放在每一条消息记录数据结构中，但是这样一来处理起来麻烦，而且数据传输比较大，现将其拆分为两部分：axios请求的用户数据和socket.io的消息数据
-放弃query string，使用params来跳转路由传递数据
-想已配置的形式实现TabBar，而不必在每个需要的页面都引入组件。暂时没想到方法，先简单实现
-封装TabBar，以路由形式配置，可点击跳转到会话列表页、好友列表页和个人中心页
-同理封装NavBar，为了每个引入的地方不需要让页面加入margin-top，为组件加一层div，写入margin-bottom的样式
-想到NavBar得支持插槽
-支持插槽以后，样式会和其他原有的样式不一致，所以配置主题 (todo)
-好友列表页的搜索功能，搜索结果列表
-写搜索好友的接口和sql，sql的模糊搜索
-写好友列表接口和sql
-服务器安装nginx git nodejs mysql
-生成git key： ssh-keygen
-应该在创建一个临时会话列表的表，之前想简单的把有过聊天记录的用户查出来，但仔细想一下，用户是可以移除对话记录的
-写会话列表接口的sql
-欲实现登陆注册的功能，前端需要对用户的密码进行不可逆的加密，引入库bcrypt
-登陆请求写到了vuex中，这样登陆成功后跳转页面就需要在mutation或action中使用router，暂时没想到好的办法，作为commit的payload传吧 ** store直接引入router对象即可 **
-要有生成jwt的代码，引入jsonwebtoken库，登陆成功后返回token；以及校验token、存储token的逻辑
-将token存到store中；封装axios，将token放到请求header中；axios的error进行统一处理
-登陆成功后将token和loggedInUser存到localstorage中
-store的token和loggedInUser初值，从localstorage取，以避免刷新页面登陆状态丢失
-跳转路由的登陆状态，由路由守卫来实现
-**socket存在了store中，刷新就会丢失，难道还要再存到localstorage中？或者说，应该什么时候去创建socket连接?目前放到了store.js最后 **
-写用户详情页界面，开始准备实现添加好友功能
-添加好友的细节设定：
-
-在好友搜索，通过id或username查找，之后点击查看详情，发送好友申请，可选备注内容
-同一个目标只能发出一次申请
-收到好友请求，会显示在好友列表的专属区域内，点击查看详情，可以通过或拒绝
-若通过好友请求，则自动改添加对方到会话列表
-若拒绝好友请求，申请人会收到通知，并可以再次发出申请
-TODO 设置好友申请的自动通过
-
-
-申请好友记录 做成 单独表，A申请加B，同时，B也可能申请A，所以通过时候要同时update两条记录
-查询当前用户是否是自己的好友，有两种办法：
-
-查friend表，看二者id，是否存在对应关系
-查makeFriendRecord表，看二者id，是否存在对应关系，并且状态stats是已通过
-这里我觉得只应该使用方法1，如果2人成为好友，之后又解除了好友关系，则存在已通过的记录，但实际上并不是好友
-
-
-TODO 查询用户信息时，sql不应该返回password(不能简单粗暴使用select *)
-查询出来用户信息以后，根据是否是好友来区别显示
-如何实现添加好友功能？
-
-普通axios发出请求，服务器根据请求的目标id来找该用户是否在线，在线则推送一条通知，并记录到对方的好友申请表中
-使用socket.io发出好友请求，后续逻辑一致
-普通的axios无法访问到socket.io的socket，并emit，所以只能用方法2
-
-
-突然想到如果用户不在线，此时收到了好友请求该如何处理（消息同理）。觉得可以先判断一下对方是否在线，在线则推送；创建好友请求表的时候，要加入“已读“字段，当用户请求了”好友请求列表详情“接口时将”未读“的请求设置成”已读“。聊天同理 (还需要整理)
-实现查看自己“新的好友“的列表功能
-为什么action要规定使用context来dispatch和访问state呢？
-计划实现未读消息，
-
-每条消息都加入已读的字段，当用户进入和某用户聊天页面后，将对该用户的所有未读状态改为已读，未读消息条数由前端自行处理
-但是还要看到和每个人的未读消息数，应该在更新会话列表接口时得到这一数据
-
-
-系统的添加好友消息，实现方式为fromUserId为特殊id，并且不会出现在好友列表中，也无法搜索出来
-渐渐的，store变得很大，该拆分了，先把actions里的socket.io部分拆出去
-注意mock数据时候要补全相关表
-创建删除数据库数据的快捷接口
-忘记了加username的防重复判断，计划使用Sequelize重构时加入
-~~ BUG 从route.params.xx取出来的id数字会变成字符串，导致全等判断为false ~~
-TODO 注册后自动登录
-TODO 新用户登陆的引导添加好友
-TODO 新用户登陆后选择头像、设置昵称
-TODO 头像上传和修改
-
-
- 新朋友数量提醒
- 注册和登陆的验证码
- 对话气泡样式
- 可能出现的重复通过好友请求（insert之前必须先select）
- 解决发送消息 -&gt; 后退，看不到自己的最后发言的bug
- 添加好友的推送
- socket连接错误的提示
- 使用sequelize重新实现mysql相关接口
-
- 登陆
- 注册
- 搜索用户
- 查看用户信息(包含是否是好友的状态)
- 发送好友请求
- 查看好友列表
- 查看好友请求列表
- 查看好友请求
- 通过好友请求
-
-
- 登陆次数统计
- 头像相关代码重构
- 记录未发送的草稿消息
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-hui-zong/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">
-                        Vue-Chat项目问题：socket.io uws not found
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-03-03</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            import io from &#39;socket.io-client&#39;
-If you don&#39;t add &amp;quot;-client&amp;quot;, you are using the server component. This won&#39;t work, as there is no &amp;quot;fs&amp;quot; on the browser, just on nodejs side.
-To get typescript import to work, you need npm install of @types/socket.io-client
-Update: Seems, that uws is not required for the client side. I could remove uws without running into errors. Will recheck that, if required...
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-chat-xiang-mu-wen-ti-socketio-uws-not-found/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -660,7 +580,7 @@ Update: Seems, that uws is not required for the client side. I could remove uws 
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590074516680)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590892353005)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

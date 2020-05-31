@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    Vue Todo项目 | 老桔的小站（悄咪咪
+    Vue原理学习 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892353005">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,74 +99,15 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            Vue Todo项目
+                            Vue原理学习
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-10-31</time>
+                            <time class="post-time">2020-05-29</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <p>首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...</p>
-<p>这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。</p>
-<h3 id="记录遇到的问题">记录遇到的问题</h3>
-<ul class="contains-task-list">
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1027675"><label class="task-list-item-label" for="task-item-1027675"> 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8666627"><label class="task-list-item-label" for="task-item-8666627"> 双击todo，使其可编辑，input显示出来自动获取焦点</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7049463"><label class="task-list-item-label" for="task-item-7049463"> 子组件input如何修改父组件传递的input值？</label></p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9017362"><label class="task-list-item-label" for="task-item-9017362"> 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8621609"><label class="task-list-item-label" for="task-item-8621609"> 父组件为子组件传递回调函数，由子组件调用</label></li>
-</ul>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8419178"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos"><label class="task-list-item-label" for="task-item-8419178"> <Todos v-bind:todos="todos"> 和 <Todos todos="todos">区别</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9970494"> 如何实现 <a v-bind:href="#/item"> 答： <label class="task-list-item-label" for="task-item-9970494"> 如何实现 <a v-bind:href="#/item"> 答： <a v-bind:href="'#' + item "></label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7666724"><label class="task-list-item-label" for="task-item-7666724"> 如何调用父组件的自定义指令</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5121152"><label class="task-list-item-label" for="task-item-5121152"> 为什么key只能是数字或字符串？</label></p>
-</li>
-<li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5246992"><label class="task-list-item-label" for="task-item-5246992"> v-if切换组件时，是否会导致子组件的create和destory ?</label></p>
-</li>
-</ul>
-<pre><code class="language-vue">使用自定义指令实现
-&lt;input type=&quot;text&quot; ...  v-todo-focus=&quot;todo === editedTodo&quot;&gt;
-directives: {
-			'todo-focus': function (el, binding) {
-				if (binding.value) {
-					el.focus();
-				}
-			}
-		}
-</code></pre>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1265925"><label class="task-list-item-label" for="task-item-1265925"> 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3150144"><label class="task-list-item-label" for="task-item-3150144"> @click="someFun(value)" 绑定的不是函数的返回值？</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4406632"><label class="task-list-item-label" for="task-item-4406632"> 如何通过watch实现修改todos时自动记录到localStorage ?</label></li>
-</ul>
-<pre><code class="language-vue">watch: {
-        todos: {
-            deep: true,
-            handler: todoStorage.save
-        }
-    }
-</code></pre>
-<h3 id="可以优化的点">可以优化的点</h3>
-<ul>
-<li>按键是否回车可以改为 @keyup.enter=&quot;xx&quot; 来处理</li>
-<li></li>
-</ul>
+                                    <h3 id="响应式系统的原理">响应式系统的原理</h3>
 
                                 </div>
                     </article>
@@ -174,9 +115,9 @@ directives: {
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://angrychocobo.github.io/post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu/">
+                            <a href="https://angrychocobo.github.io/post/canvas-xue-xi-ji-lu/">
                                 <h3 class="post-title">
-                                    深入学习React生命周期函数
+                                    Canvas学习记录
                                 </h3>
                             </a>
                         </div>
@@ -199,8 +140,7 @@ directives: {
 <ul>
 <li>
 <ul>
-<li><a href="#%E8%AE%B0%E5%BD%95%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">记录遇到的问题</a></li>
-<li><a href="#%E5%8F%AF%E4%BB%A5%E4%BC%98%E5%8C%96%E7%9A%84%E7%82%B9">可以优化的点</a></li>
+<li><a href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%9F%E7%90%86">响应式系统的原理</a></li>
 </ul>
 </li>
 </ul>

@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590074516680">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892353005">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590074516680" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892353005" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -97,6 +97,232 @@
                 <div id="content" class="main-container-left">
                     
         
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/webgl-day2-demo-xue-xi/">
+                        Webgl day2 颜色的影响
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-12-24</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这个模版demo需要的资源
+
+DAT.GUI.min.js
+AxisHelper 作者自己写的
+
+程序流程分析
+
+需要创建一个会受到光照影响的Phong球体
+使用点光源PointLight
+
+
+知识点
+
+为物体添加多个材质 SceneUtils.createMultiMaterialObject(geometry, materialArray)
+环境光(Ambient light)
+漫反射颜色(Diffuse Color)
+自发光颜色(Emissive Color)
+镜面反射颜色(Specular Color)
+光泽度(Shininess amount)
+不透明度(Opacity amount)
+
+疑惑
+改进
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/webgl-day2-demo-xue-xi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/webgl-day1/">
+                        Webgl day1 基础的几何球体
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-12-24</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+找到一个好的demo网站，觉得从代码入手比看书会有感觉，互相印证吧～
+每日争取做完一个demo
+
+这个模版demo需要的资源
+
+KeyboardState.js 猜测是一个按键处理程序
+THREE.clock 时钟？ 程序中没有用到
+Detector.js 创建了全屏幕大小的canvas
+Stats.js 插件实现了性能、Fps监控
+OrbitControls.js 轨道控制器，实现了拖拽改变相机位置
+全屏幕、改变尺寸js和jquery不再赘述
+
+程序流程分析
+
+首先初始化一些全局变量
+之后就是两个方法调用
+init()初始化
+animate()启动
+
+知识点
+
+MeshBasicMaterial：基础网格材质，以简单着色的方式来绘制几何体的材质，不受光照影响 （这就是简单cube可以不加光源显示的原因吗？）
+SphereGeometry： 球几何体
+MeshLambertMaterial： 一种非光泽表面的材质，没有镜面高光，常用来模拟未经处理的木材或石材
+MeshPhongMaterial: 该材质可以模拟具有镜面高光的光泽表面（例如涂漆木材）
+Skybox： 天空盒
+创建相同的物体，可以使用Geometry.clone()方法
+scene.fog 添加雾的效果，使用FogExp2对象可创建离相机越远，雾越重的效果；Fog对象创建线性雾 （虽然我没看出区别）
+作者添加了一个球体，放在了和光源一样的位置上来展示灯光的位置 lightSphere.position = light.position
+
+疑惑
+
+ NEAR设置了0.1， FAR 设置到了20000，如何看待这组大小？
+ 创建WebGlRenderer时的参数antialias(抗锯齿)有什么用意？
+ 为什么OrbitControls需要在requestAnimationFrame的循环中updata自己呢？（State.js也需要）
+ floorTexture.repeat.set(10, 10) 值变大，并不是纹理的尺寸变大，具体含义？
+
+改进
+
+ImageUtils.loadTexture 来加载纹理的方式已经不建议使用了,新的api为 TextureLoader
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/webgl-day1/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti/">
+                        Three.js和webgl学习过程遇到的问题
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-12-24</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Q：下载的gltf模型路径
+要么配置webpacl-loader来 加载； 要么使用相对路径，将模型放到html文件的同级路径下（对于vue-cli项目就是public目录）
+Q：加载下载的gltf模型后黑漆漆的什么都看不到
+需要加入光源才能看到。（但是为啥可以看到加入的Cube呢？？？）
+var light = new THREE.PointLight(0xFFFF00);
+/* position the light so it shines on the cube (x, y, z) */
+light.position.set(10, 0, 25);
+this.scene.add(light);
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/threejs-he-webgl-xue-xi-guo-cheng-yu-dao-de-wen-ti/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue-todo-xiang-mu/">
+                        Vue Todo项目
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-31</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            首先html结构直接从网上扒下来，然后删删改改，使用Vue实现...
+这里首次感受到了相较于React，Vue的强大和便利之处：可以很方便的在html页面进行修改，不像React一样需要用jsx重写，略high。
+记录遇到的问题
+
+
+ 双击todo，使其可编辑的回调函数，React是onDoubleClick，而Vue是dblclick，实际上原生就是ondblclick，之前一直以为是doubleclick
+
+
+ 双击todo，使其可编辑，input显示出来自动获取焦点
+
+
+ 子组件input如何修改父组件传递的input值？
+
+ 可通过子组件调用$emit来实现，并且子组件获得的props key和传递的不同
+ 父组件为子组件传递回调函数，由子组件调用
+
+
+
+  和   和 区别
+
+
+ 如何实现  答：  如何实现  答： 
+
+
+ 如何调用父组件的自定义指令
+
+
+ 为什么key只能是数字或字符串？
+
+
+ v-if切换组件时，是否会导致子组件的create和destory ?
+
+
+使用自定义指令实现
+&amp;lt;input type=&amp;quot;text&amp;quot; ...  v-todo-focus=&amp;quot;todo === editedTodo&amp;quot;&amp;gt;
+directives: {
+			&#39;todo-focus&#39;: function (el, binding) {
+				if (binding.value) {
+					el.focus();
+				}
+			}
+		}
+
+
+ 删除所有todo时，todos为空数组，但为何computed为空时，字段都delete了呢？
+ @click=&#34;someFun(value)&#34; 绑定的不是函数的返回值？
+ 如何通过watch实现修改todos时自动记录到localStorage ?
+
+watch: {
+        todos: {
+            deep: true,
+            handler: todoStorage.save
+        }
+    }
+
+可以优化的点
+
+按键是否回车可以改为 @keyup.enter=&amp;quot;xx&amp;quot; 来处理
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue-todo-xiang-mu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
             <article class="post i-card">
                 <h2 class="post-title">
                     <a href="https://angrychocobo.github.io/post/shen-ru-xue-xi-react-sheng-ming-zhou-qi-han-shu/">
@@ -709,7 +935,7 @@ int main(){
                     <time class="post-time">2019-09-19</time>
                     
                         <a href="https://angrychocobo.github.io/tag/a5lKmbRS_/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-warning">
             #实战
         </a>
                         
@@ -752,216 +978,6 @@ int main(){
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie/">
-                        算法有穷型分析 hailstone序列
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-07</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            学到了一个知识点：
-
-hailstone序列：
-1）输入一个正整数n；
-（2）如果n=1则结束；
-（3）如果n是奇数，则n变为3n+1，否则n变为n/2；
-（4）转入第（2）步。
-
-function hailstone(n) {
-	var length = 1; 
-	while(1 &amp;lt; n) {
-		if(n % 2 === 0) {
-			n = n/2;
-		} else {
-			n = 3 * n + 1;
-		}
-		length++;
-		
-	}
-	return length;
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/suan-fa-you-qiong-xing-fen-xi-hailstone-xu-lie/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/redux-zhong-jian-jian-lin-shi-ji-lu/">
-                        redux中间件临时记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-05</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            export function fetchWords() {
-// Thunk middleware 知道如何处理函数。
-// 这里把 dispatch 方法通过参数的形式传给函数，
-// 以此来让它自己也能 dispatch action。
-
-return function (dispatch) {
-
-    // 首次 dispatch：更新应用的 state 来通知
-    // API 请求发起了。
-
-    dispatch(requestWords())
-
-    // thunk middleware 调用的函数可以有返回值，
-    // 它会被当作 dispatch 方法的返回值传递。
-
-    // 这个案例中，我们返回一个等待处理的 promise。
-    // 这并不是 redux middleware 所必须的，但这对于我们而言很方便。
-
-    return fetch(`http://127.0.0.1:3001/words`)
-        .then(function (response) {
-            return response.json();
-        },
-            // 不要使用 catch，因为会捕获
-            // 在 dispatch 和渲染中出现的任何错误，
-            // 导致 &#39;Unexpected batch number&#39; 错误。
-            // https://github.com/facebook/react/issues/6895
-            error =&amp;gt; console.log(&#39;An error occurred.&#39;, error)
-        )
-        .then(json =&amp;gt;
-        // 可以多次 dispatch！
-        // 这里，使用 API 请求结果来更新应用的 state。
-        {
-            if (json) {
-                setTimeout(() =&amp;gt; {
-                    dispatch(receiveWords(json));
-                }, 2000);
-            } else {
-                dispatch(fetchError());
-            }
-
-        }
-        );
-}
-
-}
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/redux-zhong-jian-jian-lin-shi-ji-lu/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin/">
-                        使用fetch请求接口并设置cookie未生效的原因
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-02</time>
-                    
-                        <a href="https://angrychocobo.github.io/tag/F1tncGu90/" class="post-tag i-tag
-                            i-tag-warning">
-            #踩坑
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            //使用fetch，必须加上参数credentials: &#39;include&#39;才可以成功设置cookie
-//但是这样一来又有了跨域的问题。晕，先睡了
-似乎是跨域引起的无法设置cookie，若使用ajax的话需要加上设置xhrFields: { withCredentials: true }。emm 很迷。懵逼。
-那么fetch呢..
-还有坑，chrome中，通过localhost访问项目不能看到服务端设置的cookie。又一个迷。懵逼x2
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/shi-yong-fetch-qing-qiu-jie-kou-bing-she-zhi-cookie-wei-sheng-xiao-de-yuan-yin/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa/">
-                        不使用reject  让create-react-app支持less的方法
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-07-31</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            create-react-app是默认支持sass的，但是less需要做一些特殊处理：
-
-对创建好的create-react-app项目安装依赖包：
-
-npm install react-app-rewired --save
-npm install react-app-rewire-less --save
-
-
-修改项目的package.json：
-
-  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;start&amp;quot;: &amp;quot;react-scripts start&amp;quot;,
-    &amp;quot;build&amp;quot;: &amp;quot;react-scripts build&amp;quot;,
-    &amp;quot;test&amp;quot;: &amp;quot;react-scripts test&amp;quot;,
-    &amp;quot;eject&amp;quot;: &amp;quot;react-scripts eject&amp;quot;
-  }
-
-
-项目根目录创建文件config-overrides.js
-
-const {
-    override,
-    fixBabelImports,
-    addLessLoader
-} = require(&#39;customize-cra&#39;);
-
-module.exports = override(
-    fixBabelImports(&#39;import&#39;, {
-        libraryName: &#39;antd&#39;,
-        libraryDirectory: &#39;es&#39;,
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: {
-            &#39;@primary-color&#39;: &#39;#1DA57A&#39;
-        },
-    })
-);
-
-顺便解释一下，网上搜到的一些帖子已经过时，上述方法是通过Ant Design配置主题的方法中抽取的，可以实现需求。嘿嘿，如果你是用ant design当作ui库开发的话，就一举两得啦～
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/rang-create-react-app-bu-shi-yong-reject-zhi-chi-less-de-fang-fa/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -982,7 +998,7 @@ module.exports = override(
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590074516680)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590892353005)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
