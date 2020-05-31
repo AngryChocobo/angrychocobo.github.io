@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892433665">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590931291630">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892433665" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590931291630" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -106,6 +106,11 @@
                 <div class="post-info">
                     <time class="post-time">2020-05-31</time>
                     
+                        <a href="https://angrychocobo.github.io/tag/oTOBbAZF5/" class="post-tag i-tag
+                            i-tag-">
+            #算法
+        </a>
+                        
                 </div>
                 <div class="post-article">
                     
@@ -243,6 +248,21 @@ mounted顺序是先自组件，后父组件，那么如果子组件mounted时候
 broadcast和dispatch二者都是递归操作，为何broadcast把函数抽取出去了呢？
 child.emit.apply(child,[eventName].concat(params));为什么这里不改成child.emit.apply(child, [eventName].concat(params)); 为什么这里不改成 child.emit.apply(child,[eventName].concat(params));为什么这里不改成child.emit.call(child, eventName,params) 呢？
 
+Form
+FormItem
+Checkbox  &amp;amp; CheckboxGroup
+提供trueValue和falseValue来帮助用户实现选中效果，用户不需要再对数据进行Boolean转化
+分为两种使用场景：
+
+单独使用
+单独使用时，自己向FormItem emit挂载事件；自己处理@change事件更新值
+成组使用
+成组使用时，自己处理@change事件，emit到CheckboxGroup组件来更新自己的值； 同时由于vue的特性，需要将CheckboxGroup的选中项以v-model形式传给每个Checkbox child； 会有value属性，以label传入
+
+CheckboxGroup
+遇到的坑
+
+加入了Checkbox以后，表单的submit执行不到回调函数，仔细一查，Form中做了判断，必须： ++count === this.fields.length才会resolve，而field.validate在rules为空时直接返回了true
 
 
                                         </div>
@@ -581,7 +601,7 @@ declare module &#39;*.vue&#39; {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590892433665)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590931291630)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪

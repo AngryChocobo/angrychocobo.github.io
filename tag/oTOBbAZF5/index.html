@@ -7,7 +7,7 @@
 <title>
     算法 | 老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590892433665">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590931291630">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590892433665" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590931291630" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -104,6 +104,80 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/bu-shi-yong-di-gui-ru-he-shi-xian-bian-li-shu/">
+                        不使用递归如何实现遍历树？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-05-31</time>
+                    
+                        <a href="https://angrychocobo.github.io/tag/oTOBbAZF5/" class="post-tag i-tag
+                            i-tag-other_1">
+            #算法
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            起因是实现vue功能函数，向下查找组件的所有后代组件，找到name符合要求的，递归版本的非常容易实现：
+function _findComponentsDownward(
+  component,
+  componentName,
+  components = []
+) {
+  const children = component.$children;
+  if (children) {
+    for (const child of children) {
+      if (child.$options.name === componentName) {
+        components.push(child);
+      }
+      _findComponentsDownward(child, componentName, components);
+    }
+  }
+  return components;
+}
+
+但是非递归的要如何实现呢？实际上可以用栈来实现～
+function findComponentsDownward(component, componentName) {
+  const components = [];
+  const stack = [];
+  stack.push(component);
+  while (stack.length) {
+    const target = stack.pop();
+    if (target.$options.name === componentName) {
+      components.push(target);
+    }
+    const children = target.$children;
+    if (children) {
+      children.forEach((child) =&amp;gt; {
+        stack.push(child);
+      });
+    }
+  }
+
+原理：
+
+将根组件入栈
+循环直到栈为空
+取出栈顶组件，判断是否是目标
+将该组件的子组件依次入栈（如果存在子组件）
+
+感悟
+实际上应该是树的后续遍历的非递归实现方法。自己数据结构太菜了，导致没有思路
+吃了没文化的亏
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/bu-shi-yong-di-gui-ru-he-shi-xian-bian-li-shu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io/post/liang-shu-zhi-he-1/">
                         两数之和1 
                     </a>
@@ -112,7 +186,7 @@
                     <time class="post-time">2019-07-27</time>
                     
                         <a href="https://angrychocobo.github.io/tag/oTOBbAZF5/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
             #算法
         </a>
                         
@@ -194,7 +268,7 @@ class Solution {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590892433665)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590931291630)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
