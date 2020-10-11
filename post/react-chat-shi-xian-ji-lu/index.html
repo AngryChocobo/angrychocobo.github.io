@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | 老桔的小站（悄咪咪
+    React Chat 实现记录 | 老桔的小站（悄咪咪
 </title>
 <link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1602404650525">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,20 +99,45 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            关于
+                            React Chat 实现记录
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
+                            <time class="post-time">2020-09-10</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <p>这是关于的页面，可以在这里向世界介绍你！</p>
+                                    <h2 id="关于material-ui以下简称为mui">关于Material UI，以下简称为MUI</h2>
+<ul>
+<li>在Vant中的Toast组件，MUI对应的组件为Snackbar，但是它没有提供一种以js调用的函数，官网推荐使用 <code>notistack</code> 替代，需要单独安装依赖</li>
+</ul>
+<h2 id="hook相关">Hook相关</h2>
+<ul>
+<li>在异步的函数中使用useHistory</li>
+</ul>
+<h2 id="create-react-app-配置">Create-react-app 配置</h2>
+<ul>
+<li>配置别名alias：  (暂时不支持ts)
+<ul>
+<li>安装依赖 customize-cra</li>
+<li>使用它的 <code>addWebpackAlias</code> 函数， 需要配合tsconfig.json的paths属性</li>
+</ul>
+</li>
+</ul>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://angrychocobo.github.io/post/leetcode-shua-ti/">
+                                <h3 class="post-title">
+                                    Leetcode 刷题
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -121,32 +146,48 @@
                 <!-- right -->
                 <div id="sidebar" class="main-container-right">
                     
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1602404650525)">
-        </div>
-        <h1 class="id_card-title">
-            老桔的小站（悄咪咪
-        </h1>
-        <h2 class="id_card-description">
-            边学边忘
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%85%B3%E4%BA%8Ematerial-ui%E4%BB%A5%E4%B8%8B%E7%AE%80%E7%A7%B0%E4%B8%BAmui">关于Material UI，以下简称为MUI</a></li>
+<li><a href="#hook%E7%9B%B8%E5%85%B3">Hook相关</a></li>
+<li><a href="#create-react-app-%E9%85%8D%E7%BD%AE">Create-react-app 配置</a></li>
+</ul>
+</li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
-                                    
+                            
 
                 </div>
 

@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1590931291630">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1602404650525">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1590931291630" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1602404650525" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -99,6 +99,202 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/yue-du-element-yuan-ma-de-shou-huo/">
+                        阅读element源码的收获
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-09-16</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+提供install方法，以供Vue.use调用，来安装插件
+Dialog组件，它用transition的@after-enter和@after-leave事件来触发Dialog组件的opened和closed事件
+Button组件，通过this.$slots.default 来判断是否传了插槽内容
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/yue-du-element-yuan-ma-de-shou-huo/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/vue2-sheng-ji-vue3-cai-keng-ji-lu/">
+                        Vue2升级Vue3  踩坑记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-09-15</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            安装
+
+由于旧项目是使用vue-cli创建的，所以使用 vue add vue-next来升级为vue3
+这步报错，说明vue-cli版本过低，要卸载旧版的vue-cli重新安装
+
+yarn global remove @vue/cli
+yarn global add @vue/cli
+
+
+
+旧代码的报错
+
+ Vue.prototype.$axios = service    vue3 全局api不再挂载在Vue上，而是在app实例上
+ so，创建app实例也改用createApp函数实现 (这一步工具会自动转换)
+ Vue.use 同理
+ &#39;.native&#39; modifier on &#39;v-on&#39; directive is deprecated
+ vant 3 对模态窗v-model=&#34;xxx&#34; 改为 v-model:show=&#34;xxx&#34; (但是这里不知道怎么配置eslint)
+ van-tabbar-item :info改为:badge 徽标
+ van-nav-bar 插槽不生效了
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/vue2-sheng-ji-vue3-cai-keng-ji-lu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/react-chat-shi-xian-ji-lu/">
+                        React Chat 实现记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-09-10</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            关于Material UI，以下简称为MUI
+
+在Vant中的Toast组件，MUI对应的组件为Snackbar，但是它没有提供一种以js调用的函数，官网推荐使用 notistack 替代，需要单独安装依赖
+
+Hook相关
+
+在异步的函数中使用useHistory
+
+Create-react-app 配置
+
+配置别名alias：  (暂时不支持ts)
+
+安装依赖 customize-cra
+使用它的 addWebpackAlias 函数， 需要配合tsconfig.json的paths属性
+
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/react-chat-shi-xian-ji-lu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/leetcode-shua-ti/">
+                        Leetcode 刷题
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-08-05</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            一、数组
+题目分类	题目编号
+数组的遍历	485、495、414、628
+统计数组中的元素	645、697、448、442、41、274
+数组的改变、移动	453、665、283
+二维数组及滚动数组	118、119、661、598、419
+数组的旋转	189、396
+特定顺序遍历二维数组	54、59、498
+二维数组变换	566、48、73、289
+前缀和数组	303、304、238
+题解	数组篇
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/leetcode-shua-ti/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/nest-qian-yi-liao-tian-fu-wu-duan-ji-lu/">
+                        Nest迁移聊天服务端记录
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-07-27</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+开启跨域：app.enableCors()
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/nest-qian-yi-liao-tian-fu-wu-duan-ji-lu/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://angrychocobo.github.io/post/translation-is-not-linear-transform/">
+                        translation is Not linear transform
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-06-07</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            平移变换 无法 像线性变换 一样，通过两个矩阵相乘的形式来表示坐标。
+于是引入了齐次坐标的概念，通过它可以统一的表示坐标变换
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/translation-is-not-linear-transform/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://angrychocobo.github.io/post/bu-shi-yong-di-gui-ru-he-shi-xian-bian-li-shu/">
                         不使用递归如何实现遍历树？
                     </a>
@@ -107,7 +303,7 @@
                     <time class="post-time">2020-05-31</time>
                     
                         <a href="https://angrychocobo.github.io/tag/oTOBbAZF5/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #算法
         </a>
                         
@@ -347,242 +543,6 @@ native，本意是“原生”，官方给出的解释是监听组件根元素�
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/canvas-xue-xi-ji-lu/">
-                        Canvas学习记录
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-22</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            遇到的问题
-
- 高分屏的canvas内容发虚
- 绘制圆 context.arc 中的弧度值大小，并不随顺时针/逆时针而改变，换句话说，逆时针画一个四分之三的圆弧，应该为： context.arc(x, y, radius,  0, Math.PI * 0.5, true)
- 如果当前代码的path没有封闭，closePath会自动进行封闭
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/canvas-xue-xi-ji-lu/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">
-                        css动效之LoveLive
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-21</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            首先找到了LoveLive的字体
-分析动效构成
-
-出现两个L，第二个L缓慢向右侧移动
-移动到固定位置后，从Love的o开始往右侧以此出现，每个字母将要完成自己的动画时下一个字母开始出现
-每个字母都是从底部压缩慢慢撑起高度
-最后的感叹号完成后，小延迟
-LoLive！从左到右依次被替换为ラブライブ！
-同时存在粉色樱花效果
-ラブライブ！全部出现后，文字颜色开始逐步变为粉色，同时School idol project开始从底部浮现
-结束
-
-开始实现
-
-每个字母似乎都是独立的，所以得对每一个字母进行设置动画
-
-遇到的难点
-
-如何将文字从压扁的状态向上方恢复，首先想到的是transform: scale() 从0到1，或者transform: rotateX() 从90deg到0。 但是这样一来，效果是文字从中间向两边“膨胀”。  解决方案： transform-origin: bottom
-继续上个问题，虽然实现了从底部压扁恢复，但是transform-origin:bottom会从dom的底部为起点，但是文字存在line-height，导致看起来文字离origin点有一些距离。   解决方案： 1. 使用图片替换文字   2. 把文字font-size设置得比较大，line-height设置得比较小，但是度不好把控
-text-shadow属性，并不能做到原视频的效果
-ラブライブ！替换效果，要求从左到右依次出现。  解决方案：做一个遮罩，动画开始后遮罩往右移动，但是由于文字有text-shadow效果，导致出戏，可以通过加入粉色樱花效果来遮盖
-那么粉色樱花效果该如何实现呢？简单来看，樱花是随着ラブライブ！出现而散开，散开一段时间后消散。   解决方案：
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/css-dong-xiao-zhi-lovelive/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/transform-scale-de-yi-xie-xiao-keng/">
-                        transform: scale的一些小坑
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-19</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            想要的效果：hover时候内容变大，但是发现文字会抖动 ，大概代码如下
-&amp;lt;div class=&amp;quot;list&amp;quot;&amp;gt;
-      &amp;lt;div class=&amp;quot;item green&amp;quot;&amp;gt;我是一个绿色的div&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;style&amp;gt;
-     .list:hover .green {
-        transform: scale(2);
-        transition-duration: 1s;
-      }
-&amp;lt;/style&amp;gt;
-
-暂时的解决方案是
-.list:hover .green {
-    transform: scale(2)  translateZ(0);
-    transition-duration: 1s;
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/transform-scale-de-yi-xie-xiao-keng/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/wei-lai-yi-ge-yue-de-ji-hua/">
-                        未来一个月的计划
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-18</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            vue-chat
-
- 检查当前的逻辑，确保基本功能正常
- 提交到腾讯云，暂不使用docker
-
-深入基础
-
- css变形动画transform
- css动画animation
- canvas绘图
- echarts
- d3.js
- 正则表达式
- Promise
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/wei-lai-yi-ge-yue-de-ji-hua/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/xin-zi-shi/">
-                        新姿势
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-05-11</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            git
-
-git stash 将临时代码提交到脏工作区
-
-通过git stash apply恢复；
-通过git stash list查看stash列表
-通过git stash drop [stash名] 或git stash pop 删除
-
-
-
-Promise
-
-Promise.race(Array),数组中任何一个promise的状态变为rejected 或者 resolved，该函数就会返回，并使用这个promise对象的值进行resolve或者reject。可以用来执行超时检测s
-
-todo app
-
-   一个mac应用，设置随机时间，切换主题颜色
-   切换密码显示、隐藏的组件
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/xin-zi-shi/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://angrychocobo.github.io/post/typescript-cai-keng/">
-                        TypeScript踩坑
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2020-04-06</time>
-                    
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            放到vue项目中后，提示import vue页面报错
-在项目目录创建x.d.ts文件：
-declare module &#39;*.vue&#39; {
-  import Vue from &#39;vue&#39;
-  export default Vue
-}
-
-之后在ts的配置文件种引入:
-&amp;quot;include&amp;quot;: [
-    // 需要编译的ts文件一个*表示文件匹配**表示忽略文件的深度问题
-    &amp;quot;./src/**/*.ts&amp;quot;
-  ],
-
-最后如果发现错误还存在的话，重启一下vscode，就会发现报错消失了（坑我半小时）
-燃鹅，此时vscode点击vue文件的路径跳转的话，会发现打开的不是我们声明的vue文件，而是声明的类型文件
-使用interface报错：Module parse failed: The keyword &#39;interface&#39; is reserved
-调用window等全局对象
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://angrychocobo.github.io/post/typescript-cai-keng/">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -601,7 +561,7 @@ declare module &#39;*.vue&#39; {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1590931291630)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1602404650525)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
