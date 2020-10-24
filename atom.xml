@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://angrychocobo.github.io/</id>
     <title>老桔的小站（悄咪咪</title>
-    <updated>2020-10-12T07:38:58.179Z</updated>
+    <updated>2020-10-24T11:31:56.506Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://angrychocobo.github.io/"/>
     <link rel="self" href="https://angrychocobo.github.io/atom.xml"/>
@@ -41,13 +41,13 @@
 </ol>
 <h2 id="旧代码的报错">旧代码的报错</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8259976"><label class="task-list-item-label" for="task-item-8259976"> Vue.prototype.$axios = service    vue3 全局api不再挂载在Vue上，而是在app实例上</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2744112"><label class="task-list-item-label" for="task-item-2744112"> so，创建app实例也改用createApp函数实现 (这一步工具会自动转换)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5113822"><label class="task-list-item-label" for="task-item-5113822"> Vue.use 同理</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-573264"><label class="task-list-item-label" for="task-item-573264"> '.native' modifier on 'v-on' directive is deprecated</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6031482"><label class="task-list-item-label" for="task-item-6031482"> vant 3 对模态窗v-model="xxx" 改为 v-model:show="xxx" (但是这里不知道怎么配置eslint)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3166953"><label class="task-list-item-label" for="task-item-3166953"> van-tabbar-item :info改为:badge 徽标</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9540781"><label class="task-list-item-label" for="task-item-9540781"> van-nav-bar 插槽不生效了</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1440886"><label class="task-list-item-label" for="task-item-1440886"> Vue.prototype.$axios = service    vue3 全局api不再挂载在Vue上，而是在app实例上</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2766518"><label class="task-list-item-label" for="task-item-2766518"> so，创建app实例也改用createApp函数实现 (这一步工具会自动转换)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8986509"><label class="task-list-item-label" for="task-item-8986509"> Vue.use 同理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1480769"><label class="task-list-item-label" for="task-item-1480769"> '.native' modifier on 'v-on' directive is deprecated</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4182905"><label class="task-list-item-label" for="task-item-4182905"> vant 3 对模态窗v-model="xxx" 改为 v-model:show="xxx" (但是这里不知道怎么配置eslint)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6755738"><label class="task-list-item-label" for="task-item-6755738"> van-tabbar-item :info改为:badge 徽标</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6241220"><label class="task-list-item-label" for="task-item-6241220"> van-nav-bar 插槽不生效了</label></li>
 </ul>
 ]]></content>
     </entry>

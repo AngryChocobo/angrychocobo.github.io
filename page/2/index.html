@@ -7,7 +7,7 @@
 <title>
     老桔的小站（悄咪咪
 </title>
-<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1602488336638">
+<link rel="shortcut icon" href="https://angrychocobo.github.io//favicon.ico?v=1603539108490">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://angrychocobo.github.io/">
-                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1602488336638" alt="">
+                <img class="avatar" src="https://angrychocobo.github.io//images/avatar.png?v=1603539108490" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -604,6 +604,8 @@ TODO 头像上传和修改
  查看好友请求列表
  查看好友请求
  通过好友请求
+ 获取群详情
+ 获取群消息列表
 
 
  登陆次数统计
@@ -624,7 +626,23 @@ TODO 头像上传和修改
 
  后端对RSA加密后的密码解密时，使用node-rsa实现
  后端用dotenv库来读取.env文件的配置
-[ ]
+ 群聊功能
+
+ 群头像，关联查询前4人的个人信息，用来显示为默认logo，字段为veteranList，排序权重为role，前端通过grid布局来实现头像4宫格
+ 但是上述方法sq会很复杂，影响效率，应该在有群成员数量变更时去生成封面图，延迟实现
+ 暂时全部显示默认图
+ 申请加入群
+ 搜索群
+ 整合创建群、搜索用户功能，做成悬浮弹窗
+ 查看群信息，返回成员列表、群备注等
+ 群成员等级划分
+ 退出群功能
+ 解散群功能
+ 分享群功能
+ 群消息提示、统计
+ 屏蔽群消息
+
+
 
 
                                         </div>
@@ -681,7 +699,7 @@ Update: Seems, that uws is not required for the client side. I could remove uws 
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1602488336638)">
+        <div class="id_card-avatar" style="background-image: url(https://angrychocobo.github.io//images/avatar.png?v=1603539108490)">
         </div>
         <h1 class="id_card-title">
             老桔的小站（悄咪咪
